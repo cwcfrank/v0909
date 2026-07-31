@@ -191,6 +191,7 @@
     :root{--card:#fff;--bg:#fff;--soft:#f4f4f4;--line:#bbb;--ink:#000;--body:#000;--mut:#444}
     .fixbar,.top,nav,.wide,.fab,.copy,.done-row,.reset,.playbtn,.demo,.ub{display:none!important}
     .reveal{opacity:1!important;transform:none!important}
+    .staged .seq,.staged .gd,.bd{opacity:1!important}
     body{padding-top:0}
     body{font-size:10.5pt}
     .wrap{max-width:none;padding:0}
@@ -940,10 +941,11 @@
       es.forEach(function(en){ if (en.isIntersecting){ play(); once.unobserve(en.target); } });
     }, { threshold: .35 });
     once.observe(fig);
+    setTimeout(function(){ items.forEach(function(el){ el.classList.add('on'); }); }, 6000);
     if (btn) document.querySelector(btn).addEventListener('click', play);
     return play;
   }
-  stage('#s1 .fig', 'seq', '#playS1', 560);
+  stage('#s1 .fig', 'seq', '#playS1', 420);
 
   /* ── STEP 4：好 vs 壞 模擬 ── */
   (function(){
@@ -967,6 +969,7 @@
       es.forEach(function(en){ if (en.isIntersecting){ play(); o.unobserve(en.target); } });
     }, { threshold: .35 });
     o.observe(fig);
+    setTimeout(function(){ gd.concat(bd).forEach(function(e){ e.classList.add('on'); }); }, 6000);
     btn.addEventListener('click', play);
   })();
 
