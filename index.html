@@ -125,9 +125,72 @@
   .reset{background:none;border:0;color:var(--mut);font-size:13px;text-decoration:underline;
     cursor:pointer;padding:0}
 
+
+  /* ── 互動與動畫 ── */
+  .reveal{opacity:0;transform:translateY(14px)}
+  .reveal.in{opacity:1;transform:none;transition:opacity .5s ease,transform .5s ease}
+  .staged .seq,.staged .gd{opacity:.14;transition:opacity .45s ease}
+  .staged .seq.on,.staged .gd.on{opacity:1}
+  .bd{opacity:0}
+  .bd.on{opacity:1;animation:pop .5s ease}
+  @keyframes pop{0%{transform:scale(.4)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+  .playbtn{margin:10px 0 0;padding:9px 16px;border:1.5px solid var(--cyan);border-radius:99px;
+    background:transparent;color:var(--cyan);font-size:13.5px;font-weight:800;cursor:pointer}
+  .playbtn:hover{background:var(--cyan);color:#fff}
+  .wide.allin i{animation:glow 1.1s ease-in-out infinite alternate}
+  @keyframes glow{from{opacity:.65}to{opacity:1}}
+
+  /* 迷你 demo */
+  .demo{border:2px solid var(--orange);border-radius:12px;overflow:hidden;margin:14px 0}
+  .demo-head{background:var(--soft);padding:9px 13px;display:flex;align-items:center;gap:10px;
+    flex-wrap:wrap;font-size:13px;font-weight:800;color:var(--ink);border-bottom:1px solid var(--line)}
+  .sw{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-weight:700;
+    color:var(--mut);cursor:pointer;font-size:12.5px}
+  .sw input{width:18px;height:18px;accent-color:var(--ok);margin:0}
+  .demo-stage{padding:15px 13px;transition:max-width .5s ease;max-width:100%}
+  .demo-stage.narrow{max-width:240px}
+  .cups{font-size:15px;color:var(--ink);margin-bottom:10px}
+  .cups b{font-size:30px;color:var(--orange);transition:transform .2s ease;display:inline-block}
+  .cups b.bump{transform:scale(1.35)}
+  .demo-stage button{margin:0 7px 7px 0;padding:9px 14px;border:1px solid var(--line);
+    border-radius:9px;background:var(--card);color:var(--ink);font-size:13.5px;font-weight:700;
+    cursor:pointer}
+  .demo-stage button:hover{border-color:var(--orange)}
+  .demo-msg{margin:0;padding:11px 13px;background:var(--soft);font-size:13.5px;
+    border-top:1px solid var(--line);color:var(--body);min-height:44px}
+  .demo-msg.bad{color:var(--pink);font-weight:800}
+  .demo-msg.good{color:var(--ok);font-weight:800}
+  .shake{animation:shake .4s ease}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}
+    75%{transform:translateX(6px)}}
+
+  /* 網址組裝器 */
+  .ub{border:2px solid var(--pink);border-radius:12px;padding:14px;margin:14px 0}
+  .ubrow{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:620px){.ubrow{grid-template-columns:1fr 1fr}}
+  .ub label{font-size:12.5px;font-weight:800;color:var(--ink);display:block}
+  .ub input{width:100%;margin-top:5px;padding:10px;border:1px solid var(--line);border-radius:8px;
+    background:var(--card);color:var(--ink);font:14px ui-monospace,Menlo,monospace}
+  .ub input:focus{outline:2px solid var(--cyan);outline-offset:1px}
+  .ubout{margin-top:12px;background:var(--soft);border:1px solid var(--line);border-radius:9px;
+    padding:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .ubout code{font-size:14.5px;background:none;border:0;padding:0;overflow-wrap:anywhere}
+  .ubout button{padding:8px 14px;border:0;border-radius:8px;background:var(--navy);color:#fff;
+    font-size:13px;font-weight:800;cursor:pointer;margin-left:auto}
+  .ubout button.done{background:var(--ok)}
+  .ubwarn{margin:9px 0 0;font-size:13px;font-weight:800;min-height:20px}
+  .ubwarn.bad{color:var(--pink)} .ubwarn.ok{color:var(--ok)}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    .staged .seq,.staged .gd,.bd{opacity:1}
+  }
+
   @media print{
     :root{--card:#fff;--bg:#fff;--soft:#f4f4f4;--line:#bbb;--ink:#000;--body:#000;--mut:#444}
-    .fixbar,.top,nav,.wide,.fab,.copy,.done-row,.reset{display:none!important}
+    .fixbar,.top,nav,.wide,.fab,.copy,.done-row,.reset,.playbtn,.demo,.ub{display:none!important}
+    .reveal{opacity:1!important;transform:none!important}
     body{padding-top:0}
     body{font-size:10.5pt}
     .wrap{max-width:none;padding:0}
@@ -318,13 +381,13 @@
     <svg viewBox="0 0 720 240" role="img" aria-label="拷問流程：你說一句題目，AI 問五題，你回答，AI 產出規格">
       <g font-size="13">
         <!-- 你 -->
-        <g transform="translate(10,10)">
+        <g class="seq" transform="translate(10,10)">
           <rect width="300" height="52" rx="14" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
           <text x="16" y="24" font-weight="800" class="sv-i">你</text>
           <text x="16" y="42" class="sv-m">我想做一個 ______ 的網頁</text>
         </g>
         <!-- AI 問 5 題 -->
-        <g transform="translate(340,10)">
+        <g class="seq" transform="translate(340,10)">
           <rect width="370" height="112" rx="14" fill="var(--soft)" stroke="var(--cyan)" stroke-width="2.5"/>
           <text x="16" y="24" font-weight="800" fill="var(--cyan)">AI 反問你 5 題</text>
           <g class="sv-i">
@@ -333,27 +396,27 @@
             <text x="16" y="92" class="sv-m">3. 4. 5. ⋯</text>
           </g>
         </g>
-        <path d="M312 36h20" stroke="var(--cyan)" stroke-width="2.5" marker-end="url(#ar)"/>
+        <path class="seq" d="M312 36h20" stroke="var(--cyan)" stroke-width="2.5" marker-end="url(#ar)"/>
         <!-- 你回答 -->
-        <g transform="translate(10,86)">
+        <g class="seq" transform="translate(10,86)">
           <rect width="300" height="66" rx="14" fill="var(--card)" stroke="var(--ok)" stroke-width="2.5"/>
           <text x="16" y="26" font-weight="800" fill="var(--ok)">你回答（最省力的答法）</text>
           <text x="16" y="48" font-weight="700" class="sv-i">「照你的建議」</text>
           <text x="16" y="62" class="sv-m" font-size="11.5">或「1 照你的建議，2 我要 A，3 不用做」</text>
         </g>
-        <path d="M336 76 L200 86" stroke="var(--cyan)" stroke-width="2" opacity=".5"
+        <path class="seq" d="M336 76 L200 86" stroke="var(--cyan)" stroke-width="2" opacity=".5"
               marker-end="url(#ar)" fill="none"/>
         <!-- 產出規格 -->
-        <g transform="translate(340,140)">
+        <g class="seq" transform="translate(340,140)">
           <rect width="370" height="90" rx="14" fill="var(--card)" stroke="var(--orange)" stroke-width="2.5"/>
           <text x="16" y="24" font-weight="800" fill="var(--orange)">AI 產出規格（抄到學習單 ①）</text>
           <text x="16" y="46" class="sv-i">【我要做的東西】【功能清單 3 項】</text>
           <text x="16" y="66" font-weight="700" fill="var(--orange)">【驗收方式 3 步】← 抓 AI 說謊的武器</text>
           <text x="16" y="82" class="sv-m" font-size="11.5">【我們決定不做的事】</text>
         </g>
-        <path d="M200 152 L336 176" stroke="var(--orange)" stroke-width="2" opacity=".6"
+        <path class="seq" d="M200 152 L336 176" stroke="var(--orange)" stroke-width="2" opacity=".6"
               marker-end="url(#ar)" fill="none"/>
-        <g transform="translate(10,176)">
+        <g class="seq" transform="translate(10,176)">
           <rect width="300" height="54" rx="12" fill="var(--soft)" stroke="var(--pink)" stroke-width="2"/>
           <text x="14" y="22" font-weight="800" fill="var(--pink)" font-size="12.5">最多兩輪就夠</text>
           <text x="14" y="42" class="sv-i" font-size="12">第三輪還在問 → 「不要再問了，開始寫」</text>
@@ -361,6 +424,7 @@
       </g>
     </svg>
     <p class="cap">它問你問題不是它笨，<b>是它在避免做白工</b>。</p>
+    <button class="playbtn" id="playS1">▶ 播一次流程</button>
   </div>
 
   <div class="code">
@@ -469,9 +533,9 @@
         <g transform="translate(10,8)">
           <rect width="340" height="62" rx="12" fill="var(--card)" stroke="var(--ok)" stroke-width="2.5"/>
           <text x="14" y="24" font-weight="800" fill="var(--ok)">✓ 一次一件事</text>
-          <circle cx="30" cy="44" r="7" fill="var(--ok)"/><path d="M37 44h34" stroke="var(--ok)" stroke-width="2.5"/>
-          <circle cx="78" cy="44" r="7" fill="var(--ok)"/><path d="M85 44h34" stroke="var(--ok)" stroke-width="2.5"/>
-          <circle cx="126" cy="44" r="7" fill="var(--ok)"/>
+          <circle class="gd" cx="30" cy="44" r="7" fill="var(--ok)"/><path class="gd" d="M37 44h34" stroke="var(--ok)" stroke-width="2.5"/>
+          <circle class="gd" cx="78" cy="44" r="7" fill="var(--ok)"/><path class="gd" d="M85 44h34" stroke="var(--ok)" stroke-width="2.5"/>
+          <circle class="gd" cx="126" cy="44" r="7" fill="var(--ok)"/>
           <text x="146" y="49" class="sv-m" font-size="11.5">每次都知道是哪句造成的</text>
         </g>
         <!-- 壞 -->
@@ -480,11 +544,11 @@
           <text x="14" y="24" font-weight="800" class="sv-m">✕ 一次三件事</text>
           <circle cx="30" cy="44" r="7" fill="var(--mut)"/>
           <path d="M37 44h34" stroke="var(--mut)" stroke-width="2.5"/>
-          <g transform="translate(78,44)">
+          <g class="bd" transform="translate(78,44)">
             <circle r="9" fill="none" stroke="var(--pink)" stroke-width="2.5"/>
             <path d="M-5 -5l10 10M5 -5l-10 10" stroke="var(--pink)" stroke-width="2.5"/>
           </g>
-          <text x="100" y="49" fill="var(--pink)" font-size="11.5" font-weight="700">壞了，但不知道是哪句</text>
+          <text class="bd" x="100" y="49" fill="var(--pink)" font-size="11.5" font-weight="700">壞了，但不知道是哪句</text>
         </g>
         <!-- 句型 -->
         <g transform="translate(10,82)">
@@ -495,6 +559,7 @@
       </g>
     </svg>
   </div>
+  <button class="playbtn" id="playS4">▶ 模擬一次：左邊 vs 右邊</button>
   <h3>第一次改（挑一個）</h3>
   <div class="pick">
     <div>加上刪除按鈕，按了那筆就消失</div>
@@ -551,6 +616,21 @@
         </g>
       </g>
     </svg>
+  </div>
+
+  <h3>親手試一次：這就是等一下會發生在你身上的事</h3>
+  <div class="demo" id="demo">
+    <div class="demo-head">
+      迷你網頁：喝水紀錄
+      <label class="sw"><input type="checkbox" id="dfix"><span>切到「有資料儲存」的版本</span></label>
+    </div>
+    <div class="demo-stage" id="dstage">
+      <div class="cups">今天喝了 <b id="dcups">0</b> 杯</div>
+      <button id="dadd">＋ 加一杯</button>
+      <button id="df5">⟳ 按 F5 重新整理</button>
+      <button id="dnar">拉窄成手機寬度</button>
+    </div>
+    <p class="demo-msg" id="dmsg">AI 說：「已完成並測試過，資料會自動儲存。」→ 按幾下「加一杯」，然後按 F5。</p>
   </div>
   <div class="gb">
     <div class="good"><b>✓ 這樣說，它一次就中</b>
@@ -651,6 +731,21 @@
       </g>
     </svg>
     <p class="cap">拿到網址 → 用手機打開確認活著 → <b>貼到班級展示牆</b></p>
+  </div>
+
+  <h3>先組出你的網址（順便檢查資料夾名合不合法）</h3>
+  <div class="ub">
+    <div class="ubrow">
+      <label>你的 GitHub 帳號名稱
+        <input id="ubuser" placeholder="例如 frank-chen" autocomplete="off" spellcheck="false"></label>
+      <label>你的資料夾名稱
+        <input id="ubrepo" placeholder="例如 water-tracker" autocomplete="off" spellcheck="false"></label>
+    </div>
+    <div class="ubout">
+      <code id="uburl">https://＿＿＿＿.github.io/＿＿＿＿/</code>
+      <button id="ubcopy">複製網址</button>
+    </div>
+    <p class="ubwarn" id="ubwarn"></p>
   </div>
   <div class="warn">
     <span class="lbl">打開是空白頁</span>
@@ -755,7 +850,8 @@
     ptxt.textContent=done+' / '+steps.length;
     bar.style.width=pct+'%';
     wide.style.width=pct+'%';
-    wtxt.textContent=done?('完成 '+Math.round(pct)+'%'):'';
+    wtxt.textContent=done?(done===steps.length?'全部完成 🎉':'完成 '+Math.round(pct)+'%'):'';
+    document.querySelector('.wide').classList.toggle('allin', done===steps.length);
   }
   // 固定列高度 → 讓內容不被蓋住、錨點跳轉位置正確
   var fb=document.getElementById('fixbar');
@@ -813,6 +909,149 @@
     });
   },{rootMargin:'-110px 0px -60% 0px'});
   document.querySelectorAll('section[id]').forEach(function(sec){ obs.observe(sec); });
+
+  /* ── 進場動畫 ── */
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!RM) {
+    var rv = [].slice.call(document.querySelectorAll('section, .hero'));
+    rv.forEach(function(el){ el.classList.add('reveal'); });
+    var ro = new IntersectionObserver(function(es){
+      es.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); ro.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .06 });
+    rv.forEach(function(el){ ro.observe(el); });
+  }
+
+  /* ── 分步播放：STEP 1 拷問流程 ── */
+  function stage(sel, cls, btn, gap){
+    var fig = document.querySelector(sel);
+    if (!fig) return;
+    var items = [].slice.call(fig.querySelectorAll('.' + cls));
+    if (!items.length || RM) return;
+    fig.classList.add('staged');
+    var timers = [];
+    function play(){
+      timers.forEach(clearTimeout); timers = [];
+      items.forEach(function(el){ el.classList.remove('on'); });
+      items.forEach(function(el, i){
+        timers.push(setTimeout(function(){ el.classList.add('on'); }, 120 + i * gap));
+      });
+    }
+    var once = new IntersectionObserver(function(es){
+      es.forEach(function(en){ if (en.isIntersecting){ play(); once.unobserve(en.target); } });
+    }, { threshold: .35 });
+    once.observe(fig);
+    if (btn) document.querySelector(btn).addEventListener('click', play);
+    return play;
+  }
+  stage('#s1 .fig', 'seq', '#playS1', 560);
+
+  /* ── STEP 4：好 vs 壞 模擬 ── */
+  (function(){
+    var fig = document.querySelector('#s4 .fig'), btn = document.getElementById('playS4');
+    if (!fig || !btn) return;
+    var gd = [].slice.call(fig.querySelectorAll('.gd'));
+    var bd = [].slice.call(fig.querySelectorAll('.bd'));
+    if (RM) return;
+    fig.classList.add('staged');
+    function play(){
+      gd.forEach(function(e){ e.classList.remove('on'); });
+      bd.forEach(function(e){ e.classList.remove('on'); });
+      gd.forEach(function(e, i){ setTimeout(function(){ e.classList.add('on'); }, 150 + i * 320); });
+      setTimeout(function(){
+        bd.forEach(function(e){ e.classList.add('on'); });
+        fig.classList.add('shake');
+        setTimeout(function(){ fig.classList.remove('shake'); }, 420);
+      }, 150 + gd.length * 320);
+    }
+    var o = new IntersectionObserver(function(es){
+      es.forEach(function(en){ if (en.isIntersecting){ play(); o.unobserve(en.target); } });
+    }, { threshold: .35 });
+    o.observe(fig);
+    btn.addEventListener('click', play);
+  })();
+
+  /* ── STEP 5：可互動的驗收 demo ── */
+  (function(){
+    var cups = document.getElementById('dcups'), msg = document.getElementById('dmsg'),
+        fix = document.getElementById('dfix'), stg = document.getElementById('dstage');
+    if (!cups) return;
+    var n = 0, stored = 0;
+    function show(t, kind){
+      msg.textContent = t;
+      msg.className = 'demo-msg' + (kind ? ' ' + kind : '');
+    }
+    function paint(){
+      cups.textContent = n;
+      cups.classList.add('bump');
+      setTimeout(function(){ cups.classList.remove('bump'); }, 200);
+    }
+    document.getElementById('dadd').addEventListener('click', function(){
+      n++; if (fix.checked) stored = n;
+      paint();
+      show(n >= 3 ? '看起來完全正常 —— 現在按 F5 試試。' : '有反應，數字有加上去。');
+    });
+    document.getElementById('df5').addEventListener('click', function(){
+      if (fix.checked){
+        n = stored; paint();
+        show('重新整理後資料還在。跟壞掉那版的差別，只有兩行程式。', 'good');
+      } else {
+        n = 0; paint();
+        show('資料不見了。AI 說它「已完成並測試過」——但它沒有你的瀏覽器，它從來沒有按過 F5。', 'bad');
+      }
+    });
+    document.getElementById('dnar').addEventListener('click', function(){
+      stg.classList.toggle('narrow');
+      show(stg.classList.contains('narrow')
+        ? '手機寬度下按鈕會擠成一排排 —— 這就是第三個驗收動作要看的東西。再按一次還原。'
+        : '還原成電腦寬度。');
+    });
+    fix.addEventListener('change', function(){
+      stored = fix.checked ? n : 0;
+      show(fix.checked ? '已切到「有資料儲存」的版本。加幾杯再按 F5 看看差別。'
+                       : '切回沒有資料儲存的版本（AI 一開始給你的那種）。');
+    });
+  })();
+
+  /* ── STEP 7：網址即時組裝 ── */
+  (function(){
+    var u = document.getElementById('ubuser'), r = document.getElementById('ubrepo'),
+        out = document.getElementById('uburl'), warn = document.getElementById('ubwarn'),
+        cp = document.getElementById('ubcopy');
+    if (!u) return;
+    var OK = /^[a-z0-9][a-z0-9._-]*$/;
+    function calc(){
+      var uu = u.value.trim(), rr = r.value.trim();
+      out.textContent = 'https://' + (uu || '＿＿＿＿') + '.github.io/' + (rr || '＿＿＿＿') + '/';
+      var bad = [];
+      [[uu, '帳號'], [rr, '資料夾名']].forEach(function(pair){
+        var v = pair[0], name = pair[1];
+        if (!v) return;
+        if (/[一-鿿]/.test(v)) bad.push(name + '有中文');
+        else if (/\s/.test(v)) bad.push(name + '有空格');
+        else if (/[A-Z]/.test(v)) bad.push(name + '有大寫（會比較容易打錯）');
+        else if (!OK.test(v)) bad.push(name + '有不能用的符號');
+      });
+      if (bad.length){
+        warn.textContent = '⚠ ' + bad.join('、') + ' → 這樣等一下部署會壞，回第 0 步把資料夾改成英文小寫。';
+        warn.className = 'ubwarn bad';
+      } else if (u.value.trim() && r.value.trim()){
+        warn.textContent = '✓ 這個網址合法。部署完就是這個，記到學習單第 ② 格。';
+        warn.className = 'ubwarn ok';
+      } else {
+        warn.textContent = ''; warn.className = 'ubwarn';
+      }
+    }
+    u.addEventListener('input', calc); r.addEventListener('input', calc);
+    cp.addEventListener('click', async function(){
+      try { await navigator.clipboard.writeText(out.textContent); }
+      catch(e){
+        var ta = document.createElement('textarea'); ta.value = out.textContent;
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+      }
+      cp.textContent = '已複製 ✓'; cp.classList.add('done');
+      setTimeout(function(){ cp.textContent = '複製網址'; cp.classList.remove('done'); }, 2000);
+    });
+  })();
 })();
 </script>
 </body>
