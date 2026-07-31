@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>作業追蹤（修好版）</title>
+<style>
+  body{font-family:-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;
+       max-width:640px;margin:0 auto;padding:24px;background:#f6f5fb;color:#111}
+  h1{font-size:22px;margin:0 0 4px}
+  .hint{color:#666;font-size:13px;margin-bottom:18px}
+  form{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  input{padding:10px;border:1px solid #ccc;border-radius:8px;font-size:15px;flex:1;min-width:120px}
+  button{padding:10px 16px;border:0;border-radius:8px;background:#638cd0;color:#fff;font-size:15px}
+  li{background:#fff;border:1px solid #e3e3ef;border-radius:10px;padding:12px;
+     margin-bottom:8px;display:flex;align-items:center;gap:10px;list-style:none}
+  ul{padding:0;margin:0}
+  .done{color:#999;text-decoration:line-through}
+  .meta{font-size:12px;color:#666;margin-left:auto}
+</style>
+</head>
+<body>
+<h1>我的作業追蹤</h1>
+<p class="hint">這一版按 F5 之後資料還在。跟壞掉那版的差別只有兩行。</p>
+
+<form id="f">
+  <input id="course" placeholder="課程名稱" required>
+  <input id="task" placeholder="作業名稱" required>
+  <input id="due" type="date" required>
+  <button>新增</button>
+</form>
+
+<ul id="list"></ul>
+
+<script>
+  // 差別一：開頁時從瀏覽器的 localStorage 把資料讀回來
+  let items = JSON.parse(localStorage.getItem('homework') || '[]');
+
+  function save(){
+    // 差別二：每次資料變動就寫回 localStorage
+    localStorage.setItem('homework', JSON.stringify(items));
+  }
+
+  function render(){
+    items.sort((a,b) => (a.done - b.done) || a.due.localeCompare(b.due));
+    document.getElementById('list').innerHTML = items.map((it,i) => `
+      <li>
+        <input type="checkbox" ${it.done?'checked':''} onchange="toggle(${i})">
+        <span class="${it.done?'done':''}">${it.course}／${it.task}</span>
+        <span class="meta">${it.due}</span>
+      </li>`).join('');
+  }
+
+  function toggle(i){ items[i].done = !items[i].done; save(); render(); }
+
+  document.getElementById('f').addEventListener('submit', e => {
+    e.preventDefault();
+    items.push({
+      course: course.value, task: task.value, due: due.value, done: false
+    });
+    e.target.reset();
+    save();
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

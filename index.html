@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>09/09 Vibe Coding 實作課 — 操作包</title>
+<style>
+  :root{--ink:#111;--mut:#666;--line:#e2e2ee;--bg:#f6f5fb;--blue:#4a72c0;--red:#d4502e}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 -apple-system,"PingFang TC","Microsoft JhengHei",sans-serif}
+  .wrap{max-width:760px;margin:0 auto;padding:22px 18px 80px}
+  header{border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:22px}
+  h1{font-size:22px;margin:0 0 4px}
+  .sub{color:var(--mut);font-size:14px}
+  h2{font-size:19px;margin:34px 0 8px;padding-top:14px;border-top:1px solid var(--line)}
+  h2 .t{font-size:13px;color:var(--mut);font-weight:400;margin-left:6px}
+  h3{font-size:16px;margin:20px 0 6px}
+  p,li{font-size:15.5px}
+  ol,ul{padding-left:22px;margin:8px 0}
+  li{margin-bottom:5px}
+  .box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0}
+  .box.blue{border-color:var(--blue);border-width:2px}
+  .box.red{border-color:var(--red);border-width:2px}
+  .box h3{margin-top:0}
+  pre{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;
+      white-space:pre-wrap;font:14px/1.6 ui-monospace,Menlo,monospace;margin:8px 0 0}
+  button.copy{margin-top:8px;padding:9px 16px;border:0;border-radius:8px;background:var(--blue);
+      color:#fff;font-size:15px;cursor:pointer}
+  button.copy.done{background:#2e8b57}
+  .warn{color:var(--red);font-weight:700}
+  .fill{color:var(--mut)}
+  .three{display:grid;grid-template-columns:1fr;gap:10px}
+  @media(min-width:620px){.three{grid-template-columns:1fr 1fr 1fr}}
+  .three div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+  .three b{display:block;margin-bottom:3px}
+  .three small{color:var(--mut);font-size:13px}
+  footer{margin-top:40px;padding-top:16px;border-top:2px solid var(--ink);color:var(--mut);font-size:14px}
+  a{color:var(--blue)}
+  .goal{background:#fff;border:2px solid var(--ink);border-radius:12px;padding:14px 16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Vibe Coding 實作課 — 操作包</h1>
+  <div class="sub">靜宜大學 2026/09/09 ｜ 講師：圈圈 ｜ 這頁不用背，照著抄。卡住舉手。</div>
+</header>
+
+<div class="goal">
+  <b>今天下課，你會有：</b>一個自己做的網站，和一個可以傳給別人的公開網址。
+</div>
+
+<div class="box">
+  <h3>今天最重要的觀念，先講</h3>
+  <p>新手最常做的事：跟 AI 說「幫我做一個很棒的網站」，然後拿到一個不是自己要的東西。</p>
+  <p><b>老手做的事：先讓 AI 拷問自己</b>，把腦子裡沒想清楚的地方一次問出來，確認共識了才動手寫。今天第一步就是這個。</p>
+</div>
+
+<h2>第 0 步 開工前的三個動作<span class="t">4-8 分 ｜ 跟著我一起做，不要往下跑</span></h2>
+<ol>
+  <li>打開 Cursor，登入（email 註冊就好，免費、不用信用卡）</li>
+  <li>左上 File → Open Folder → 選桌面 → 新建一個資料夾 → 選它 → Open<br>
+      <span class="warn">⚠️ 資料夾名字用英文小寫、用減號連接</span>，例如 <code>water-tracker</code>。
+      這個名字之後會變成你網址的一部分，用中文或有空格，等一下部署會壞。</li>
+  <li>認識三個地方，今天只會用到這三個，其他按鈕一律不要碰：</li>
+</ol>
+<div class="three">
+  <div><b>A  Agent 對話框</b><small>在右邊。你所有的話都對它說。</small></div>
+  <div><b>B  瀏覽器預覽</b><small>index.html 按右鍵 → Open with Live Server</small></div>
+  <div><b>C  Source Control</b><small>在左邊工具列，等一下推上 GitHub 用。</small></div>
+</div>
+
+<h2>第 1 步 讓 AI 拷問你<span class="t">8-16 分</span></h2>
+<p>打開 Cursor 的 Agent 對話框，按下面的按鈕複製，貼進去，<b>第一行填你想做的題目</b>：</p>
+<pre id="p1">我想做一個 ______________ 的網頁小工具。
+
+在你寫任何程式之前，請先拷問我，把我沒講清楚的地方問出來：
+- 一次最多問我 5 個問題，一題一行、有編號
+- 每一題都要附上「你建議的答案」和一句話理由
+- 問完就停下來等我回答，不要自己假設、不要先寫程式
+- 我回答後如果還有沒問清楚的，再問我第二輪（最多兩輪）
+
+兩輪之後，請把結論整理成下面這樣給我，然後才開始寫程式：
+【我要做的東西】一句話
+【功能清單】三項，動詞開頭
+【驗收方式】三個我可以自己動手確認的步驟
+【我們決定不做的事】
+
+技術限制（這些不用問我，直接照做）：
+單一 index.html 檔案、不要用需要安裝的套件、不連資料庫、不需要登入功能。</pre>
+<button class="copy" data-t="p1">複製這段</button>
+
+<div class="box blue">
+  <h3>怎麼回答它的問題</h3>
+  <p>不知道怎麼答就寫「<b>照你的建議</b>」。也可以混著答：「1 照你的建議，2 我要 A，3 這個不用做」。</p>
+  <p>你是老闆，AI 是來問清楚需求的工程師。<b>它問你問題不是它笨，是它在避免做白工。</b></p>
+  <p class="warn">⚠️ 如果它問到第三輪還在問：直接說「不要再問了，照你的建議整理成規格然後開始寫」。</p>
+</div>
+
+<p><b>把它整理的規格抄到學習單第 ① 格</b>——尤其是【驗收方式】那三個步驟，那是你等一下用來抓 AI 說謊的武器。</p>
+
+<details>
+<summary class="fill">備用：AI 一直不問、或直接開始寫程式（點開）</summary>
+<p>自己把這三格填完貼給它：</p>
+<ul>
+  <li>目的（一句話）：我想做一個 ＿＿＿＿ 的網頁。</li>
+  <li>三個功能：1. 可以＿＿ 2. 可以＿＿ 3. 可以＿＿</li>
+  <li>三個驗收動作：我做＿＿會看到＿＿（寫三個）</li>
+</ul>
+<p class="fill">範例（喝水紀錄）：功能＝按一下加一杯／顯示今天總共幾杯／可以歸零；
+驗收＝按 3 次數字變 3／關掉再打開數字還在／按歸零變 0。</p>
+</details>
+
+<h2>第 2 步 確認規格，讓它開始寫<span class="t">16-24 分</span></h2>
+<p>AI 給你【功能清單】和【驗收方式】之後，看一眼：有沒有你根本不想要的功能（說「第 2 項不用做」）？
+有沒有漏掉你最在意的事（<b>現在補，比寫完再改便宜十倍</b>）？</p>
+<pre id="p2">規格沒問題，請開始寫。寫完後告訴我怎麼一步一步測試上面的驗收方式。</pre>
+<button class="copy" data-t="p2">複製這段</button>
+
+<h2>第 3 步 看成果</h2>
+<p>在左邊檔案列表的 <code>index.html</code> 上按右鍵 → <b>Open with Live Server</b> → 瀏覽器就會打開你的網頁。</p>
+<p class="fill">沒有這個選項的人：打開桌面上你的資料夾，直接用滑鼠雙擊 index.html，一樣會用瀏覽器打開。</p>
+<div class="box red">
+  <b>打開是一片空白</b> → 跟 Agent 說：<br>
+  「網頁打開是空白的，請檢查 index.html 是否完整，並確認所有程式碼都寫在這一個檔案裡。」
+</div>
+
+<h2>第 4 步 改兩次，一次只改一件事<span class="t">24-34 分</span></h2>
+<p><b>規則：一次只講一件事，改完先驗收，成功了才改下一件。</b>
+一次丟三件事給 AI，壞掉的時候你不會知道是哪一句造成的。</p>
+<p>講法固定成這個格式：</p>
+<pre>請把 ______ 改成 ______。改完告訴我怎麼確認。</pre>
+<h3>常用的第一次修改（挑一個）</h3>
+<ul>
+  <li>請幫每一筆加上刪除按鈕，按下去那一筆就消失。</li>
+  <li>請把數字改大一點，手機上也看得清楚。</li>
+  <li>請把已完成的項目變成灰色，並移到最下面。</li>
+</ul>
+<h3>常用的第二次修改（挑一個）</h3>
+<ul>
+  <li>請加上資料儲存，關掉瀏覽器重新打開後，我的資料還在。</li>
+  <li>請在最上面顯示今天的日期。</li>
+  <li>請把配色換成深色背景、亮色文字。</li>
+</ul>
+
+<h2>第 5 步 ★ 驗收儀式<span class="t">34-44 分 ｜ 全班一起做，不要跳過</span></h2>
+<div class="box red">
+  <p>當 AI 說「我已經完成並測試過了」——</p>
+  <p class="warn">這句話永遠不能相信。AI 沒有你的瀏覽器，它從來沒有點過你的網頁一下。</p>
+</div>
+<div class="three">
+  <div><b>1. 按一下</b><small>有反應嗎？該出現的東西出現了嗎？</small></div>
+  <div><b>2. 按 F5</b><small>重新整理後，剛剛輸入的東西還在嗎？（最常出事）</small></div>
+  <div><b>3. 拉窄視窗</b><small>縮到手機寬度，有跑版嗎？按鈕被切掉了嗎？</small></div>
+</div>
+<h3>有問題就把「壞掉的樣子」講給它聽，不要只說「壞了」</h3>
+<div class="box">
+  ✅ 我按了 3 次，數字有變成 3。但我按 F5 重新整理後數字變回 0 了。我要的是重新整理後還是 3。<br>
+  <span class="warn">❌ 不會動，修一下</span>
+</div>
+<p class="fill">公式：我做了什麼 → 我看到什麼 → 我期望看到什麼。三段都給它。</p>
+
+<h2>第 6 步 推上 GitHub（第一個 commit）<span class="t">44-58 分</span></h2>
+<ol>
+  <li>點 Cursor 左邊工具列的 <b>Source Control</b>（分支圖案）</li>
+  <li>上面的訊息框輸入一句話說明你做了什麼，例如「第一版 喝水紀錄網頁」</li>
+  <li>按 <b>Commit</b>（問你要不要 Stage All Changes，選 Yes）</li>
+  <li>出現 <b>Publish Branch</b> → 按下去 → 選 <b>public</b> repository
+      <span class="warn">（一定要選 public，選 private 之後網址不會公開）</span></li>
+  <li>會跳出瀏覽器要你授權 GitHub → 用課前註冊的帳號登入 → Authorize</li>
+  <li>打開 github.com，你會看到你的專案在上面</li>
+</ol>
+<p class="warn">⚠️ 卡在授權的人：舉手，不要一直重按。</p>
+
+<h2>第 7 步 拿到你的公開網址<span class="t">58-70 分</span></h2>
+<ol>
+  <li>在 github.com 打開你剛剛的專案</li>
+  <li>上方 <b>Settings</b> → 左邊選單往下找 <b>Pages</b></li>
+  <li>Source 選 <b>Deploy from a branch</b></li>
+  <li>Branch 選 <b>main</b>、資料夾選 <b>/ (root)</b> → 按 <b>Save</b></li>
+  <li>等 1-2 分鐘，重新整理這頁，最上面會出現你的網址：</li>
+</ol>
+<pre>https://你的帳號名稱.github.io/你的資料夾名稱/</pre>
+<p>打開它確認網站真的活著，然後<b>把網址貼到班級展示牆</b>（老師會給連結）。</p>
+<div class="box red">
+  <b>打開是空白頁</b>：等 2 分鐘再重新整理。還是空白就舉手——八成是選了 private，
+  或首頁檔案不叫 index.html。
+</div>
+
+<h2>第 8 步 再改一件事（第二個 commit，看得到歷史）<span class="t">70-80 分</span></h2>
+<ol>
+  <li>回 Cursor，跟 Agent 說第 4 步的「第二次修改」那句</li>
+  <li>驗收（第 5 步的三個動作）</li>
+  <li>Source Control → 輸入訊息 → Commit → Push</li>
+  <li>回 github.com 你的專案 → 點上方的 <b>Commits</b> → 你會看到兩次 commit</li>
+  <li>等 1-2 分鐘，重新整理你的公開網址 → 網站自己更新了</li>
+</ol>
+<p class="fill">這就是版本控制：每次改動都留下記錄，隨時知道什麼時候改了什麼，也隨時回得去。</p>
+
+<h2>卡住時的三個急救</h2>
+<div class="box">
+  <p><b>1. 網頁打不開／一片空白</b><br>
+  「網頁打開是空白的，請檢查 index.html 是否完整，並確認所有程式碼都寫在這一個檔案裡。」</p>
+  <p><b>2. 改一次就整個壞掉</b><br>
+  「請退回上一個可以正常運作的版本，然後只做這一件事：______」</p>
+  <p><b>3. AI 一直說完成但就是不對</b><br>
+  換一種說法描述現象，補上「我實際看到什麼」和「我期望看到什麼」，並要求它「先告訴我問題在哪裡，再改」。</p>
+</div>
+
+<h2>下課帶走三句話</h2>
+<ol>
+  <li><b>動手之前，先讓 AI 把你沒想清楚的地方問出來。</b>講清楚要什麼，比會不會寫程式重要。</li>
+  <li><b>AI 說完成不等於完成，驗收是你的工作。</b>按一下、按 F5、拉窄視窗。</li>
+  <li><b>一次只改一件事，改完就存一版。</b>壞掉的時候，你才知道是哪一句造成的。</li>
+</ol>
+
+<footer>
+  你正在看的這一頁，就是用今天教的方法做出來、放在 GitHub Pages 上的。<br>
+  講師：圈圈 ｜ 2026/09/09 靜宜大學
+</footer>
+
+</div>
+<script>
+  document.querySelectorAll('button.copy').forEach(b => {
+    b.addEventListener('click', async () => {
+      const txt = document.getElementById(b.dataset.t).innerText;
+      try { await navigator.clipboard.writeText(txt); }
+      catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = txt; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); ta.remove();
+      }
+      b.textContent = '已複製 ✓'; b.classList.add('done');
+      setTimeout(() => { b.textContent = '複製這段'; b.classList.remove('done'); }, 2000);
+    });
+  });
+</script>
+</body>
+</html>
