@@ -183,9 +183,22 @@
     .staged .seq,.staged .gd,.bd{opacity:1}
   }
 
+  /* 加分區 */
+  .bonus{border-top-color:var(--violet)!important}
+  .tk{border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin:13px 0;
+    background:var(--card)}
+  .tk-h{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:4px}
+  .tk-n{font-size:12.5px;font-weight:800;color:#fff;background:var(--violet);
+    border-radius:6px;padding:3px 8px;letter-spacing:.4px}
+  .tk-t{font-size:18px;font-weight:800;color:var(--ink)}
+  .tk-s{font-size:14px;color:var(--mut);margin-left:auto}
+  .tk-why{font-size:16px;margin:6px 0 10px}
+  .tk-trap{font-size:14.5px;color:var(--pink);font-weight:700;margin:9px 0 0}
+
   @media print{
     :root{--card:#fff;--bg:#fff;--soft:#f4f4f4;--line:#bbb;--ink:#000;--body:#000;--mut:#444}
     .fixbar,.top,nav,.wide,.fab,.copy,.done-row,.reset,.playbtn,.demo,.ub{display:none!important}
+    #bonus{display:none!important}   /* 加分區不印，紙本留主線 */
     .reveal{opacity:1!important;transform:none!important}
     .staged .seq,.staged .gd,.bd{opacity:1!important}
     body{padding-top:0}
@@ -776,6 +789,158 @@
       </g>
     </svg>
     <p class="cap">回 github.com 你的專案 → 點上方 <b>Commits</b> 就看得到這兩筆</p>
+  </div>
+</section>
+
+
+<!-- ══ 加分區（不列入 9 步，做完主線才進來）══ -->
+<section id="bonus" class="bonus">
+  <div class="sh"><span class="no" style="background:var(--violet)">加分題</span>
+    <h2>讓你的網站跟別人不一樣</h2><span class="time">做完前面 8 步才進來</span></div>
+
+  <div class="warn">
+    <span class="lbl">三個前提，違反一個就不要加特效</span>
+    <b>① 你的網站已經上線並驗收過</b>（沒上線就先回 STEP 7）<br>
+    <b>② 一次只加一招</b>（就是 STEP 4 那條規則，特效更容易一次改壞）<br>
+    <b>③ 每加一招就 commit 一次</b>（壞了才回得去，就是 STEP 8 那件事）
+  </div>
+
+  <div class="fig">
+    <svg viewBox="0 0 720 128" role="img" aria-label="五個進階技巧：3D 背景、動畫時間軸、設計基因、互動回饋、視覺層次">
+      <g font-size="12.5" text-anchor="middle" font-weight="700">
+        <g transform="translate(8,10)">
+          <rect width="132" height="72" rx="12" fill="var(--card)" stroke="var(--violet)" stroke-width="2"/>
+          <circle cx="66" cy="38" r="17" fill="none" stroke="var(--violet)" stroke-width="2"/>
+          <ellipse cx="66" cy="38" rx="17" ry="6.5" fill="none" stroke="var(--violet)" stroke-width="1.6"/>
+          <ellipse cx="66" cy="38" rx="6.5" ry="17" fill="none" stroke="var(--violet)" stroke-width="1.6"/>
+          <text x="66" y="100" fill="var(--ink)">3D 背景</text>
+        </g>
+        <g transform="translate(150,10)">
+          <rect width="132" height="72" rx="12" fill="var(--card)" stroke="var(--cyan)" stroke-width="2"/>
+          <path d="M28 50h76" stroke="var(--cyan)" stroke-width="2"/>
+          <circle cx="38" cy="50" r="5" fill="var(--cyan)"/>
+          <circle cx="62" cy="42" r="5" fill="var(--cyan)"/>
+          <circle cx="86" cy="32" r="5" fill="var(--cyan)"/>
+          <text x="66" y="100" fill="var(--ink)">動畫時間軸</text>
+        </g>
+        <g transform="translate(292,10)">
+          <rect width="132" height="72" rx="12" fill="var(--card)" stroke="var(--ok)" stroke-width="2"/>
+          <rect x="34" y="28" width="18" height="18" rx="4" fill="var(--ok)" opacity=".85"/>
+          <rect x="57" y="28" width="18" height="18" rx="4" fill="var(--ok)" opacity=".55"/>
+          <rect x="80" y="28" width="18" height="18" rx="4" fill="var(--ok)" opacity=".3"/>
+          <path d="M34 54h64" stroke="var(--ok)" stroke-width="2"/>
+          <text x="66" y="100" fill="var(--ink)">設計基因</text>
+        </g>
+        <g transform="translate(434,10)">
+          <rect width="132" height="72" rx="12" fill="var(--card)" stroke="var(--orange)" stroke-width="2"/>
+          <rect x="40" y="30" width="52" height="20" rx="10" fill="var(--orange)" opacity=".25"/>
+          <path d="M92 46l4 20 6-7 8 3-7-8 7-5z" fill="var(--ink)"/>
+          <text x="66" y="100" fill="var(--ink)">互動回饋</text>
+        </g>
+        <g transform="translate(576,10)">
+          <rect width="136" height="72" rx="12" fill="var(--card)" stroke="var(--pink)" stroke-width="2"/>
+          <circle cx="60" cy="36" r="16" fill="var(--pink)" opacity=".22"/>
+          <rect x="52" y="30" width="46" height="26" rx="7" fill="none" stroke="var(--pink)" stroke-width="2"/>
+          <text x="68" y="100" fill="var(--ink)">視覺層次</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="tk">
+    <div class="tk-h"><span class="tk-n">01</span><span class="tk-t">Three.js — 會動的 3D 背景</span>
+      <span class="tk-s">最有「哇」的效果</span></div>
+    <p class="tk-why">用 3D 函式庫在網頁最底層放一層緩慢飄動的粒子。這是最容易讓人記住你的網站的一招。</p>
+    <div class="code">
+<pre id="t1">請用 CDN 引入 three.js（不要用 npm、不要拆成多個檔案），在我的網頁最底層加一個 3D 動態背景：緩慢飄動的粒子。
+
+條件：
+1. 只能新增背景層，現有的內容與功能完全不要動
+2. 背景在內容下面，文字必須維持清楚可讀
+3. 手機上自動降低粒子數量，不要讓手機卡住或發燙
+4. 如果使用者系統設定了「減少動態效果」，就不要播動畫
+
+改完後告訴我怎麼一步一步確認上面四點。</pre>
+      <button class="copy" data-t="t1">複製這段</button>
+    </div>
+    <p class="tk-trap">會踩的坑：手機會發燙、網頁變慢 → 粒子數先設小；校網若擋 CDN 會整片黑，記得按 F5 驗收。</p>
+  </div>
+
+  <div class="tk">
+    <div class="tk-h"><span class="tk-n">02</span><span class="tk-t">GSAP — 進場與滾動動畫</span>
+      <span class="tk-s">最容易看起來專業</span></div>
+    <p class="tk-why">讓標題和卡片依序滑進畫面，而不是全部一次跳出來。順序感是「做得很細」的第一印象。</p>
+    <div class="code">
+<pre id="t2">請用 GSAP 的 CDN 版本，為現有元素加上進場動畫：標題與卡片依序淡入並輕微上移，每個間隔 0.08 秒。
+
+條件：
+1. 就算 JS 載入失敗，內容也必須看得到（不要讓元素卡在透明狀態）
+2. 每個元素只播一次，不要每次滾動都重播
+3. 尊重「減少動態效果」的系統設定
+4. 不要改動任何原有的功能
+
+改完後告訴我怎麼驗收這四點。</pre>
+      <button class="copy" data-t="t2">複製這段</button>
+    </div>
+    <p class="tk-trap">會踩的坑：動畫沒跑成功時，內容可能永遠是透明的 → 第 1 條就是在防這件事，一定要留。</p>
+  </div>
+
+  <div class="tk">
+    <div class="tk-h"><span class="tk-n">03</span><span class="tk-t">Design DNA — 先定設計基因，再改樣式</span>
+      <span class="tk-s">最省時間</span></div>
+    <p class="tk-why">先讓 AI 定一套顏色／字級／圓角／陰影／間距的規則，再要它「只准用這套規則」。這樣改十次也不會越改越亂。</p>
+    <div class="code">
+<pre id="t3">在改任何樣式之前，先幫我定一套 design DNA，寫成 CSS 變數放在 :root：
+主色、輔色、背景色、文字色各一；字級 4 級；圓角 2 種；陰影 2 種；間距用 4 的倍數。
+
+然後把整個網頁改成只使用這些變數，不要留任何寫死的色碼或尺寸。
+
+最後把這套 DNA 列出來給我看，並告訴我改了哪些地方。</pre>
+      <button class="copy" data-t="t3">複製這段</button>
+    </div>
+    <p class="tk-trap">會踩的坑：AI 會順手改掉你原本喜歡的顏色 → 它列出 DNA 時對照一次，不喜歡就叫它換掉那一個變數。</p>
+  </div>
+
+  <div class="tk">
+    <div class="tk-h"><span class="tk-n">04</span><span class="tk-t">Motion design — 動效要有意義</span>
+      <span class="tk-s">分辨新手與老手</span></div>
+    <p class="tk-why">新手加一堆會動的東西，老手只讓「使用者做了什麼」有回饋。少而準，比多而炫值錢。</p>
+    <div class="code">
+<pre id="t4">請幫我做「互動回饋」而不是裝飾動畫：
+
+1. 按鈕 hover 和按下時要有明顯但輕微的變化（120-180 毫秒）
+2. 清單新增一筆時滑入，刪除時淡出
+3. 每個動畫都要對應一個使用者動作，不要有無限循環的動畫
+4. 所有動畫時間 ≤ 300 毫秒，進場用 ease-out、離場用 ease-in
+
+改完告訴我每個動畫分別對應哪一個動作。</pre>
+      <button class="copy" data-t="t4">複製這段</button>
+    </div>
+    <p class="tk-trap">會踩的坑：動畫太多會讓人頭暈，展示時反而扣分 → 加完自己用一次，覺得煩就砍掉一半。</p>
+  </div>
+
+  <div class="tk">
+    <div class="tk-h"><span class="tk-n">05</span><span class="tk-t">視覺層次（Genjutsu）— 用光影騙出「很貴」的感覺</span>
+      <span class="tk-s">不用任何圖檔</span></div>
+    <p class="tk-why">純 CSS 做出景深：極淡雜訊、模糊光暈、毛玻璃、兩層陰影、滾動視差。沒有加任何圖片，但看起來像有設計師。</p>
+    <div class="code">
+<pre id="t5">請只用 CSS 讓畫面更有層次感，不要使用任何圖片檔：
+
+1. 全頁加一層極淡的雜訊質感
+2. 主視覺後方放一顆模糊的漸層光暈
+3. 卡片用毛玻璃效果（backdrop-filter）加兩層陰影
+4. 滾動時背景和前景速度不同（視差），但手機上關掉視差
+
+條件：文字的對比與可讀性不能變差。改完告訴我怎麼確認文字還是清楚的。</pre>
+      <button class="copy" data-t="t5">複製這段</button>
+    </div>
+    <p class="tk-trap">會踩的坑：光暈或雜訊太重會讓字變糊、毛玻璃在舊瀏覽器沒效果 → 加完把手機轉到最亮和最暗各看一次。</p>
+  </div>
+
+  <div class="note">
+    <span class="lbl">加完之後</span>
+    回 STEP 5 做一次驗收（按一下、按 F5、拉窄），再回 STEP 8 commit 一次。
+    <b>特效壞掉的機率比你想的高，但你已經會退回上一版了。</b>
   </div>
 </section>
 
