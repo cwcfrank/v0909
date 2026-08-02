@@ -68,6 +68,7 @@
   li{margin-bottom:5px}
   b,strong{color:var(--ink)}
   .big{font-size:19.5px;color:var(--ink);font-weight:700}
+  .warn-inline{color:var(--orange);font-weight:800;font-size:15px}
 
   /* 圖 */
   .fig{margin:14px 0 6px;background:var(--soft);border:1px solid var(--line);
@@ -313,72 +314,58 @@
   <div class="sh"><span class="no">STEP 0</span><h2>開工前：認識三個地方</h2><span class="time">4–8 分</span></div>
 
   <div class="fig">
-    <svg viewBox="0 0 720 300" role="img" aria-label="Cursor 介面示意圖：左側 Source Control、中間檔案與程式碼、右側 Agent 對話框">
-      <rect x="8" y="8" width="704" height="284" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+    <svg viewBox="0 0 720 250" role="img" aria-label="AI 編輯器示意圖：左邊檔案、中間程式碼、右邊 Agent 對話框">
+      <rect x="8" y="8" width="704" height="234" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
       <rect x="8" y="8" width="704" height="30" rx="12" fill="var(--soft)"/>
       <circle cx="30" cy="23" r="5" fill="#ff5f57"/><circle cx="48" cy="23" r="5" fill="#febc2e"/>
       <circle cx="66" cy="23" r="5" fill="#28c840"/>
-      <text x="360" y="28" text-anchor="middle" font-size="12" class="sv-m">Cursor</text>
+      <text x="360" y="28" text-anchor="middle" font-size="12" class="sv-m">Antigravity</text>
 
-      <!-- 左：工具列 -->
-      <rect x="8" y="38" width="56" height="254" fill="var(--soft)"/>
-      <g stroke="var(--mut)" stroke-width="2" fill="none">
-        <rect x="26" y="58" width="20" height="16" rx="2"/>
-        <path d="M28 100h16M28 108h16M28 116h10"/>
-      </g>
-      <!-- Source Control icon（強調） -->
-      <g transform="translate(24,150)">
-        <circle cx="6" cy="6" r="5" fill="none" stroke="var(--orange)" stroke-width="2.5"/>
-        <circle cx="6" cy="26" r="5" fill="none" stroke="var(--orange)" stroke-width="2.5"/>
-        <circle cx="22" cy="16" r="5" fill="none" stroke="var(--orange)" stroke-width="2.5"/>
-        <path d="M6 11v10M11 6h6a5 5 0 0 1 5 5v0M11 26h6a5 5 0 0 0 5-5v0"
-              fill="none" stroke="var(--orange)" stroke-width="2.5"/>
-      </g>
-      <circle cx="36" cy="166" r="26" fill="none" stroke="var(--orange)" stroke-width="2" stroke-dasharray="4 3"/>
-      <text x="36" y="216" text-anchor="middle" font-size="13" font-weight="800" fill="var(--orange)">C</text>
-
-      <!-- 中：檔案樹 + 編輯區 -->
-      <rect x="64" y="38" width="130" height="254" fill="var(--card)" stroke="var(--line)"/>
-      <text x="76" y="58" font-size="11" class="sv-m">WATER-TRACKER</text>
-      <rect x="72" y="66" width="114" height="22" rx="4" fill="var(--soft)" stroke="var(--cyan)" stroke-width="2"/>
-      <text x="82" y="81" font-size="12" font-weight="700" fill="var(--cyan)">index.html</text>
-      <text x="82" y="106" font-size="11" class="sv-m">按右鍵 →</text>
-      <text x="82" y="122" font-size="11" class="sv-m">Open with</text>
-      <text x="82" y="138" font-size="11" class="sv-m">Live Server</text>
-      <text x="129" y="168" text-anchor="middle" font-size="13" font-weight="800" fill="var(--cyan)">B</text>
+      <rect x="8" y="38" width="176" height="204" fill="var(--soft)" stroke="var(--line)"/>
+      <text x="24" y="60" font-size="11" class="sv-m">LUNCH-SPIN</text>
+      <rect x="20" y="70" width="150" height="26" rx="6" fill="var(--card)" stroke="var(--cyan)" stroke-width="2.5"/>
+      <text x="32" y="88" font-size="13" font-weight="700" fill="var(--cyan)">index.html</text>
+      <text x="24" y="118" font-size="11.5" class="sv-m">AI 會把網頁寫在</text>
+      <text x="24" y="136" font-size="11.5" class="sv-m">這個檔案裡</text>
+      <text x="96" y="176" text-anchor="middle" font-size="14" font-weight="800" fill="var(--cyan)">B</text>
 
       <g stroke="var(--line)" stroke-width="7" stroke-linecap="round">
-        <path d="M212 70h180M212 92h130M212 114h210M212 136h96M212 158h170"/>
+        <path d="M208 74h180M208 98h130M208 122h210M208 146h96M208 170h170"/>
       </g>
-      <text x="212" y="188" font-size="11" class="sv-m">（程式碼區：今天不用改，AI 會自己寫）</text>
+      <text x="208" y="206" font-size="11.5" class="sv-m">（程式碼區：今天不用看，AI 自己寫）</text>
 
-      <!-- 右：Agent -->
-      <rect x="470" y="38" width="242" height="254" fill="var(--soft)" stroke="var(--violet)" stroke-width="2.5"/>
+      <rect x="470" y="38" width="242" height="204" fill="var(--soft)" stroke="var(--violet)" stroke-width="2.5"/>
       <text x="484" y="60" font-size="12" font-weight="800" fill="var(--violet)">AGENT</text>
-      <rect x="484" y="70" width="214" height="40" rx="8" fill="var(--card)" stroke="var(--line)"/>
+      <rect x="484" y="70" width="214" height="38" rx="8" fill="var(--card)" stroke="var(--line)"/>
       <g stroke="var(--mut)" stroke-width="5" stroke-linecap="round">
         <path d="M496 84h150M496 98h90"/>
       </g>
-      <rect x="524" y="122" width="174" height="30" rx="8" fill="var(--violet)" opacity=".18"/>
-      <g stroke="var(--violet)" stroke-width="5" stroke-linecap="round">
-        <path d="M536 137h140"/>
-      </g>
-      <rect x="484" y="240" width="214" height="38" rx="10" fill="var(--card)" stroke="var(--violet)" stroke-width="2"/>
-      <text x="496" y="264" font-size="12" fill="var(--mut)">在這裡貼指令 ⌨</text>
-      <text x="591" y="216" text-anchor="middle" font-size="13" font-weight="800" fill="var(--violet)">A</text>
+      <rect x="524" y="120" width="174" height="28" rx="8" fill="var(--violet)" opacity=".18"/>
+      <rect x="484" y="196" width="214" height="34" rx="10" fill="var(--card)" stroke="var(--violet)" stroke-width="2"/>
+      <text x="496" y="218" font-size="12" fill="var(--mut)">在這裡貼指令 ⌨</text>
+      <text x="591" y="176" text-anchor="middle" font-size="14" font-weight="800" fill="var(--violet)">A</text>
     </svg>
     <p class="cap"><b style="color:var(--violet)">A</b> Agent 對話框（你所有的話都對它說）
-      <b style="color:var(--cyan)">B</b> 預覽你的網頁
-      <b style="color:var(--orange)">C</b> Source Control（第 6 步用）</p>
+      <b style="color:var(--cyan)">B</b> 你的 index.html　·　畫面細節可能跟你的不太一樣，<b>找到這兩個東西就對了</b></p>
   </div>
 
   <ol>
-    <li>打開 <b>Cursor</b> → 登入（email 註冊，免費、不用信用卡）</li>
-    <li><code>File → Open Folder</code> → 桌面 → 新建資料夾 → Open</li>
+    <li>打開 <b>Antigravity</b>（電腦上已經裝好了）→ 用 <b>Google 帳號</b>登入</li>
+    <li>模型選 <b>Gemini 3.6 Flash（medium）</b>
+      <span class="warn-inline">← 這一步很重要，看下面</span></li>
+    <li>開一個新資料夾當你的專案：名字用<b>英文小寫、減號連接</b></li>
   </ol>
+
+  <div class="warn">
+    <span class="lbl">今天你的 AI 對話次數是有限的</span>
+    免費額度大約<b>一天 20 次對話</b>。這堂課的正常用量是 <b>6～7 次</b>（拷問 2 次、生成 1 次、修改 2 次、除錯 1～2 次），
+    夠用——<b>但不要拿它閒聊、不要一直重生成</b>。用完就得等，今天就沒了。<br>
+    模型選 <b>Flash</b> 而不是 Pro，也是為了省額度。
+  </div>
+
   <div class="warn">
     <span class="lbl">資料夾名字＝你網址的一部分</span>
-    <span class="big">✓ water-tracker　　✕ 喝水紀錄　　✕ my project</span><br>
+    <span class="big">✓ lunch-spin　　✕ 午餐轉盤　　✕ my project</span><br>
     用中文或有空格，第 7 步會壞。
   </div>
 </section>
@@ -462,10 +449,9 @@
   </div>
   <div class="note">
     <span class="lbl">想先看一個做完的例子？</span>
-    有人選了「中午吃什麼的拉霸轉盤」（清單是靜宜校內＋商圈的店）——拷問時 AI 問他
-    「紀錄要記『轉到什麼』還是『真的吃了什麼』」，他自己完全沒想過這有差。成品在這裡：
-    <a href="https://cwcfrank.github.io/lunch-spin/" target="_blank" rel="noopener">
-      cwcfrank.github.io/lunch-spin</a>
+有人選了「中午吃什麼的拉霸轉盤」——拷問時 AI 問他「紀錄要記『轉到什麼』還是『真的吃了什麼』」，
+    他自己完全沒想過這有差。<a href="https://cwcfrank.github.io/lunch-spin/" target="_blank" rel="noopener">看他的成品</a>
+    ｜ 想看更誇張的：<a href="https://cwcfrank.github.io/providence-lunch-slot/" target="_blank" rel="noopener">Minecraft 風格的版本</a>
   </div>
   <details>
     <summary>備用：它不問，直接開始寫程式</summary>
@@ -509,34 +495,38 @@
 <section id="s3" data-step="3" style="--c:var(--cyan)">
   <div class="sh"><span class="no">STEP 3</span><h2>看成果</h2><span class="time">24 分</span></div>
   <div class="fig">
-    <svg viewBox="0 0 720 110" role="img" aria-label="在 index.html 按右鍵選 Open with Live Server">
+    <svg viewBox="0 0 720 116" role="img" aria-label="在檔案上按右鍵選在檔案總管顯示，然後雙擊 index.html 用瀏覽器打開">
       <g font-size="13">
-        <rect x="10" y="18" width="200" height="74" rx="10" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
-        <rect x="24" y="34" width="172" height="24" rx="5" fill="var(--soft)" stroke="var(--cyan)" stroke-width="2"/>
-        <text x="34" y="51" font-weight="700" fill="var(--cyan)">index.html</text>
-        <text x="34" y="80" class="sv-m" font-size="11.5">在這個檔案上按右鍵</text>
-        <path d="M216 55h26" stroke="currentColor" stroke-width="2" opacity=".5" marker-end="url(#ar)"/>
-        <rect x="250" y="10" width="230" height="90" rx="10" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
-        <g class="sv-m" font-size="12">
-          <text x="266" y="32">Rename…</text><text x="266" y="76">Copy Path</text>
-        </g>
-        <rect x="258" y="42" width="214" height="24" rx="6" fill="var(--cyan)" opacity=".18"/>
-        <text x="266" y="59" font-weight="800" fill="var(--cyan)">Open with Live Server</text>
-        <path d="M486 55h26" stroke="currentColor" stroke-width="2" opacity=".5" marker-end="url(#ar)"/>
-        <rect x="520" y="14" width="190" height="82" rx="10" fill="var(--card)" stroke="var(--ok)" stroke-width="2.5"/>
-        <rect x="520" y="14" width="190" height="20" rx="10" fill="var(--soft)"/>
-        <circle cx="534" cy="24" r="3.5" fill="var(--mut)"/><circle cx="546" cy="24" r="3.5" fill="var(--mut)"/>
+        <rect x="10" y="18" width="196" height="80" rx="10" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+        <rect x="24" y="34" width="168" height="26" rx="6" fill="var(--soft)" stroke="var(--cyan)" stroke-width="2"/>
+        <text x="34" y="52" font-weight="700" fill="var(--cyan)">index.html</text>
+        <text x="34" y="82" class="sv-m" font-size="12">右鍵 → 在檔案總管顯示</text>
+        <path d="M212 58h26" stroke="currentColor" stroke-width="2" opacity=".5" marker-end="url(#ar)"/>
+        <rect x="246" y="14" width="214" height="88" rx="10" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+        <rect x="246" y="14" width="214" height="22" rx="10" fill="var(--soft)"/>
+        <text x="260" y="30" font-size="11.5" class="sv-m">桌面 / lunch-spin</text>
+        <rect x="262" y="48" width="120" height="26" rx="6" fill="var(--soft)" stroke="var(--ok)" stroke-width="2.5"/>
+        <text x="272" y="66" font-weight="700" fill="var(--ok)">index.html</text>
+        <text x="262" y="92" class="sv-m" font-size="11.5">滑鼠左鍵連點兩下</text>
+        <path d="M466 58h26" stroke="currentColor" stroke-width="2" opacity=".5" marker-end="url(#ar)"/>
+        <rect x="500" y="18" width="210" height="80" rx="10" fill="var(--card)" stroke="var(--ok)" stroke-width="2.5"/>
+        <rect x="500" y="18" width="210" height="20" rx="10" fill="var(--soft)"/>
+        <circle cx="514" cy="28" r="3.5" fill="var(--mut)"/><circle cx="526" cy="28" r="3.5" fill="var(--mut)"/>
         <g stroke="var(--ok)" stroke-width="6" stroke-linecap="round">
-          <path d="M538 50h120M538 66h80"/>
+          <path d="M518 54h140M518 70h90"/>
         </g>
-        <text x="538" y="88" font-size="11.5" font-weight="700" fill="var(--ok)">你的網頁活了 🎉</text>
+        <text x="518" y="92" font-size="11.5" font-weight="700" fill="var(--ok)">你的網頁活了 🎉</text>
       </g>
     </svg>
-    <p class="cap">沒有這個選項：打開桌面資料夾，<b>直接雙擊 index.html</b> 也行。</p>
+    <p class="cap">用瀏覽器打開就是真的網頁——<b>按鈕、輸入、F5 全部都能測</b>，跟上線後一模一樣。</p>
   </div>
   <div class="warn">
     <span class="lbl">打開是一片空白</span>
     跟 Agent 說：「網頁打開是空白的，請檢查 index.html 是否完整，並確認所有程式碼都寫在這一個檔案裡。」
+  </div>
+  <div class="note">
+    <span class="lbl">改完之後怎麼再看一次</span>
+    Agent 改完檔案後，回到<b>已經開著的瀏覽器分頁按 F5</b> 就會更新，不用重新雙擊。
   </div>
 </section>
 
@@ -659,45 +649,62 @@
 
 <!-- ══ STEP 6 ══ -->
 <section id="s6" data-step="6" style="--c:var(--orange)">
-  <div class="sh"><span class="no">STEP 6</span><h2>推上 GitHub</h2><span class="time">44–58 分</span></div>
+  <div class="sh"><span class="no">STEP 6</span><h2>把檔案放上 GitHub（你的第一個 commit）</h2><span class="time">44–58 分</span></div>
+
   <div class="fig">
-    <svg viewBox="0 0 720 210" role="img" aria-label="Source Control 面板操作順序：輸入訊息、Commit、Publish Branch 選 public">
+    <svg viewBox="0 0 720 240" role="img" aria-label="GitHub 網頁建立 repository 並上傳 index.html，填寫 commit 訊息">
       <g font-size="13">
-        <rect x="10" y="10" width="330" height="190" rx="12" fill="var(--card)" stroke="var(--orange)" stroke-width="2.5"/>
-        <text x="26" y="34" font-size="12" font-weight="800" fill="var(--orange)">SOURCE CONTROL</text>
-        <!-- 1 訊息框 -->
-        <rect x="26" y="46" width="290" height="40" rx="8" fill="var(--soft)" stroke="var(--line)"/>
-        <text x="38" y="70" class="sv-i" font-size="12.5">第一版 喝水紀錄網頁</text>
-        <circle cx="26" cy="46" r="12" fill="var(--orange)"/>
-        <text x="26" y="51" text-anchor="middle" font-size="12" font-weight="800" fill="#0B1B33">1</text>
-        <!-- 2 commit -->
-        <rect x="26" y="100" width="290" height="34" rx="8" fill="var(--navy)"/>
-        <text x="171" y="122" text-anchor="middle" font-size="13.5" font-weight="800" fill="#fff">✓ Commit</text>
-        <circle cx="26" cy="100" r="12" fill="var(--orange)"/>
-        <text x="26" y="105" text-anchor="middle" font-size="12" font-weight="800" fill="#0B1B33">2</text>
-        <!-- 3 publish -->
-        <rect x="26" y="148" width="290" height="34" rx="8" fill="var(--card)" stroke="var(--orange)" stroke-width="2.5"/>
-        <text x="171" y="170" text-anchor="middle" font-size="13.5" font-weight="800" fill="var(--orange)">↑ Publish Branch</text>
-        <circle cx="26" cy="148" r="12" fill="var(--orange)"/>
-        <text x="26" y="153" text-anchor="middle" font-size="12" font-weight="800" fill="#0B1B33">3</text>
+        <rect x="10" y="10" width="330" height="100" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+        <rect x="10" y="10" width="330" height="24" rx="12" fill="var(--soft)"/>
+        <text x="26" y="27" font-size="11.5" font-weight="800" class="sv-m">github.com → New repository</text>
+        <rect x="26" y="44" width="180" height="24" rx="5" fill="var(--soft)" stroke="var(--cyan)" stroke-width="2"/>
+        <text x="36" y="61" font-weight="700" fill="var(--cyan)">lunch-spin</text>
+        <text x="216" y="61" font-size="11.5" class="sv-m">← 跟資料夾同名</text>
+        <circle cx="34" cy="86" r="7" fill="none" stroke="var(--ok)" stroke-width="2.5"/>
+        <circle cx="34" cy="86" r="3.5" fill="var(--ok)"/>
+        <text x="48" y="91" font-weight="800" fill="var(--ok)">Public</text>
+        <text x="110" y="91" font-size="11.5" class="sv-m">（選 Private 網址不會公開）</text>
+        <circle cx="26" cy="10" r="13" fill="var(--orange)"/>
+        <text x="26" y="15" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">1</text>
 
-        <path d="M346 100h24" stroke="currentColor" stroke-width="2" opacity=".5" marker-end="url(#ar)"/>
+        <path d="M346 60h24" stroke="currentColor" stroke-width="2" opacity=".5" marker-end="url(#ar)"/>
 
-        <!-- 選 public -->
-        <rect x="380" y="26" width="330" height="86" rx="12" fill="var(--card)" stroke="var(--ok)" stroke-width="2.5"/>
-        <text x="396" y="48" font-size="12" font-weight="800" class="sv-m">選一個</text>
-        <rect x="396" y="56" width="298" height="24" rx="6" fill="var(--ok)" opacity=".18"/>
-        <text x="406" y="73" font-weight="800" fill="var(--ok)">✓ public repository　（一定要選這個）</text>
-        <text x="406" y="98" class="sv-m" font-size="12">✕ private　→ 網址不會公開</text>
+        <rect x="380" y="10" width="330" height="100" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
+        <rect x="380" y="10" width="330" height="24" rx="12" fill="var(--soft)"/>
+        <text x="396" y="27" font-size="11.5" font-weight="800" class="sv-m">Add file → Upload files</text>
+        <rect x="396" y="42" width="298" height="54" rx="10" fill="var(--soft)"
+              stroke="var(--violet)" stroke-width="2.5" stroke-dasharray="7 4"/>
+        <rect x="520" y="52" width="52" height="34" rx="5" fill="var(--card)" stroke="var(--cyan)" stroke-width="2"/>
+        <text x="546" y="73" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--cyan)">index</text>
+        <text x="410" y="66" font-size="11.5" class="sv-m">把 index.html</text>
+        <text x="410" y="84" font-size="11.5" class="sv-m">拖進這個框</text>
+        <circle cx="396" cy="10" r="13" fill="var(--orange)"/>
+        <text x="396" y="15" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">2</text>
 
-        <!-- 授權 -->
-        <rect x="380" y="124" width="330" height="76" rx="12" fill="var(--soft)" stroke="var(--line)" stroke-width="2"/>
-        <text x="396" y="146" font-weight="800" class="sv-i">瀏覽器跳出 GitHub 授權</text>
-        <rect x="396" y="156" width="120" height="28" rx="7" fill="var(--ok)"/>
-        <text x="456" y="175" text-anchor="middle" font-weight="800" fill="#fff">Authorize</text>
-        <text x="528" y="175" class="sv-m" font-size="11.5">卡住舉手，不要重按</text>
+        <rect x="10" y="126" width="700" height="104" rx="12" fill="var(--card)" stroke="var(--orange)" stroke-width="2.5"/>
+        <text x="30" y="150" font-size="12" font-weight="800" fill="var(--orange)">往下捲，寫一句話說明你做了什麼 ← 這句話就是 commit</text>
+        <rect x="30" y="160" width="420" height="28" rx="6" fill="var(--soft)" stroke="var(--line)"/>
+        <text x="42" y="179" class="sv-i">第一版 午餐轉盤</text>
+        <rect x="30" y="196" width="150" height="26" rx="6" fill="var(--ok)"/>
+        <text x="105" y="214" text-anchor="middle" font-weight="800" fill="#fff">Commit changes</text>
+        <text x="196" y="214" font-size="11.5" class="sv-m">按下去，你的第一個 commit 就完成了</text>
+        <circle cx="26" cy="126" r="13" fill="var(--orange)"/>
+        <text x="26" y="131" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">3</text>
       </g>
     </svg>
+    <p class="cap">全程在瀏覽器裡，<b>不用打任何指令、不用設定任何密碼或 token</b>。</p>
+  </div>
+
+  <div class="note">
+    <span class="lbl">找不到 index.html 在哪？</span>
+    回 Antigravity，在左邊的 <code>index.html</code> 上按<b>右鍵 → 在檔案總管顯示</b>，
+    檔案總管就會跳出來，直接把檔案拖進 GitHub 的上傳框。
+  </div>
+
+  <div class="warn">
+    <span class="lbl">兩個地雷</span>
+    <b>① 一定要選 Public</b>，選 Private 之後網址不會公開。<br>
+    <b>② 檔案一定要叫 index.html</b>（全部小寫），叫別的名字第 7 步會 404。
   </div>
 </section>
 
@@ -774,7 +781,7 @@
 <section id="s8" data-step="8" style="--c:var(--ok)">
   <div class="sh"><span class="no">STEP 8</span><h2>再改一件事，看見修改歷史</h2><span class="time">70–80 分</span></div>
   <div class="fig">
-    <svg viewBox="0 0 720 150" role="img" aria-label="兩次 commit 形成的時間軸，網站自動更新">
+    <svg viewBox="0 0 720 150" role="img" aria-label="兩次 commit 形成時間軸，網站自動更新">
       <g font-size="13">
         <line x1="60" y1="60" x2="620" y2="60" stroke="var(--line)" stroke-width="4"/>
         <circle cx="130" cy="60" r="14" fill="var(--ok)"/>
@@ -783,7 +790,7 @@
         <circle cx="430" cy="60" r="14" fill="var(--ok)"/>
         <text x="430" y="36" text-anchor="middle" font-weight="800" fill="var(--ok)">commit 2</text>
         <text x="430" y="92" text-anchor="middle" class="sv-m" font-size="11.5">加上資料儲存</text>
-        <text x="280" y="56" text-anchor="middle" class="sv-m" font-size="11.5">改一件事 → 驗收 → Commit → Push</text>
+        <text x="280" y="56" text-anchor="middle" class="sv-m" font-size="11.5">改一件事 → 驗收 → 再上傳一次同一個檔案</text>
         <g transform="translate(560,30)">
           <rect width="120" height="60" rx="10" fill="var(--card)" stroke="var(--pink)" stroke-width="2.5"/>
           <text x="60" y="26" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--pink)">你的網址</text>
@@ -795,15 +802,27 @@
         </text>
       </g>
     </svg>
-    <p class="cap">回 github.com 你的專案 → 點上方 <b>Commits</b> 就看得到這兩筆</p>
   </div>
+  <ol>
+    <li>回 Antigravity，跟 Agent 說第 4 步的「第二次修改」那句</li>
+    <li>雙擊／F5 驗收（第 5 步的三個動作）</li>
+    <li>回 GitHub 你的專案 → <b>Add file → Upload files</b> → 把<b>同一個 index.html 再拖一次</b></li>
+    <li>訊息寫「加上資料儲存」→ <b>Commit changes</b>（同名檔案會直接覆蓋，並產生第二個 commit）</li>
+    <li>點上方的 <b>Commits</b> → 你會看到兩筆記錄</li>
+    <li>等 1–2 分鐘，重新整理你的公開網址 → 網站自己更新了</li>
+  </ol>
 </section>
-
 
 <!-- ══ 加分區（不列入 9 步，做完主線才進來）══ -->
 <section id="bonus" class="bonus">
   <div class="sh"><span class="no" style="background:var(--violet)">加分題</span>
     <h2>讓你的網站跟別人不一樣</h2><span class="time">做完前面 8 步才進來</span></div>
+
+  <div class="note">
+    <span class="lbl">你可能已經用到了</span>
+    Antigravity 常常自己就會引入 Three.js 或 GSAP（程式碼最上面出現 <code>cdnjs.cloudflare.com</code> 就是）。
+    看到不用緊張，那正是下面第 1、2 招。<b>但要記得驗收</b>——這些是從網路上抓的，校內網路擋掉就會壞掉。
+  </div>
 
   <div class="warn">
     <span class="lbl">三個前提，違反一個就不要加特效</span>
