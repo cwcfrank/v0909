@@ -11,6 +11,7 @@
     --navy:#0B1B33; --navy2:#132f52; --ink:#101828; --body:#3a4553; --mut:#667085;
     --line:#e4e7ec; --bg:#f7f8fa; --card:#fff; --soft:#f2f4f7;
     --orange:#e8801f; --cyan:#0d7f96; --ok:#0f8a5f; --violet:#7a5af8; --pink:#d6336c;
+    --eli5:#2456c4; --eli5bg:#eef3ff; --eli5line:#b9caf3;
     --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.10); --radius:14px;
   }
   *{box-sizing:border-box}
@@ -90,6 +91,25 @@
   .warn{border-left:5px solid var(--orange)} .note{border-left:5px solid var(--cyan)}
   .lbl{display:block;font-size:14px;font-weight:800;letter-spacing:.4px;margin-bottom:3px}
   .warn .lbl{color:var(--orange)} .note .lbl{color:var(--cyan)}
+
+  /* 白話說（ELI5）：整堂課用同一個比喻——你是屋主，AI 是師傅 */
+  .eli5{background:var(--eli5bg);border:1.5px solid var(--eli5line);border-radius:12px;
+    padding:12px 16px 14px;margin:12px 0 4px}
+  .eli5-t{display:inline-block;font-size:13.5px;font-weight:800;letter-spacing:.6px;
+    color:#fff;background:var(--eli5);border-radius:99px;padding:3px 11px}
+  .eli5 p{margin:7px 0 0;font-size:17.5px;line-height:1.7;color:var(--ink)}
+  .eli5 b{color:var(--eli5)}
+  .eli5 code{background:#fff;border-color:var(--eli5line)}
+
+  /* 名詞白話對照表 */
+  .gl{display:grid;grid-template-columns:1fr;gap:0;margin:6px 0 0}
+  .gl>div{display:grid;grid-template-columns:1fr;gap:2px;padding:9px 0;
+    border-bottom:1px dashed var(--line)}
+  @media(min-width:620px){.gl>div{grid-template-columns:150px 1fr;gap:14px;align-items:baseline}}
+  .gl>div:last-child{border-bottom:0}
+  .gl>div>b{color:var(--eli5);font-size:16px}
+  .gl span{font-size:16px;color:var(--body)}
+  .gl span b{color:var(--ink)}
 
   .gb{display:grid;grid-template-columns:1fr;gap:11px;margin:13px 0}
   @media(min-width:640px){.gb{grid-template-columns:1fr 1fr}}
@@ -209,6 +229,12 @@
       margin-top:8px}
     .fig{display:none}
     #s0 .fig,#s7 .fig{display:block;padding:6px;break-inside:avoid}
+    .eli5{background:#fff;border:1px solid #999;padding:7px 10px;break-inside:avoid}
+    .eli5-t{background:none;color:#000;border:1px solid #999;padding:1px 7px}
+    .eli5 p{font-size:10.5pt}
+    .eli5 b,.gl>div>b{color:#000}
+    .gl>div{padding:4px 0}
+    .gl>div>b,.gl span{font-size:10pt}
     pre{font-size:9.5pt}
     details>*{display:revert!important}
     h1{font-size:16pt} h2{font-size:12.5pt}
@@ -241,6 +267,12 @@
   <h1>你出一張嘴，AI 幫你寫程式</h1>
   <p class="lead">90 分鐘做出一個<b>真的能上網</b>的網站，下課前拿到<b>自己的網址</b>，傳給誰都打得開。
      照著圖做，每完成一步打個勾。</p>
+
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>今天你的角色是<b>屋主</b>，不是工程師。AI 是師傅：你負責講清楚要什麼、親自驗收，
+       最後掛上門牌讓大家找得到。<b>接下來每一步都會用這個比喻講一次。</b></p>
+  </div>
 
   <div class="fig">
     <svg viewBox="0 0 720 132" role="img" aria-label="五個步驟流程：需求釐清、AI 生成、驗收、版本控制、上線">
@@ -313,6 +345,11 @@
 <section id="s0" data-step="0" style="--c:var(--mut)">
   <div class="sh"><span class="no">STEP 0</span><h2>開工前：裝好、登入、認識兩個地方</h2><span class="time">8–18 分 ｜ 跟著講師做</span></div>
 
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>就像開工前先<b>把工具搬進來、鑰匙拿到手</b>。這一步少做一項，後面每一步都會卡住。</p>
+  </div>
+
   <div class="fig">
     <svg viewBox="0 0 720 250" role="img" aria-label="AI 編輯器示意圖：左邊檔案、中間程式碼、右邊 Agent 對話框">
       <rect x="8" y="8" width="704" height="234" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
@@ -378,6 +415,24 @@
     真的用完了也還有辦法：開 <b>gemini.google.com</b> 用同一個 Google 帳號繼續，把程式碼複製回檔案就好。
   </div>
 
+  <details>
+    <summary>🧸 這些字聽不懂？名詞白話對照表（整堂課都可以翻回來看）</summary>
+    <div class="gl">
+      <div><b>Agent</b><span>Antigravity 裡跟你聊天的 AI。就是那位<b>師傅</b>：你講，它動手。</span></div>
+      <div><b>index.html</b><span>你網站的<b>大門</b>。名字一定要全部小寫、一字不差，不然沒人找得到入口。</span></div>
+      <div><b>GitHub</b><span>放你作品的<b>公共倉庫兼展示間</b>，免費，而且會給你網址。</span></div>
+      <div><b>repository（repo）</b><span>倉庫裡<b>屬於你的那一格</b>，一個作品放一格。說白了就是網路上的一個資料夾。</span></div>
+      <div><b>commit</b><span><b>按存檔，順便寫一句「我這次改了什麼」</b>。今天你會做兩次。</span></div>
+      <div><b>版本控制</b><span>每次存檔都留著、都回得去。<b>從此不用再存「最終版_真的最終.html」</b>。</span></div>
+      <div><b>main</b><span>正式的那一份。今天全班都只用這一份，其他的不用管。</span></div>
+      <div><b>/ (root)</b><span>倉庫的<b>最外層</b>。你的 index.html 就放這一層，不要塞進資料夾裡。</span></div>
+      <div><b>GitHub Pages</b><span>GitHub <b>免費幫你把檔案變成真的網站</b>，並發一個網址給你。</span></div>
+      <div><b>資料儲存</b><span>把資料<b>記在你自己的瀏覽器裡</b>，關掉再打開還在（正式名稱 localStorage）。</span></div>
+      <div><b>CDN</b><span><b>從網路上借別人寫好的程式</b>（例如 3D 效果）。校內網路擋掉的話就會壞掉。</span></div>
+      <div><b>前端 / 後端</b><span>前端＝<b>看得到、點得到</b>的部分，今天做的就是這個；後端＝背後的伺服器和資料庫，今天不碰。</span></div>
+    </div>
+  </details>
+
   <div class="warn">
     <span class="lbl">資料夾名字＝你網址的一部分</span>
     <span class="big">✓ lunch-spin　　✕ 午餐轉盤　　✕ my project</span><br>
@@ -388,6 +443,11 @@
 <!-- ══ STEP 1 ══ -->
 <section id="s1" data-step="1" style="--c:var(--cyan)">
   <div class="sh"><span class="no">STEP 1 ★</span><h2>讓 AI 拷問你</h2><span class="time">實作 60–64 分</span></div>
+
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>好師傅不會問「你想要很棒的房子嗎」，他會問你<b>要幾房幾廳</b>。讓 AI 先問你，它才不會做出你不要的東西。</p>
+  </div>
 
   <div class="fig">
     <svg viewBox="0 0 720 240" role="img" aria-label="拷問流程：你說一句題目，AI 問五題，你回答，AI 產出規格">
@@ -494,6 +554,11 @@
 <!-- ══ STEP 2 ══ -->
 <section id="s2" data-step="2" style="--c:var(--violet)">
   <div class="sh"><span class="no">STEP 2</span><h2>確認規格，讓它開始寫</h2><span class="time">實作 64–67 分</span></div>
+
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>設計圖現在在你手上：<b>不要的劃掉、漏的補上</b>，確認完才說「可以動工了」。</p>
+  </div>
   <div class="fig">
     <svg viewBox="0 0 720 96" role="img" aria-label="規格檢查兩件事：刪掉不想要的功能、補上漏掉的重點">
       <g font-size="13.5">
@@ -524,6 +589,11 @@
 <!-- ══ STEP 3 ══ -->
 <section id="s3" data-step="3" style="--c:var(--cyan)">
   <div class="sh"><span class="no">STEP 3</span><h2>看成果</h2><span class="time">實作 67–70 分</span></div>
+
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>房子蓋好要<b>親自走進去看一眼</b>。在 <code>index.html</code> 上連點兩下，就是走進去。</p>
+  </div>
   <div class="fig">
     <svg viewBox="0 0 720 116" role="img" aria-label="在檔案上按右鍵選在檔案總管顯示，然後雙擊 index.html 用瀏覽器打開">
       <g font-size="13">
@@ -563,6 +633,11 @@
 <!-- ══ STEP 4 ══ -->
 <section id="s4" data-step="4" style="--c:var(--orange)">
   <div class="sh"><span class="no">STEP 4</span><h2>一次只改一件事</h2><span class="time">實作 70–74 分</span></div>
+
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>一次只叫師傅改一個地方。<b>同時改三個地方，壞了你不知道是哪一個害的。</b></p>
+  </div>
   <div class="fig">
     <svg viewBox="0 0 720 150" role="img" aria-label="一次改一件事會成功，一次改三件事會壞掉且找不出原因">
       <g font-size="13">
@@ -614,6 +689,11 @@
 <!-- ══ STEP 5 ══ -->
 <section id="s5" data-step="5" style="--c:var(--pink)">
   <div class="sh"><span class="no">STEP 5 ★</span><h2>驗收儀式</h2><span class="time">實作 74–76 分</span></div>
+
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>師傅說「都好了」不等於好了。<b>水龍頭要你自己去開</b>——按一下、按 F5、把視窗拉窄，三個動作。</p>
+  </div>
   <div class="warn">
     <span class="lbl">當 AI 說「我已經完成並測試過了」</span>
     <span class="big">它沒有你的瀏覽器。它從來沒有點過你的網頁一下。</span>
@@ -681,6 +761,11 @@
 <section id="s6" data-step="6" style="--c:var(--orange)">
   <div class="sh"><span class="no">STEP 6</span><h2>把檔案放上 GitHub（你的第一個 commit）</h2><span class="time">實作 76–82 分</span></div>
 
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>每完成一段就<b>拍一張照存起來</b>，這張照片就叫 <b>commit</b>。以後想看哪一版都找得到。</p>
+  </div>
+
   <div class="fig">
     <svg viewBox="0 0 720 240" role="img" aria-label="GitHub 網頁建立 repository 並上傳 index.html，填寫 commit 訊息">
       <g font-size="13">
@@ -741,6 +826,11 @@
 <!-- ══ STEP 7 ══ -->
 <section id="s7" data-step="7" style="--c:var(--pink)">
   <div class="sh"><span class="no">STEP 7 ★</span><h2>拿到你的公開網址</h2><span class="time">實作 82–86 分</span></div>
+
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>房子蓋好還要<b>掛門牌</b>，別人才找得到你家。<code>你的帳號.github.io/你的資料夾名/</code> 就是你的門牌地址。</p>
+  </div>
   <div class="fig">
     <svg viewBox="0 0 720 220" role="img" aria-label="GitHub Settings Pages 設定流程與網址組成">
       <g font-size="13">
@@ -810,6 +900,11 @@
 <!-- ══ STEP 8 ══ -->
 <section id="s8" data-step="8" style="--c:var(--ok)">
   <div class="sh"><span class="no">STEP 8</span><h2>再改一件事，看見修改歷史</h2><span class="time">今天看講師做 ｜ 回家自己做</span></div>
+
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>翻一遍施工相簿：<b>什麼時候改了什麼一目瞭然，而且隨時回得去</b>，這就是版本控制。</p>
+  </div>
   <div class="fig">
     <svg viewBox="0 0 720 150" role="img" aria-label="兩次 commit 形成時間軸，網站自動更新">
       <g font-size="13">
@@ -847,6 +942,11 @@
 <section id="bonus" class="bonus">
   <div class="sh"><span class="no" style="background:var(--violet)">加分題</span>
     <h2>讓你的網站跟別人不一樣</h2><span class="time">提早做完 or 回家做</span></div>
+
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>主體完工才輪到裝飾。<b>牆還沒粉刷就先掛水晶燈，只會更亂</b>——先確定網站已經上線又驗收過。</p>
+  </div>
 
   <div class="note">
     <span class="lbl">你可能已經用到了</span>
@@ -1003,6 +1103,11 @@
 <!-- ══ 急救 ══ -->
 <section id="help" style="--c:var(--pink)">
   <div class="sh"><span class="no">卡住了</span><h2>三個急救指令</h2></div>
+
+  <div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>卡住很正常，多半是<b>問題沒有講清楚給師傅聽</b>。下面三句話幫你把話講明白。</p>
+  </div>
   <ol>
     <li><b>打不開／一片空白</b><br>「網頁打開是空白的，請檢查 index.html 是否完整，並確認所有程式碼都寫在這一個檔案裡。」</li>
     <li><b>改一次就整個壞掉</b><br>「請退回上一個可以正常運作的版本，然後只做這一件事：______」</li>
