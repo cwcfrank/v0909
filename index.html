@@ -278,14 +278,31 @@
     display:flex;justify-content:space-between;align-items:flex-start;gap:12px 18px;flex-wrap:wrap;
     font-size:15px;color:var(--body);text-align:left}
   .cv-by b{color:var(--navy);font-size:16.5px}
-  .cv-by .who{display:flex;flex-direction:column;gap:7px;min-width:0}
+  .cv-by .who{display:flex;flex-direction:column;gap:7px;flex:1 1 0;min-width:0}
   .cv-by .roles{display:flex;flex-wrap:wrap;gap:6px}
   .cv-by .roles span{display:inline-flex;align-items:center;gap:5px;font-size:13px;color:var(--mut);
     background:var(--soft);border:1px solid var(--line);border-radius:99px;padding:3px 11px;
     white-space:nowrap}
   .cv-by .roles i{font-style:normal;color:#b6bdcb}
   .cv-by .roles em{font-style:normal;color:var(--navy);font-weight:700}
-  .cv-by .dt{font-variant-numeric:tabular-nums;color:var(--mut);white-space:nowrap;padding-top:3px}
+  .cv-by .dt{flex:0 0 auto;font-variant-numeric:tabular-nums;color:var(--mut);
+    white-space:nowrap;padding-top:3px}
+  /* 完整經歷：預設收合，想看的人才展開 */
+  .cv-bio{margin:2px 0 0;border:0;padding:0}
+  .cv-bio summary{display:inline-flex;align-items:center;gap:5px;list-style:none;
+    font-size:12.5px;font-weight:600;color:var(--mut);cursor:pointer;
+    padding:2px 0;border-bottom:1px dotted #c4cbd8;width:fit-content}
+  .cv-bio summary::-webkit-details-marker{display:none}
+  .cv-bio summary::after{content:"▾";font-size:10px;transition:transform .2s}
+  .cv-bio[open] summary::after{transform:rotate(180deg)}
+  .cv-bio summary:hover{color:var(--navy);border-bottom-color:var(--navy)}
+  .cv-bio ul{margin:10px 0 0;padding:0;list-style:none;
+    display:grid;grid-template-columns:1fr 1fr;gap:4px 20px}
+  @media (max-width:640px){.cv-bio ul{grid-template-columns:1fr}}
+  .cv-bio li{position:relative;padding-left:13px;font-size:12.8px;line-height:1.62;color:var(--mut)}
+  .cv-bio li::before{content:"";position:absolute;left:0;top:8px;width:4px;height:4px;
+    border-radius:50%;background:#c4cbd8}
+  .cv-bio li b{color:var(--body);font-weight:600}
   @media (max-width:560px){
     .cv{padding:26px 20px 22px}
     .cv-by{justify-content:center;text-align:center}
@@ -365,10 +382,23 @@
     <div class="who">
       <span>講師　<b>陳偉誠 Frank</b></span>
       <span class="roles">
-        <span>四季兒童教育機構<i>/</i><em>資訊副理</em></span>
-        <span>ChenCheng 圈圈<i>/</i><em>YouTuber</em></span>
         <span>INTVZ 誠創未來<i>/</i><em>創辦人</em></span>
+        <span>朝陽科技大學 工業設計系<i>/</i><em>客座講師</em></span>
+        <span>《Chen Cheng 圈圈》<i>/</i><em>頻道主持人</em></span>
       </span>
+      <details class="cv-bio">
+        <summary>完整經歷</summary>
+        <ul>
+          <li>《Chen Cheng 圈圈》YouTube 頻道　<b>主持人</b></li>
+          <li>INTVZ 誠創未來　<b>創辦人</b></li>
+          <li>台灣虛擬及擴增實境產業協會　<b>會員</b></li>
+          <li><b>XR / AI 應用開發者</b></li>
+          <li>朝陽科技大學 工業設計系　<b>客座講師</b></li>
+          <li>曾參與多項<b>生成式 AI、AI 影像辨識、多模態 AI</b> 系統專案</li>
+          <li>多部<b>超過 10 萬點閱</b>科技應用影片創作者</li>
+          <li><b>10 年以上</b>軟體開發與資訊整合經驗</li>
+        </ul>
+      </details>
     </div>
     <span class="dt">2026 / 09 / 09（三）</span>
   </div>
