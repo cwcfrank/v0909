@@ -46,6 +46,7 @@ body{
 
 .machine{
   position:relative;border-radius:26px;padding:20px 20px 24px;
+  max-width:470px;margin:0 auto;
   background:
     linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.02) 26%,rgba(0,0,0,.30) 100%),
     linear-gradient(145deg,#1d2740 0%,#121a2c 44%,#0b1120 100%);
@@ -81,19 +82,19 @@ body{
 
 /* ---------- 滾輪視窗 ---------- */
 .window{
-  position:relative;margin:0 auto;width:min(100%,352px);height:172px;border-radius:16px;
+  position:relative;margin:0 auto;width:min(100%,372px);height:184px;border-radius:16px;
   background:linear-gradient(180deg,#05070e,#0e1526 40%,#05070e);
   border:1px solid rgba(255,255,255,.10);
   box-shadow:inset 0 0 42px rgba(0,0,0,.95),0 0 0 5px rgba(255,208,107,.12),0 12px 30px -12px #000;
   overflow:hidden;
 }
 .reels{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;gap:10px}
-.reel{position:relative;width:104px;height:172px;perspective:1000px;perspective-origin:50% 50%}
+.reel{position:relative;width:112px;height:184px;perspective:1000px;perspective-origin:50% 50%}
 .cyl{position:absolute;left:0;right:0;top:50%;height:108px;margin-top:-54px;
   transform-style:preserve-3d;will-change:transform}
 .face{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-size:46px;line-height:1;backface-visibility:hidden;
+  font-size:52px;line-height:1;backface-visibility:hidden;
   filter:drop-shadow(0 3px 7px rgba(0,0,0,.65));
 }
 .face i{font-style:normal}
@@ -160,21 +161,32 @@ body{
 .opt input{width:17px;height:17px;accent-color:var(--gold);cursor:pointer}
 
 /* 拉桿 */
-.lever{position:absolute;right:-6px;top:96px;width:64px;height:190px;cursor:pointer;
+.lever{position:absolute;right:-46px;top:132px;width:78px;height:214px;cursor:pointer;
   -webkit-tap-highlight-color:transparent}
-@media (max-width:980px){.lever{display:none}}
-.lever .stem{position:absolute;left:27px;top:24px;width:9px;height:110px;border-radius:6px;
+@media (max-width:1000px){.lever{display:none}}
+.lever .base{position:absolute;left:2px;top:150px;width:62px;height:34px;border-radius:11px;
+  background:linear-gradient(180deg,#79859f 0%,#414c66 38%,#1c2233 100%);
+  box-shadow:0 10px 20px -8px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.28),
+             inset 0 -5px 10px rgba(0,0,0,.5)}
+.lever .base::before{ /* 接回機台的鎖固片 */
+  content:"";position:absolute;left:-26px;top:8px;width:34px;height:17px;border-radius:5px;
+  background:linear-gradient(180deg,#5c6884,#28304a);box-shadow:0 3px 7px rgba(0,0,0,.6)}
+.lever .base::after{ /* 轉軸 */
+  content:"";position:absolute;left:23px;top:-7px;width:16px;height:16px;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,#fff,#9aa6c2 45%,#39415a 100%);
+  box-shadow:0 2px 5px rgba(0,0,0,.7)}
+.lever .stem{position:absolute;left:26px;top:44px;width:11px;height:112px;border-radius:7px;
   transform-origin:50% 100%;transition:transform .42s cubic-bezier(.3,1.4,.5,1);
-  background:linear-gradient(90deg,#5c6884,#c9d4ea 38%,#8d99b5 62%,#3d465c);
-  box-shadow:0 3px 10px rgba(0,0,0,.6)}
-.lever .knob{position:absolute;left:9px;top:-2px;width:44px;height:44px;border-radius:50%;
-  transform-origin:50% 300%;transition:transform .42s cubic-bezier(.3,1.4,.5,1);
-  background:radial-gradient(circle at 33% 27%,#ff9aa6,#e5334f 44%,#8d0f24 100%);
-  box-shadow:0 0 0 3px rgba(255,255,255,.14) inset,0 10px 22px -6px rgba(229,51,79,.75),0 3px 8px rgba(0,0,0,.6)}
-.lever .base{position:absolute;left:16px;bottom:22px;width:32px;height:22px;border-radius:8px;
-  background:linear-gradient(180deg,#5a6480,#252c40);box-shadow:0 5px 12px rgba(0,0,0,.65)}
-.lever.pull .stem{transform:rotate(34deg) scaleY(.9)}
-.lever.pull .knob{transform:translate(24px,44px)}
+  background:linear-gradient(90deg,#39415a 0%,#aab6d2 30%,#f2f6ff 46%,#8d99b5 62%,#333b52 100%);
+  box-shadow:0 4px 12px rgba(0,0,0,.65)}
+.lever .knob{position:absolute;left:9px;top:16px;width:46px;height:46px;border-radius:50%;
+  transform-origin:50% 260%;transition:transform .42s cubic-bezier(.3,1.4,.5,1);
+  background:radial-gradient(circle at 33% 26%,#ffb9c1 0%,#f0405c 42%,#a4132c 74%,#5c0716 100%);
+  box-shadow:0 0 0 3px rgba(255,255,255,.16) inset,0 12px 26px -6px rgba(229,51,79,.7),
+             0 4px 10px rgba(0,0,0,.6)}
+.lever:hover .knob{filter:brightness(1.1)}
+.lever.pull .stem{transform:rotate(38deg) scaleY(.88)}
+.lever.pull .knob{transform:translate(38px,48px)}
 
 /* ---------- 側欄 ---------- */
 .card{border-radius:18px;padding:17px 17px 15px;background:var(--glass);
