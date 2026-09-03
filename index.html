@@ -75,6 +75,21 @@
   .big{font-size:19.5px;color:var(--ink);font-weight:700}
   .warn-inline{color:var(--orange);font-weight:800;font-size:15px}
 
+  /* 四大段分隔帶 */
+  .phase{margin:34px 0 0;padding:15px 20px;border-radius:14px;
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);
+    display:flex;align-items:baseline;gap:13px;flex-wrap:wrap}
+  .phase .pn{font-size:12.5px;font-weight:800;letter-spacing:.14em;color:#ffcf99;
+    border:1.5px solid #ffcf99;border-radius:99px;padding:3px 11px;flex:none}
+  .phase h2{margin:0;font-size:23px;color:#fff}
+  .phase p{margin:0;flex:1 1 100%;font-size:15px;color:#cfe0f5}
+  .phase.prep{background:var(--soft);border:2px solid var(--line)}
+  .phase.prep .pn{color:var(--mut);border-color:var(--mut)}
+  .phase.prep h2{color:var(--ink)}
+  .phase.prep p{color:var(--body)}
+  .phase+section{margin-top:10px}
+  @media(max-width:560px){ .phase h2{font-size:19.5px} }
+
   /* 圖 */
   .fig{margin:14px 0 6px;background:var(--soft);border:1px solid var(--line);
     border-radius:12px;padding:14px 12px}
@@ -344,7 +359,7 @@
     section,.hero{break-inside:avoid;box-shadow:none;border:1px solid #bbb;padding:9px 12px;
       margin-top:8px}
     .fig{display:none}
-    #s0 .fig,#s7 .fig{display:block;padding:6px;break-inside:avoid}
+    #s0 .fig,#s5 .fig{display:block;padding:6px;break-inside:avoid}
     .eli5{background:#fff;border:1px solid #999;padding:7px 10px;break-inside:avoid}
     .eli5-t{background:none;color:#000;border:1px solid #999;padding:1px 7px}
     .eli5 p{font-size:10.5pt}
@@ -421,14 +436,14 @@
 <header class="top">
   <div class="in">
     <button class="brand" id="brandHome" type="button" title="回到封面">VIBE CODING<span>實作手冊</span></button>
-    <div class="prog"><span id="ptxt">0 / 9</span><div class="bar"><i id="pbar"></i></div></div>
+    <div class="prog"><span id="ptxt">0 / 6</span><div class="bar"><i id="pbar"></i></div></div>
   </div>
 </header>
 <nav>
   <div class="in" id="toc">
-    <a href="#s0">0 準備</a><a href="#s1">1 拷問</a><a href="#s2">2 開寫</a><a href="#s3">3 看成果</a>
-    <a href="#s4">4 改一次</a><a href="#s5">5 驗收</a><a href="#s6">6 上 GitHub</a>
-    <a href="#s7">7 拿網址</a><a href="#s8">8 看歷史</a><a href="#bonus" style="border-color:#7a5af8;color:#c9bcff">＋加分題</a><a href="#help">卡住了</a>
+    <a href="#s0">0 準備</a><a href="#s1">1 拷問</a><a href="#s2">2 開寫</a>
+    <a href="#s3">3 驗收</a><a href="#s4">4 改一次</a><a href="#s5">5 部署</a>
+    <a href="#bonus" style="border-color:#7a5af8;color:#c9bcff">＋加分題</a><a href="#help">卡住了</a>
   </div>
 </nav>
 <div class="wide"><i id="pwide"></i><b id="pwtxt"></b></div>
@@ -449,64 +464,57 @@
   </div>
 
   <div class="fig">
-    <svg viewBox="0 0 720 132" role="img" aria-label="五個步驟流程：需求釐清、AI 生成、驗收、版本控制、上線">
+    <svg viewBox="0 0 720 132" role="img" aria-label="四大段流程：需求釐清、程式開發、驗收校正、專案部署">
       <defs>
         <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
           <path d="M0 0 L9 4.5 L0 9 z" fill="currentColor" opacity=".45"/>
         </marker>
       </defs>
-      <g font-size="13" font-weight="700" text-anchor="middle">
+      <g font-size="14" font-weight="700" text-anchor="middle">
         <!-- 1 需求釐清：問號對話框 -->
-        <g transform="translate(12,14)">
-          <rect width="112" height="72" rx="12" fill="var(--card)" stroke="var(--cyan)" stroke-width="2"/>
-          <path d="M34 28h44a8 8 0 0 1 8 8v14a8 8 0 0 1-8 8H52l-10 9v-9h-8a8 8 0 0 1-8-8V36a8 8 0 0 1 8-8z"
+        <g transform="translate(22,14)">
+          <rect width="148" height="72" rx="12" fill="var(--card)" stroke="var(--cyan)" stroke-width="2"/>
+          <path d="M52 26h44a8 8 0 0 1 8 8v14a8 8 0 0 1-8 8H70l-10 9v-9h-8a8 8 0 0 1-8-8V34a8 8 0 0 1 8-8z"
                 fill="none" stroke="var(--cyan)" stroke-width="2.2"/>
-          <text x="56" y="49" fill="var(--cyan)" font-size="16">?</text>
-          <text x="56" y="100" class="sv-i">需求釐清</text>
+          <text x="74" y="48" fill="var(--cyan)" font-size="17">?</text>
+          <text x="74" y="103" class="sv-i">需求釐清</text>
         </g>
-        <line x1="126" y1="50" x2="146" y2="50" stroke="currentColor" stroke-width="2"
+        <line x1="174" y1="50" x2="194" y2="50" stroke="currentColor" stroke-width="2"
               opacity=".45" marker-end="url(#ar)"/>
-        <!-- 2 AI 生成：星星 + 檔案 -->
-        <g transform="translate(150,14)">
-          <rect width="112" height="72" rx="12" fill="var(--card)" stroke="var(--violet)" stroke-width="2"/>
-          <rect x="38" y="24" width="34" height="42" rx="4" fill="none" stroke="var(--violet)" stroke-width="2.2"/>
-          <path d="M45 34h20M45 42h20M45 50h13" stroke="var(--violet)" stroke-width="2" stroke-linecap="round"/>
-          <path d="M76 26l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="var(--violet)"/>
-          <text x="56" y="100" class="sv-i">AI 生成</text>
+        <!-- 2 程式開發：檔案 + 星星 -->
+        <g transform="translate(198,14)">
+          <rect width="148" height="72" rx="12" fill="var(--card)" stroke="var(--violet)" stroke-width="2"/>
+          <rect x="56" y="22" width="34" height="42" rx="4" fill="none" stroke="var(--violet)" stroke-width="2.2"/>
+          <path d="M63 32h20M63 40h20M63 48h13" stroke="var(--violet)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M94 24l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="var(--violet)"/>
+          <text x="74" y="103" class="sv-i">程式開發</text>
         </g>
-        <line x1="264" y1="50" x2="284" y2="50" stroke="currentColor" stroke-width="2"
+        <line x1="350" y1="50" x2="370" y2="50" stroke="currentColor" stroke-width="2"
               opacity=".45" marker-end="url(#ar)"/>
-        <!-- 3 驗收：打勾 -->
-        <g transform="translate(288,14)">
-          <rect width="112" height="72" rx="12" fill="var(--card)" stroke="var(--ok)" stroke-width="2"/>
-          <circle cx="56" cy="45" r="19" fill="none" stroke="var(--ok)" stroke-width="2.2"/>
-          <path d="M47 45l7 7 13-14" fill="none" stroke="var(--ok)" stroke-width="3"
+        <!-- 3 驗收校正：打勾 + 扳手意象（勾＋循環箭頭） -->
+        <g transform="translate(374,14)">
+          <rect width="148" height="72" rx="12" fill="var(--card)" stroke="var(--ok)" stroke-width="2"/>
+          <circle cx="74" cy="43" r="19" fill="none" stroke="var(--ok)" stroke-width="2.2"/>
+          <path d="M65 43l7 7 13-14" fill="none" stroke="var(--ok)" stroke-width="3"
                 stroke-linecap="round" stroke-linejoin="round"/>
-          <text x="56" y="100" class="sv-i">你自己驗收</text>
+          <path d="M100 30a20 20 0 0 1 0 26" fill="none" stroke="var(--orange)" stroke-width="2.4"
+                stroke-linecap="round"/>
+          <path d="M97 24l6 6-7 3z" fill="var(--orange)"/>
+          <text x="74" y="103" class="sv-i">驗收校正</text>
         </g>
-        <line x1="402" y1="50" x2="422" y2="50" stroke="currentColor" stroke-width="2"
+        <line x1="526" y1="50" x2="546" y2="50" stroke="currentColor" stroke-width="2"
               opacity=".45" marker-end="url(#ar)"/>
-        <!-- 4 版本控制：兩個 commit -->
-        <g transform="translate(426,14)">
-          <rect width="112" height="72" rx="12" fill="var(--card)" stroke="var(--orange)" stroke-width="2"/>
-          <line x1="34" y1="45" x2="78" y2="45" stroke="var(--orange)" stroke-width="2.2"/>
-          <circle cx="40" cy="45" r="7" fill="var(--orange)"/>
-          <circle cx="72" cy="45" r="7" fill="var(--card)" stroke="var(--orange)" stroke-width="2.5"/>
-          <text x="56" y="100" class="sv-i">版本控制</text>
-        </g>
-        <line x1="540" y1="50" x2="560" y2="50" stroke="currentColor" stroke-width="2"
-              opacity=".45" marker-end="url(#ar)"/>
-        <!-- 5 上線：地球 -->
-        <g transform="translate(564,14)">
-          <rect width="112" height="72" rx="12" fill="var(--card)" stroke="var(--pink)" stroke-width="2.5"/>
-          <circle cx="56" cy="45" r="19" fill="none" stroke="var(--pink)" stroke-width="2.2"/>
-          <path d="M37 45h38M56 26c7 6 7 32 0 38M56 26c-7 6-7 32 0 38"
+        <!-- 4 專案部署：地球 -->
+        <g transform="translate(550,14)">
+          <rect width="148" height="72" rx="12" fill="var(--card)" stroke="var(--pink)" stroke-width="2.5"/>
+          <circle cx="74" cy="43" r="19" fill="none" stroke="var(--pink)" stroke-width="2.2"/>
+          <path d="M55 43h38M74 24c7 6 7 32 0 38M74 24c-7 6-7 32 0 38"
                 fill="none" stroke="var(--pink)" stroke-width="1.8"/>
-          <text x="56" y="100" fill="var(--pink)">公開上線</text>
+          <text x="74" y="103" fill="var(--pink)">專案部署</text>
         </g>
       </g>
     </svg>
-    <p class="cap">今天要走完的五步。每一步都有一張圖，照圖做就好。</p>
+    <p class="cap">今天要走完的四大段。每一段都有圖，照圖做就好。</p>
   </div>
 
   <div class="note">
@@ -514,6 +522,9 @@
     <span class="big">新手叫 AI「做一個很棒的網站」。老手先叫 AI 反過來拷問自己。</span>
   </div>
 </div>
+
+<div class="phase prep"><span class="pn">開工前</span><h2>準備</h2>
+  <p>工具搬進來、鑰匙拿到手。這段少一項，後面每一步都會卡。</p></div>
 
 <!-- ══ STEP 0 ══ -->
 <section id="s0" data-step="0" style="--c:var(--mut)">
@@ -610,13 +621,16 @@
   <div class="warn">
     <span class="lbl">這個名字等一下會變成你的網址</span>
     <span class="big">✓ lunch-spin　　✕ 午餐轉盤　　✕ my project</span><br>
-    中文或空格，第 7 步會壞掉。
+    中文或空格，最後一步部署就會壞掉。
   </div>
 </section>
 
+<div class="phase"><span class="pn">第一段</span><h2>需求釐清</h2>
+  <p>把腦中模糊的想法，變成一份 AI 看得懂、你自己也認得出來的規格。</p></div>
+
 <!-- ══ STEP 1 ══ -->
 <section id="s1" data-step="1" style="--c:var(--cyan)">
-  <div class="sh"><span class="no">STEP 1 ★</span><h2>讓 AI 拷問你</h2><span class="time">實作 60–64 分</span></div>
+  <div class="sh"><span class="no">STEP 1 ★</span><h2>讓 AI 拷問你</h2><span class="time">實作 60–65 分</span></div>
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
@@ -726,15 +740,18 @@
   </details>
 </section>
 
+<div class="phase"><span class="pn">第二段</span><h2>程式開發</h2>
+  <p>規格確認完，按下去讓 AI 動工。這段你不用寫程式，但要看得懂它在做什麼。</p></div>
+
 <!-- ══ STEP 2 ══ -->
 <section id="s2" data-step="2" style="--c:var(--violet)">
-  <div class="sh"><span class="no">STEP 2</span><h2>確認規格，讓它開始寫</h2><span class="time">實作 64–67 分</span></div>
+  <div class="sh"><span class="no">STEP 2</span><h2>確認規格，按 Proceed 開工</h2><span class="time">實作 65–68 分</span></div>
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>設計圖在你手上：<b>不要的劃掉、漏的補上</b>，確認完才說「可以動工」。</p>
+    <p>設計圖在你手上：<b>不要的劃掉、漏的補上</b>。都對了，按一下「Proceed」，師傅就開始動工。</p>
   </div>
-  <div class="fig">
+<div class="fig">
     <svg viewBox="0 0 720 96" role="img" aria-label="規格檢查兩件事：刪掉不想要的功能、補上漏掉的重點">
       <g font-size="13.5">
         <g transform="translate(10,10)">
@@ -754,22 +771,50 @@
       </g>
     </svg>
   </div>
-  <div class="code">
-<pre id="p2">規格沒問題，請開始寫。寫完後告訴我怎麼一步一步測試上面的驗收方式。</pre>
-    <button class="copy" data-t="p2">複製這段</button>
+  <div class="fig">
+    <svg viewBox="0 0 720 110" role="img" aria-label="規格確認後按下 Agent 面板的 Proceed 按鈕，AI 就開始寫程式">
+      <g font-size="13">
+        <rect x="10" y="10" width="430" height="90" rx="12" fill="var(--card)" stroke="var(--violet)" stroke-width="2.5"/>
+        <text x="26" y="32" font-size="11.5" font-weight="800" fill="var(--violet)">AGENT</text>
+        <g stroke="var(--line)" stroke-width="6" stroke-linecap="round">
+          <path d="M26 48h286M26 64h196"/>
+        </g>
+        <text x="26" y="90" font-size="11.5" class="sv-m">↑ 它把規格整理在這裡，看一遍</text>
+        <rect x="322" y="54" width="104" height="32" rx="9" fill="var(--ok)"/>
+        <text x="374" y="75" text-anchor="middle" font-weight="800" fill="#fff" font-size="13.5">Proceed</text>
+        <path d="M398 84l3 17 5-6 7 3-6-7 6-5z" fill="var(--ink)"/>
+        <path d="M448 54h24" stroke="currentColor" stroke-width="2" opacity=".5" marker-end="url(#ar)"/>
+        <g transform="translate(484,10)">
+          <rect width="226" height="90" rx="12" fill="var(--soft)" stroke="var(--ok)" stroke-width="2.5"/>
+          <text x="18" y="32" font-weight="800" fill="var(--ok)">它開始寫程式</text>
+          <text x="18" y="58" class="sv-i" font-size="12.5">建立 index.html</text>
+          <text x="18" y="80" class="sv-m" font-size="11.5">等 1–2 分鐘，不用一直催它</text>
+        </g>
+      </g>
+    </svg>
+    <p class="cap">規格對了就按 <b>Proceed</b>（繼續）——<b>不用再貼任何指令</b>。</p>
   </div>
-  <p>等 1–2 分鐘，它會自己建立 <code>index.html</code>。</p>
+  <div class="warn">
+    <span class="lbl">還有地方不對？先別按</span>
+    直接在對話框打字說「第 2 項不用做」「再加一個 ______」，等它把規格改好，<b>再按 Proceed</b>。
+  </div>
+  <p>按下去等 1–2 分鐘，它會自己建立 <code>index.html</code>。
+     這段時間把它列的 <b>【驗收方式】三步</b>抄到學習單上——下一步就照著做。</p>
 </section>
 
-<!-- ══ STEP 3 ══ -->
+<div class="phase"><span class="pn">第三段</span><h2>驗收校正</h2>
+  <p>AI 說完成不等於完成。自己動手驗收，找到問題，再一次只改一件事。</p></div>
+
+<!-- ══ STEP 3（看成果＋驗收，合併）══ -->
 <section id="s3" data-step="3" style="--c:var(--cyan)">
-  <div class="sh"><span class="no">STEP 3</span><h2>看成果</h2><span class="time">實作 67–70 分</span></div>
+  <div class="sh"><span class="no">STEP 3 ★</span><h2>看成果，然後自己驗收</h2><span class="time">實作 68–73 分</span></div>
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>房子蓋好要<b>親自走進去看一眼</b>。在 <code>index.html</code> 上點兩下，就是走進去。</p>
+    <p>房子蓋好要<b>親自走進去看一眼</b>，而且<b>水龍頭要自己開</b>。
+       在 <code>index.html</code> 上點兩下，就是走進去。</p>
   </div>
-  <div class="fig">
+<div class="fig">
     <svg viewBox="0 0 720 116" role="img" aria-label="在檔案上按右鍵選在檔案總管顯示，然後雙擊 index.html 用瀏覽器打開">
       <g font-size="13">
         <rect x="10" y="18" width="196" height="80" rx="10" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
@@ -803,73 +848,9 @@
     <span class="lbl">改完之後怎麼再看一次</span>
     Agent 改完檔案後，回到<b>已經開著的瀏覽器分頁按 F5</b> 就會更新，不用重新雙擊。
   </div>
-</section>
 
-<!-- ══ STEP 4 ══ -->
-<section id="s4" data-step="4" style="--c:var(--orange)">
-  <div class="sh"><span class="no">STEP 4</span><h2>一次只改一件事</h2><span class="time">實作 70–74 分</span></div>
-
-  <div class="eli5">
-    <span class="eli5-t">🧸 白話說</span>
-    <p>一次只叫師傅改一個地方。<b>同時改三個，壞了你不知道是哪個害的。</b></p>
-  </div>
-  <div class="fig">
-    <svg viewBox="0 0 720 150" role="img" aria-label="一次改一件事會成功，一次改三件事會壞掉且找不出原因">
-      <g font-size="13">
-        <!-- 好 -->
-        <g transform="translate(10,8)">
-          <rect width="340" height="62" rx="12" fill="var(--card)" stroke="var(--ok)" stroke-width="2.5"/>
-          <text x="14" y="24" font-weight="800" fill="var(--ok)">✓ 一次一件事</text>
-          <circle class="gd" cx="30" cy="44" r="7" fill="var(--ok)"/><path class="gd" d="M37 44h34" stroke="var(--ok)" stroke-width="2.5"/>
-          <circle class="gd" cx="78" cy="44" r="7" fill="var(--ok)"/><path class="gd" d="M85 44h34" stroke="var(--ok)" stroke-width="2.5"/>
-          <circle class="gd" cx="126" cy="44" r="7" fill="var(--ok)"/>
-          <text x="146" y="49" class="sv-m" font-size="11.5">每次都知道是哪句造成的</text>
-        </g>
-        <!-- 壞 -->
-        <g transform="translate(370,8)">
-          <rect width="340" height="62" rx="12" fill="var(--card)" stroke="var(--mut)" stroke-width="2"/>
-          <text x="14" y="24" font-weight="800" class="sv-m">✕ 一次三件事</text>
-          <circle cx="30" cy="44" r="7" fill="var(--mut)"/>
-          <path d="M37 44h34" stroke="var(--mut)" stroke-width="2.5"/>
-          <g class="bd" transform="translate(78,44)">
-            <circle r="9" fill="none" stroke="var(--pink)" stroke-width="2.5"/>
-            <path d="M-5 -5l10 10M5 -5l-10 10" stroke="var(--pink)" stroke-width="2.5"/>
-          </g>
-          <text class="bd" x="100" y="49" fill="var(--pink)" font-size="11.5" font-weight="700">壞了，但不知道是哪句</text>
-        </g>
-        <!-- 句型 -->
-        <g transform="translate(10,82)">
-          <rect width="700" height="58" rx="12" fill="var(--soft)" stroke="var(--orange)" stroke-width="2.5"/>
-          <text x="18" y="24" font-size="12" font-weight="800" fill="var(--orange)">固定句型</text>
-          <text x="18" y="46" font-size="15" font-weight="700" class="sv-i">請把 ______ 改成 ______。改完告訴我怎麼確認。</text>
-        </g>
-      </g>
-    </svg>
-  </div>
-  <button class="playbtn" id="playS4">▶ 模擬一次：左邊 vs 右邊</button>
-  <h3>第一次改（挑一個）</h3>
-  <div class="pick">
-    <div>加上刪除按鈕，按了那筆就消失</div>
-    <div>字改大一點，手機也看得清</div>
-    <div>完成的變灰色並移到最下面</div>
-  </div>
-  <h3>第二次改（挑一個）</h3>
-  <div class="pick">
-    <div>加上資料儲存，關掉再開資料還在</div>
-    <div>最上面顯示今天的日期</div>
-    <div>換成深色背景、亮色文字</div>
-  </div>
-</section>
-
-<!-- ══ STEP 5 ══ -->
-<section id="s5" data-step="5" style="--c:var(--pink)">
-  <div class="sh"><span class="no">STEP 5 ★</span><h2>驗收儀式</h2><span class="time">實作 74–76 分</span></div>
-
-  <div class="eli5">
-    <span class="eli5-t">🧸 白話說</span>
-    <p>師傅說「都好了」不等於好了。<b>水龍頭你自己去開</b>——按一下、按 F5、把視窗拉窄。</p>
-  </div>
-  <div class="warn">
+  <h3>看到畫面了——接下來是今天最重要的兩分鐘：驗收</h3>
+<div class="warn">
     <span class="lbl">當 AI 說「我已經完成並測試過了」</span>
     <span class="big">它沒有你的瀏覽器，它從來沒點過你的網頁一下。</span>
   </div>
@@ -932,16 +913,90 @@
   <p class="big">公式：我做了什麼 → 我看到什麼 → 我期望看到什麼</p>
 </section>
 
-<!-- ══ STEP 6 ══ -->
-<section id="s6" data-step="6" style="--c:var(--orange)">
-  <div class="sh"><span class="no">STEP 6</span><h2>把檔案放上 GitHub（你的第一個 commit）</h2><span class="time">實作 76–82 分</span></div>
+<!-- ══ STEP 4 ══ -->
+<section id="s4" data-step="4" style="--c:var(--orange)">
+  <div class="sh"><span class="no">STEP 4</span><h2>一次只改一件事</h2><span class="time">實作 73–78 分</span></div>
+
+<div class="eli5">
+    <span class="eli5-t">🧸 白話說</span>
+    <p>一次只叫師傅改一個地方。<b>同時改三個，壞了你不知道是哪個害的。</b></p>
+  </div>
+  <div class="fig">
+    <svg viewBox="0 0 720 150" role="img" aria-label="一次改一件事會成功，一次改三件事會壞掉且找不出原因">
+      <g font-size="13">
+        <!-- 好 -->
+        <g transform="translate(10,8)">
+          <rect width="340" height="62" rx="12" fill="var(--card)" stroke="var(--ok)" stroke-width="2.5"/>
+          <text x="14" y="24" font-weight="800" fill="var(--ok)">✓ 一次一件事</text>
+          <circle class="gd" cx="30" cy="44" r="7" fill="var(--ok)"/><path class="gd" d="M37 44h34" stroke="var(--ok)" stroke-width="2.5"/>
+          <circle class="gd" cx="78" cy="44" r="7" fill="var(--ok)"/><path class="gd" d="M85 44h34" stroke="var(--ok)" stroke-width="2.5"/>
+          <circle class="gd" cx="126" cy="44" r="7" fill="var(--ok)"/>
+          <text x="146" y="49" class="sv-m" font-size="11.5">每次都知道是哪句造成的</text>
+        </g>
+        <!-- 壞 -->
+        <g transform="translate(370,8)">
+          <rect width="340" height="62" rx="12" fill="var(--card)" stroke="var(--mut)" stroke-width="2"/>
+          <text x="14" y="24" font-weight="800" class="sv-m">✕ 一次三件事</text>
+          <circle cx="30" cy="44" r="7" fill="var(--mut)"/>
+          <path d="M37 44h34" stroke="var(--mut)" stroke-width="2.5"/>
+          <g class="bd" transform="translate(78,44)">
+            <circle r="9" fill="none" stroke="var(--pink)" stroke-width="2.5"/>
+            <path d="M-5 -5l10 10M5 -5l-10 10" stroke="var(--pink)" stroke-width="2.5"/>
+          </g>
+          <text class="bd" x="100" y="49" fill="var(--pink)" font-size="11.5" font-weight="700">壞了，但不知道是哪句</text>
+        </g>
+        <!-- 句型 -->
+        <g transform="translate(10,82)">
+          <rect width="700" height="58" rx="12" fill="var(--soft)" stroke="var(--orange)" stroke-width="2.5"/>
+          <text x="18" y="24" font-size="12" font-weight="800" fill="var(--orange)">固定句型</text>
+          <text x="18" y="46" font-size="15" font-weight="700" class="sv-i">請把 ______ 改成 ______。改完告訴我怎麼確認。</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+    <button class="playbtn" id="playS4">▶ 模擬一次：左邊 vs 右邊</button>
+  <div class="note">
+    <span class="lbl">改什麼？</span>
+    就改<b>你剛剛驗收時發現不對的那一個地方</b>。都沒問題的話，挑一個你最想要的功能——
+    但一次只講一件，講完馬上回上一步再驗收一次。
+  </div>
+</section>
+
+<div class="phase"><span class="pn">第四段</span><h2>專案部署</h2>
+  <p>寫一份說明書、推上 GitHub、開啟 Pages，拿到一段誰都打得開的網址。</p></div>
+
+<!-- ══ STEP 5（GitHub＋部署，合併）══ -->
+<section id="s5" data-step="5" style="--c:var(--pink)">
+  <div class="sh"><span class="no">STEP 5 ★</span><h2>推上 GitHub，拿到你的公開網址</h2><span class="time">實作 78–88 分</span></div>
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>每完成一段就<b>拍張照存起來</b>，這張照片叫 <b>commit</b>。以後想看哪一版都找得到。</p>
+    <p>房子蓋好，還要<b>寫一份說明書、搬進展示間、掛上門牌</b>，別人才進得來。
+       這三件事一次講給 AI 聽。</p>
   </div>
 
-  <div class="fig">
+  <div class="code">
+<pre id="p5">請幫我把這個專案上線，做三件事：
+
+1. 根據我們前面確認的規格，在專案資料夾裡建立 README.md，內容包含：專案名稱、這個網站在做什麼（一句話）、功能清單、驗收方式、怎麼使用。
+2. 把這個資料夾變成 git 專案，做一次 commit（訊息寫「第一版」），推送到我的 GitHub，開一個「Public 公開」的 repository，名稱跟資料夾同名。
+3. 開啟 GitHub Pages（Source 選 Deploy from a branch、branch 選 main、資料夾選 /(root)），部署成任何人都能打開的網站。
+
+完成後請直接給我那一段可以公開訪問的網址。
+過程中如果需要我登入 GitHub 或按授權，請停下來告訴我要按哪裡。</pre>
+    <button class="copy" data-t="p5">複製這段指令 → 貼進 Agent</button>
+  </div>
+
+  <div class="warn">
+    <span class="lbl">三個地雷</span>
+    <b>① repository 一定要 Public</b>，選 Private 網址不會公開。<br>
+    <b>② 檔案一定要叫 index.html</b>（全部小寫），叫別的名字打開就是 404。<br>
+    <b>③ 它可能會跳出 GitHub 登入／授權視窗</b>，照著按同意就好。
+    卡超過 90 秒，就改用下面的手動三步。
+  </div>
+
+  <h3>AI 推不上去？走這條，一定成功（全程滑鼠，不用打指令）</h3>
+<div class="fig">
     <svg viewBox="0 0 720 240" role="img" aria-label="GitHub 網頁建立 repository 並上傳 index.html，填寫 commit 訊息">
       <g font-size="13">
         <rect x="10" y="10" width="330" height="100" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
@@ -991,22 +1046,12 @@
     檔案總管就會跳出來，直接把檔案拖進 GitHub 的上傳框。
   </div>
 
-  <div class="warn">
-    <span class="lbl">兩個地雷</span>
-    <b>① 一定要選 Public</b>，選 Private 之後網址不會公開。<br>
-    <b>② 檔案一定要叫 index.html</b>（全部小寫），叫別的名字第 7 步會 404。
+  <div class="note">
+    <span class="lbl">上傳完，最後一步：開啟 Pages</span>
+    到你的 repository → <b>Settings → Pages</b> → Source 選 <b>Deploy from a branch</b>、
+    branch 選 <b>main</b>、資料夾 <b>/(root)</b> → <b>Save</b>，等 1–2 分鐘網址就活了。
   </div>
-</section>
-
-<!-- ══ STEP 7 ══ -->
-<section id="s7" data-step="7" style="--c:var(--pink)">
-  <div class="sh"><span class="no">STEP 7 ★</span><h2>拿到你的公開網址</h2><span class="time">實作 82–86 分</span></div>
-
-  <div class="eli5">
-    <span class="eli5-t">🧸 白話說</span>
-    <p>房子蓋好要<b>掛門牌</b>，別人才找得到你家。<code>你的帳號.github.io/資料夾名/</code> 就是門牌。</p>
-  </div>
-  <div class="fig">
+<div class="fig">
     <svg viewBox="0 0 720 220" role="img" aria-label="GitHub Settings Pages 設定流程與網址組成">
       <g font-size="13">
         <rect x="10" y="10" width="440" height="126" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
@@ -1072,48 +1117,7 @@
   </div>
 </section>
 
-<!-- ══ STEP 8 ══ -->
-<section id="s8" data-step="8" style="--c:var(--ok)">
-  <div class="sh"><span class="no">STEP 8</span><h2>再改一件事，看見修改歷史</h2><span class="time">今天看講師做 ｜ 回家自己做</span></div>
-
-  <div class="eli5">
-    <span class="eli5-t">🧸 白話說</span>
-    <p>翻施工相簿：<b>什麼時候改了什麼一目瞭然，隨時回得去</b>，這就是版本控制。</p>
-  </div>
-  <div class="fig">
-    <svg viewBox="0 0 720 150" role="img" aria-label="兩次 commit 形成時間軸，網站自動更新">
-      <g font-size="13">
-        <line x1="60" y1="60" x2="620" y2="60" stroke="var(--line)" stroke-width="4"/>
-        <circle cx="130" cy="60" r="14" fill="var(--ok)"/>
-        <text x="130" y="36" text-anchor="middle" font-weight="800" fill="var(--ok)">commit 1</text>
-        <text x="130" y="92" text-anchor="middle" class="sv-m" font-size="11.5">第一版</text>
-        <circle cx="430" cy="60" r="14" fill="var(--ok)"/>
-        <text x="430" y="36" text-anchor="middle" font-weight="800" fill="var(--ok)">commit 2</text>
-        <text x="430" y="92" text-anchor="middle" class="sv-m" font-size="11.5">加上資料儲存</text>
-        <text x="280" y="56" text-anchor="middle" class="sv-m" font-size="11.5">改一件事 → 驗收 → 再上傳一次同一個檔案</text>
-        <g transform="translate(560,30)">
-          <rect width="120" height="60" rx="10" fill="var(--card)" stroke="var(--pink)" stroke-width="2.5"/>
-          <text x="60" y="26" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--pink)">你的網址</text>
-          <text x="60" y="46" text-anchor="middle" font-size="11.5" class="sv-i">自己更新了</text>
-        </g>
-        <path d="M448 60h104" stroke="var(--pink)" stroke-width="2" opacity=".6" marker-end="url(#ar)"/>
-        <text x="360" y="132" text-anchor="middle" font-size="13.5" font-weight="700" class="sv-i">
-          版本控制＝每次改動都留下記錄，隨時知道改了什麼，也隨時回得去
-        </text>
-      </g>
-    </svg>
-  </div>
-  <ol>
-    <li>回 Antigravity，跟 Agent 說第 4 步的「第二次修改」那句</li>
-    <li>雙擊／F5 驗收（第 5 步的三個動作）</li>
-    <li>回 GitHub 你的專案 → <b>Add file → Upload files</b> → 把<b>同一個 index.html 再拖一次</b></li>
-    <li>訊息寫「加上資料儲存」→ <b>Commit changes</b>（同名檔案會直接覆蓋，並產生第二個 commit）</li>
-    <li>點上方的 <b>Commits</b> → 你會看到兩筆記錄</li>
-    <li>等 1–2 分鐘，重新整理你的公開網址 → 網站自己更新了</li>
-  </ol>
-</section>
-
-<!-- ══ 加分區（不列入 9 步，做完主線才進來）══ -->
+<!-- ══ 加分區（不列入主線五步，做完才進來）══ -->
 <section id="bonus" class="bonus">
   <div class="sh"><span class="no" style="background:var(--violet)">加分題</span>
     <h2>讓你的網站跟別人不一樣</h2><span class="time">提早做完 or 回家做</span></div>
@@ -1131,7 +1135,7 @@
 
   <div class="warn">
     <span class="lbl">三個前提，違反一個就不要加特效</span>
-    <b>① 網站已經上線並驗收過</b>（沒有就回 STEP 7）<br>
+    <b>① 網站已經上線並驗收過</b>（沒有就回 STEP 5）<br>
     <b>② 一次只加一招</b>（特效更容易一次改壞）<br>
     <b>③ 每加一招 commit 一次</b>（壞了才回得去）
   </div>
@@ -1270,7 +1274,7 @@
 
   <div class="note">
     <span class="lbl">加完之後</span>
-    回 STEP 5 做一次驗收（按一下、按 F5、拉窄），再回 STEP 8 commit 一次。
+    回 STEP 3 做一次驗收（按一下、按 F5、拉窄），再上傳一次檔案、留下第二個 commit。
     <b>特效壞掉的機率比你想的高，但你已經會退回上一版了。</b>
   </div>
 </section>
@@ -1321,7 +1325,7 @@
   <div class="note">
     <span class="lbl">順便說</span>
     你正在看的這一頁，就是用今天教的方法做出來、放在 GitHub Pages 上的。
-    連你剛剛的打勾進度，都是用第 4 步那個「資料儲存」做的。
+    連你剛剛的打勾進度，都是存在你自己瀏覽器裡的——就是第 0 步名詞表裡那個「資料儲存」。
   </div>
 </section>
 
@@ -1337,7 +1341,7 @@
 
 <script>
 (function(){
-  var KEY='v0909-progress', saved={};
+  var KEY='v0909-progress-4seg', saved={};
   try{ saved=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ saved={}; }
   var steps=[].slice.call(document.querySelectorAll('section[data-step]'));
   var bar=document.getElementById('pbar'), ptxt=document.getElementById('ptxt');
@@ -1470,7 +1474,7 @@
     btn.addEventListener('click', play);
   })();
 
-  /* ── STEP 5：可互動的驗收 demo ── */
+  /* ── STEP 3：可互動的驗收 demo ── */
   (function(){
     var cups = document.getElementById('dcups'), msg = document.getElementById('dmsg'),
         fix = document.getElementById('dfix'), stg = document.getElementById('dstage');
@@ -1512,7 +1516,7 @@
     });
   })();
 
-  /* ── STEP 7：網址即時組裝 ── */
+  /* ── STEP 5：網址即時組裝 ── */
   (function(){
     var u = document.getElementById('ubuser'), r = document.getElementById('ubrepo'),
         out = document.getElementById('uburl'), warn = document.getElementById('ubwarn'),
