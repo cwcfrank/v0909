@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>中午吃什麼｜3D 拉霸機</title>
+<meta name="description" content="3D 拉霸機決定今天中午吃什麼。轉到什麼、真的吃了什麼，分開記錄。">
+<meta name="theme-color" content="#070a14">
+<style>
+:root{
+  --bg:#070a14; --bg2:#0d1424;
+  --ink:#eef2ff; --mut:#93a0c0;
+  --gold:#ffd06b; --gold2:#e2a13c; --gold3:#8a6220;
+  --cyan:#4fd8e8; --mag:#ff5ea8; --vio:#9b8bff; --ok:#4be3a6;
+  --line:rgba(255,255,255,.10);
+  --glass:rgba(255,255,255,.045);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden}
+body{
+  background:
+    radial-gradient(1100px 620px at 50% -12%, #1b2b4a 0%, transparent 60%),
+    radial-gradient(900px 520px at 12% 8%, rgba(155,139,255,.16), transparent 62%),
+    radial-gradient(900px 520px at 88% 14%, rgba(79,216,232,.13), transparent 62%),
+    linear-gradient(180deg,#0a1020 0%, var(--bg) 46%, #05070e 100%);
+  color:var(--ink);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  min-height:100vh; -webkit-font-smoothing:antialiased;
+}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.wrap{position:relative;z-index:2;max-width:1060px;margin:0 auto;padding:26px 18px 70px}
+
+/* ---------- 標題 ---------- */
+.top{text-align:center;margin:6px 0 26px}
+.top h1{
+  margin:0;font-size:clamp(27px,6.4vw,46px);line-height:1.18;letter-spacing:.5px;font-weight:800;
+  background:linear-gradient(180deg,#fff6dc 0%,var(--gold) 42%,var(--gold2) 74%,#a8712a 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 3px 18px rgba(255,196,90,.34));
+}
+.top p{margin:9px auto 0;max-width:33em;color:var(--mut);font-size:14.5px}
+
+/* ---------- 機台 ---------- */
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:22px;align-items:start}
+@media (max-width:880px){.stage{grid-template-columns:1fr}}
+
+.machine{
+  position:relative;border-radius:26px;padding:20px 20px 24px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.02) 26%,rgba(0,0,0,.30) 100%),
+    linear-gradient(145deg,#1d2740 0%,#121a2c 44%,#0b1120 100%);
+  border:1px solid rgba(255,208,107,.24);
+  box-shadow:
+    0 40px 90px -28px rgba(0,0,0,.92),
+    0 0 0 1px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -22px 44px rgba(0,0,0,.45);
+}
+.machine::before{ /* 金色內框 */
+  content:"";position:absolute;inset:9px;border-radius:19px;pointer-events:none;
+  border:1px solid rgba(255,208,107,.18);
+  box-shadow:inset 0 0 34px rgba(255,208,107,.07);
+}
+.bolt{position:absolute;width:9px;height:9px;border-radius:50%;
+  background:radial-gradient(circle at 32% 30%,#fff4d4,#c9a35a 46%,#6d4d18 100%);
+  box-shadow:0 1px 2px rgba(0,0,0,.7),inset 0 -1px 1px rgba(0,0,0,.4)}
+.bolt.a{top:17px;left:17px}.bolt.b{top:17px;right:17px}
+.bolt.c{bottom:17px;left:17px}.bolt.d{bottom:17px;right:17px}
+
+/* 跑馬燈燈泡 */
+.marquee{position:relative;text-align:center;padding:6px 0 14px}
+.bulbs{display:flex;justify-content:center;gap:9px;margin-bottom:10px;flex-wrap:wrap}
+.bulb{width:8px;height:8px;border-radius:50%;background:#3a3352;
+  box-shadow:0 0 0 1px rgba(0,0,0,.5);animation:bulb 1.5s infinite}
+@keyframes bulb{
+  0%,100%{background:#3a3352;box-shadow:0 0 0 1px rgba(0,0,0,.5)}
+  45%{background:var(--gold);box-shadow:0 0 12px 2px rgba(255,208,107,.85),0 0 26px rgba(255,208,107,.4)}
+}
+.sign{font-size:13px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;
+  text-shadow:0 0 16px rgba(255,208,107,.55)}
+
+/* ---------- 滾輪視窗 ---------- */
+.window{
+  position:relative;margin:0 auto;width:min(100%,352px);height:172px;border-radius:16px;
+  background:linear-gradient(180deg,#05070e,#0e1526 40%,#05070e);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:inset 0 0 42px rgba(0,0,0,.95),0 0 0 5px rgba(255,208,107,.12),0 12px 30px -12px #000;
+  overflow:hidden;
+}
+.reels{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;gap:10px}
+.reel{position:relative;width:104px;height:172px;perspective:1000px;perspective-origin:50% 50%}
+.cyl{position:absolute;left:0;right:0;top:50%;height:108px;margin-top:-54px;
+  transform-style:preserve-3d;will-change:transform}
+.face{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:46px;line-height:1;backface-visibility:hidden;
+  filter:drop-shadow(0 3px 7px rgba(0,0,0,.65));
+}
+.face i{font-style:normal}
+.reel.blur .cyl{filter:blur(.7px)}
+
+/* 玻璃、陰影、掃光 */
+.glass{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(3,5,10,.94) 0%, rgba(3,5,10,.55) 16%, rgba(255,255,255,.05) 32%,
+    rgba(255,255,255,.10) 50%, rgba(255,255,255,.04) 68%,
+    rgba(3,5,10,.55) 84%, rgba(3,5,10,.94) 100%);}
+.glass::after{content:"";position:absolute;top:-60%;left:-40%;width:44%;height:220%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
+  transform:rotate(16deg);animation:sweep 5.5s ease-in-out infinite}
+@keyframes sweep{0%,68%{left:-45%}100%{left:125%}}
+.payline{position:absolute;left:8px;right:8px;top:50%;height:2px;margin-top:-1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,208,107,.85),rgba(255,208,107,.95),rgba(255,208,107,.85),transparent);
+  box-shadow:0 0 16px rgba(255,208,107,.7);opacity:.55;transition:opacity .3s}
+.window.hit .payline{opacity:1;animation:plflash .5s ease-out 3}
+@keyframes plflash{0%,100%{box-shadow:0 0 16px rgba(255,208,107,.7)}50%{box-shadow:0 0 34px 5px rgba(255,208,107,1)}}
+.window.hit{animation:winglow 1.1s ease-out 2}
+@keyframes winglow{
+  0%,100%{box-shadow:inset 0 0 42px rgba(0,0,0,.95),0 0 0 5px rgba(255,208,107,.12),0 12px 30px -12px #000}
+  50%{box-shadow:inset 0 0 42px rgba(0,0,0,.7),0 0 0 5px rgba(255,208,107,.6),0 0 60px rgba(255,208,107,.45)}
+}
+
+/* ---------- 結果牌 ---------- */
+.plate{
+  margin:18px auto 0;width:min(100%,412px);min-height:104px;border-radius:16px;padding:14px 16px;
+  text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.018));
+  border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.13),0 10px 30px -18px #000;
+  display:flex;flex-direction:column;justify-content:center;gap:4px;
+}
+.plate .lbl{font-size:11.5px;letter-spacing:.24em;color:var(--mut)}
+.plate .name{font-size:clamp(21px,4.6vw,29px);font-weight:800;letter-spacing:.5px;
+  color:#fff;text-shadow:0 0 26px rgba(255,208,107,.45)}
+.plate .tag{font-size:13px;color:var(--gold)}
+.plate.pop .name{animation:pop .55s cubic-bezier(.18,1.5,.36,1)}
+@keyframes pop{0%{transform:scale(.72);opacity:.2;filter:blur(6px)}100%{transform:scale(1);opacity:1;filter:blur(0)}}
+.plate .idle{color:var(--mut);font-size:15px}
+
+/* ---------- 控制 ---------- */
+.ctrls{margin:18px auto 0;width:min(100%,412px);display:flex;flex-direction:column;gap:11px}
+.btn{
+  appearance:none;border:0;cursor:pointer;font:inherit;font-weight:800;letter-spacing:.06em;
+  padding:15px 18px;border-radius:14px;color:#2a1a03;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#ffe6a8,var(--gold) 34%,var(--gold2) 78%,#b9791f);
+  box-shadow:0 1px 0 rgba(255,255,255,.55) inset,0 -3px 0 rgba(0,0,0,.28) inset,
+             0 12px 26px -10px rgba(255,183,66,.62);
+  transition:transform .12s,box-shadow .2s,filter .2s;font-size:17px;
+}
+.btn:hover{filter:brightness(1.07)}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 -1px 0 rgba(0,0,0,.3) inset}
+.btn[disabled]{filter:grayscale(.55) brightness(.75);cursor:not-allowed;transform:none}
+.btn.ghost{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  color:var(--ink);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.1);font-size:15.5px;padding:13px 16px}
+.btn.ghost:hover{border-color:rgba(255,208,107,.45);background:rgba(255,208,107,.09)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:430px){.row2{grid-template-columns:1fr}}
+.opt{display:flex;align-items:center;justify-content:center;gap:9px;color:var(--mut);font-size:14px;
+  user-select:none;cursor:pointer;padding-top:2px}
+.opt input{width:17px;height:17px;accent-color:var(--gold);cursor:pointer}
+
+/* 拉桿 */
+.lever{position:absolute;right:-6px;top:96px;width:64px;height:190px;cursor:pointer;
+  -webkit-tap-highlight-color:transparent}
+@media (max-width:980px){.lever{display:none}}
+.lever .stem{position:absolute;left:27px;top:24px;width:9px;height:110px;border-radius:6px;
+  transform-origin:50% 100%;transition:transform .42s cubic-bezier(.3,1.4,.5,1);
+  background:linear-gradient(90deg,#5c6884,#c9d4ea 38%,#8d99b5 62%,#3d465c);
+  box-shadow:0 3px 10px rgba(0,0,0,.6)}
+.lever .knob{position:absolute;left:9px;top:-2px;width:44px;height:44px;border-radius:50%;
+  transform-origin:50% 300%;transition:transform .42s cubic-bezier(.3,1.4,.5,1);
+  background:radial-gradient(circle at 33% 27%,#ff9aa6,#e5334f 44%,#8d0f24 100%);
+  box-shadow:0 0 0 3px rgba(255,255,255,.14) inset,0 10px 22px -6px rgba(229,51,79,.75),0 3px 8px rgba(0,0,0,.6)}
+.lever .base{position:absolute;left:16px;bottom:22px;width:32px;height:22px;border-radius:8px;
+  background:linear-gradient(180deg,#5a6480,#252c40);box-shadow:0 5px 12px rgba(0,0,0,.65)}
+.lever.pull .stem{transform:rotate(34deg) scaleY(.9)}
+.lever.pull .knob{transform:translate(24px,44px)}
+
+/* ---------- 側欄 ---------- */
+.card{border-radius:18px;padding:17px 17px 15px;background:var(--glass);
+  border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 16px 40px -26px #000;
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);margin-bottom:16px}
+.card h2{margin:0 0 10px;font-size:15px;letter-spacing:.1em;color:var(--gold);font-weight:800}
+.hint{font-size:13.5px;color:var(--mut);margin:0 0 4px}
+.hint b{color:var(--cyan);font-weight:700}
+
+/* 記錄用的選單 */
+.ate{display:none;margin-top:11px;gap:9px;flex-direction:column}
+.ate.on{display:flex;animation:fadein .35s ease-out}
+@keyframes fadein{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+select{width:100%;padding:12px 12px;border-radius:11px;font:inherit;font-size:15px;
+  background:#101828;color:var(--ink);border:1px solid var(--line)}
+
+/* 紀錄 */
+ul.log{list-style:none;margin:0;padding:0;max-height:330px;overflow:auto}
+ul.log li{display:flex;gap:9px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed rgba(255,255,255,.09);font-size:14px}
+ul.log li:last-child{border-bottom:0}
+.d{color:var(--mut);font-variant-numeric:tabular-nums;min-width:42px;font-size:13px;padding-top:1px}
+.li-main{flex:1;min-width:0}
+.li-main .ate-n{color:#fff;font-weight:700}
+.li-main .spun-n{color:var(--mut);font-size:12.5px;display:block}
+.badge{display:inline-block;margin-left:6px;font-size:11px;padding:2px 7px;border-radius:99px;
+  background:rgba(255,94,168,.16);color:var(--mag);border:1px solid rgba(255,94,168,.35);white-space:nowrap}
+.badge.same{background:rgba(75,227,166,.13);color:var(--ok);border-color:rgba(75,227,166,.32)}
+.empty{color:var(--mut);font-size:14px;margin:2px 0 0}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:2px 0 12px}
+.st{border-radius:12px;padding:10px 11px;background:rgba(255,255,255,.045);border:1px solid var(--line)}
+.st .n{font-size:22px;font-weight:800;color:var(--gold);line-height:1.25;font-variant-numeric:tabular-nums}
+.st .k{font-size:11.5px;color:var(--mut)}
+.mini{background:none;border:0;color:var(--mut);font:inherit;font-size:12.5px;cursor:pointer;
+  text-decoration:underline;padding:6px 0 0}
+.mini:hover{color:var(--mag)}
+.foot{margin:26px auto 0;max-width:44em;text-align:center;color:#6b7794;font-size:12.5px;line-height:1.8}
+.foot b{color:var(--mut)}
+
+@media (prefers-reduced-motion:reduce){
+  .bulb,.glass::after,.window.hit,.window.hit .payline,.plate.pop .name{animation:none!important}
+  .lever .stem,.lever .knob{transition:none}
+}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+
+<div class="wrap">
+  <header class="top">
+    <h1>今天中午吃什麼</h1>
+    <p>拉一下拉桿，三個滾輪停在同一家就是它。<br>轉到什麼、後來真的吃了什麼，這台會分開記。</p>
+  </header>
+
+  <div class="stage">
+    <!-- ================= 機台 ================= -->
+    <section class="machine" aria-label="3D 拉霸機">
+      <span class="bolt a"></span><span class="bolt b"></span>
+      <span class="bolt c"></span><span class="bolt d"></span>
+
+      <div class="marquee">
+        <div class="bulbs" id="bulbs" aria-hidden="true"></div>
+        <div class="sign">Lunch Jackpot</div>
+      </div>
+
+      <div class="window" id="win">
+        <div class="reels">
+          <div class="reel" id="r0"><div class="cyl"></div></div>
+          <div class="reel" id="r1"><div class="cyl"></div></div>
+          <div class="reel" id="r2"><div class="cyl"></div></div>
+        </div>
+        <div class="glass"></div>
+        <div class="payline"></div>
+      </div>
+
+      <div class="plate" id="plate">
+        <span class="idle">還沒轉。按下面那顆金色的按鈕，或拉右邊的拉桿。</span>
+      </div>
+
+      <div class="ctrls">
+        <button class="btn" id="spinBtn">🎰　拉霸</button>
+        <div class="row2">
+          <button class="btn ghost" id="eatBtn" disabled>就吃這個</button>
+          <button class="btn ghost" id="otherBtn" disabled>我改吃別的…</button>
+        </div>
+        <div class="ate" id="ateBox">
+          <select id="ateSel" aria-label="實際吃了什麼"></select>
+          <button class="btn ghost" id="saveOther">記下實際吃的</button>
+        </div>
+        <label class="opt"><input type="checkbox" id="onlyIn"> 只轉校內（走路 5 分鐘內）</label>
+      </div>
+
+      <div class="lever" id="lever" title="拉一下" role="button" tabindex="0" aria-label="拉霸拉桿">
+        <div class="base"></div>
+        <div class="stem"></div>
+        <div class="knob"></div>
+      </div>
+    </section>
+
+    <!-- ================= 側欄 ================= -->
+    <aside>
+      <div class="card">
+        <h2>這台機器記兩件事</h2>
+        <p class="hint">機器<b>轉到</b>的那家，跟你<b>真的吃</b>的那家，不一定一樣。
+          兩個都存下來，才看得出「說一套做一套」幾次。</p>
+      </div>
+
+      <div class="card">
+        <h2>吃飯紀錄</h2>
+        <div class="stats">
+          <div class="st"><div class="n" id="stTotal">0</div><div class="k">總共記錄</div></div>
+          <div class="st"><div class="n" id="stDiff">0</div><div class="k">沒照轉的吃</div></div>
+        </div>
+        <ul class="log" id="log"></ul>
+        <p class="empty" id="empty">還沒有紀錄。轉一次，然後告訴它你實際吃了什麼。</p>
+        <button class="mini" id="clearBtn" hidden>清空全部紀錄</button>
+      </div>
+
+      <div class="card">
+        <h2>試試看</h2>
+        <p class="hint">記完一筆，按 <b>F5</b> 重新整理 —— 紀錄還在，才算真的有存下來。</p>
+      </div>
+    </aside>
+  </div>
+
+  <p class="foot">
+    <b>示範用</b>：店家清單會變（有的收了、有的只賣到中午），出發前自己確認一下。<br>
+    純前端單一 HTML 檔，沒有連任何資料庫，紀錄只存在你自己這台電腦的瀏覽器裡。
+  </p>
+</div>
+
+<script>
+/* ============ 資料 ============ */
+var shops = [
+  { n:'宜園複合式餐廳',   in:true,  t:'自助餐・簡餐・麵食',  e:'🍱' },
+  { n:'靜園複合式餐廳',   in:true,  t:'校內餐廳',            e:'🍛' },
+  { n:'至善美食廣場一樓', in:true,  t:'美食廣場',            e:'🍜' },
+  { n:'至善美食廣場二樓', in:true,  t:'美食廣場',            e:'🍲' },
+  { n:'主顧樓南門外賣區', in:true,  t:'中午限定・快速外帶',  e:'🥡' },
+  { n:'蓋夏便利商店',     in:true,  t:'沒時間就這個',        e:'🍙' },
+  { n:'山頂囝仔湯包',     in:false, t:'靜宜商圈・只賣到中午', e:'🥟' },
+  { n:'韓義小廚（靜宜店）', in:false, t:'靜宜商圈・學生證折 20', e:'🍝' },
+  { n:'饗炸炸物食堂',     in:false, t:'北勢東路・雞排鹽酥雞', e:'🍗' },
+  { n:'覓鍋物',           in:false, t:'東英路・小火鍋',      e:'🍢' },
+  { n:'控肉詠',           in:false, t:'北勢東路・控肉飯',    e:'🍚' },
+  { n:'沙鹿麻糬燒地瓜球', in:false, t:'新興街・點心',        e:'🍡' }
+];
+
+var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ============ 跑馬燈燈泡 ============ */
+(function(){
+  var b = document.getElementById('bulbs'), s = '';
+  for (var i=0;i<16;i++) s += '<span class="bulb" style="animation-delay:'+(i*0.094).toFixed(2)+'s"></span>';
+  b.innerHTML = s;
+})();
+
+/* ============ 3D 滾輪 ============ */
+var reels = [];
+for (var i=0;i<3;i++){
+  var el = document.getElementById('r'+i);
+  reels.push({ el:el, cyl:el.querySelector('.cyl'), angle:0, n:0, step:0, radius:0 });
+}
+var FACE_H = 108;
+
+function pool(){
+  return document.getElementById('onlyIn').checked
+    ? shops.filter(function(s){ return s.in; })
+    : shops;
+}
+
+function buildReels(){
+  var list = pool(), n = list.length;
+  var step = 360 / n;
+  var radius = (FACE_H/2) / Math.tan(Math.PI/n);
+  reels.forEach(function(r, ri){
+    r.n = n; r.step = step; r.radius = radius;
+    var html = '';
+    for (var i=0;i<n;i++){
+      // 每個滾輪錯開排序，看起來才不像三個同一條帶子
+      var s = list[(i + ri*Math.floor(n/3)) % n];
+      html += '<div class="face" style="transform:rotateX('+(i*step)+'deg) translateZ('+radius.toFixed(1)+'px)">'
+            + '<i>'+s.e+'</i></div>';
+    }
+    r.cyl.innerHTML = html;
+    r.order = list.map(function(_,i){ return list[(i + ri*Math.floor(n/3)) % n]; });
+    r.angle = 0;
+    r.cyl.style.transform = 'rotateX(0deg)';
+  });
+}
+
+/* ============ 特效畫布 ============ */
+var cv = document.getElementById('fx'), cx = cv.getContext('2d');
+var W=0, H=0, DPR=1, parts=[], motes=[];
+
+function sizeCanvas(){
+  DPR = Math.min(window.devicePixelRatio||1, 2);
+  W = cv.clientWidth; H = cv.clientHeight;
+  cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
+  cx.setTransform(DPR,0,0,DPR,0,0);
+}
+window.addEventListener('resize', sizeCanvas);
+sizeCanvas();
+
+for (var m=0;m<34;m++){
+  motes.push({ x:Math.random()*1600, y:Math.random()*900,
+    vy:-(0.10+Math.random()*0.26), vx:(Math.random()-0.5)*0.16,
+    r:0.7+Math.random()*1.7, a:0.10+Math.random()*0.30 });
+}
+
+var PAL = ['#ffd06b','#ffb43c','#4fd8e8','#ff5ea8','#9b8bff','#ffffff'];
+
+function burst(x, y, count, power){
+  if (reduce) return;
+  for (var i=0;i<count;i++){
+    var ang = Math.random()*Math.PI*2;
+    var sp = (0.9 + Math.random()*power);
+    parts.push({
+      x:x, y:y,
+      vx:Math.cos(ang)*sp*(1.5+Math.random()),
+      vy:Math.sin(ang)*sp - (1.1+Math.random()*2.1),
+      r:1.1+Math.random()*3.1,
+      life:1, decay:0.008+Math.random()*0.016,
+      c:PAL[(Math.random()*PAL.length)|0],
+      streak:Math.random()<0.28
+    });
+  }
+  if (parts.length > 900) parts.splice(0, parts.length-900);
+}
+
+function centerOf(el){
+  var b = el.getBoundingClientRect();
+  return { x:b.left+b.width/2, y:b.top+b.height/2 };
+}
+
+function draw(){
+  cx.clearRect(0,0,W,H);
+  cx.globalCompositeOperation = 'lighter';
+
+  // 背景微塵
+  if (!reduce){
+    for (var i=0;i<motes.length;i++){
+      var d = motes[i];
+      d.y += d.vy; d.x += d.vx;
+      if (d.y < -12){ d.y = H+12; d.x = Math.random()*W; }
+      if (d.x < -12) d.x = W+12; else if (d.x > W+12) d.x = -12;
+      cx.globalAlpha = d.a;
+      cx.fillStyle = '#9fb4ff';
+      cx.beginPath(); cx.arc(d.x, d.y, d.r, 0, 6.2832); cx.fill();
+    }
+  }
+
+  // 爆散粒子
+  for (var j=parts.length-1;j>=0;j--){
+    var p = parts[j];
+    p.vy += 0.115; p.vx *= 0.988; p.vy *= 0.994;
+    p.x += p.vx; p.y += p.vy; p.life -= p.decay;
+    if (p.life <= 0 || p.y > H+60){ parts.splice(j,1); continue; }
+    cx.globalAlpha = Math.max(0, p.life) * 0.92;
+    cx.fillStyle = p.c; cx.strokeStyle = p.c;
+    if (p.streak){
+      cx.lineWidth = p.r*0.85; cx.lineCap = 'round';
+      cx.beginPath(); cx.moveTo(p.x, p.y);
+      cx.lineTo(p.x - p.vx*3.1, p.y - p.vy*3.1); cx.stroke();
+    } else {
+      cx.beginPath(); cx.arc(p.x, p.y, p.r*p.life+0.35, 0, 6.2832); cx.fill();
+    }
+  }
+  cx.globalAlpha = 1;
+  cx.globalCompositeOperation = 'source-over';
+  requestAnimationFrame(draw);
+}
+requestAnimationFrame(draw);
+
+/* ============ 機台震動 ============ */
+var machineEl = document.querySelector('.machine');
+function shake(power, ms){
+  if (reduce) return;
+  var t0 = performance.now();
+  (function step(now){
+    var k = (now - t0) / ms;
+    if (k >= 1){ machineEl.style.transform = ''; return; }
+    var damp = (1-k) * power;
+    machineEl.style.transform = 'translate('+((Math.random()-0.5)*damp).toFixed(2)+'px,'
+      + ((Math.random()-0.5)*damp).toFixed(2)+'px)';
+    requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ============ 轉動 ============ */
+var spinning = false, current = null;
+
+function easeOutQuart(t){ return 1 - Math.pow(1-t, 4); }
+
+function spinReel(r, targetIdx, dur, turns, done){
+  var start = r.angle;
+  var end = -(targetIdx * r.step) - 360*turns;
+  var t0 = performance.now();
+  r.el.classList.add('blur');
+  (function frame(now){
+    var t = Math.min(1, (now - t0)/dur);
+    var e = easeOutQuart(t);
+    // 停下前的阻尼晃動，像真的卡進定位
+    var wob = reduce ? 0 : Math.sin(t*Math.PI*3.4) * Math.pow(1-t,3) * 13;
+    r.angle = start + (end - start)*e + wob;
+    r.cyl.style.transform = 'rotateX(' + r.angle.toFixed(2) + 'deg)';
+    if (t < 0.72) { /* 高速時保持模糊 */ } else { r.el.classList.remove('blur'); }
+    if (t < 1) requestAnimationFrame(frame);
+    else { r.angle = end; r.cyl.style.transform='rotateX('+end+'deg)'; r.el.classList.remove('blur'); done(); }
+  })(t0);
+}
+
+function spin(){
+  if (spinning) return;
+  spinning = true;
+
+  var win = document.getElementById('win');
+  win.classList.remove('hit');
+  var plate = document.getElementById('plate');
+  plate.classList.remove('pop');
+  document.getElementById('eatBtn').disabled = true;
+  document.getElementById('otherBtn').disabled = true;
+  document.getElementById('ateBox').classList.remove('on');
+
+  var btn = document.getElementById('spinBtn');
+  btn.disabled = true; btn.textContent = '轉…';
+  plate.innerHTML = '<span class="idle">轉動中…</span>';
+
+  var list = pool();
+  var shop = list[(Math.random()*list.length)|0];
+  current = shop;
+
+  var left = 3;
+  reels.forEach(function(r, ri){
+    var idx = r.order.indexOf(shop);           // 這個滾輪上該店家在第幾格
+    var dur = reduce ? 380 : (1450 + ri*470);
+    var turns = 4 + ri;
+    spinReel(r, idx, dur, turns, function(){
+      var c = centerOf(r.el);
+      burst(c.x, c.y, ri===2 ? 26 : 15, 3.4);
+      shake(ri===2 ? 11 : 6, ri===2 ? 340 : 190);
+      if (--left === 0) finish(shop);
+    });
+  });
+}
+
+function finish(shop){
+  spinning = false;
+  var btn = document.getElementById('spinBtn');
+  btn.disabled = false; btn.textContent = '🎰　再轉一次';
+
+  var plate = document.getElementById('plate');
+  plate.innerHTML = '<span class="lbl">機 器 轉 到</span>'
+    + '<span class="name">' + shop.n + '</span>'
+    + '<span class="tag">' + shop.e + '　' + shop.t + '</span>';
+  void plate.offsetWidth;
+  plate.classList.add('pop');
+
+  var win = document.getElementById('win');
+  win.classList.add('hit');
+
+  document.getElementById('eatBtn').disabled = false;
+  document.getElementById('otherBtn').disabled = false;
+
+  // 中獎：從結果牌往上噴
+  var c = centerOf(plate);
+  burst(c.x, c.y - 10, 130, 5.2);
+  setTimeout(function(){ burst(c.x, c.y - 10, 70, 4.2); }, 130);
+  setTimeout(function(){ burst(c.x, c.y - 10, 46, 3.4); }, 300);
+}
+
+/* ============ 紀錄（localStorage）============ */
+var log = [];
+try { log = JSON.parse(localStorage.getItem('lunch3dLog') || '[]'); } catch(e){ log = []; }
+
+function save(){
+  try { localStorage.setItem('lunch3dLog', JSON.stringify(log)); } catch(e){}
+}
+
+function today(){
+  var d = new Date();
+  return (d.getMonth()+1) + '/' + d.getDate();
+}
+
+function record(spunName, ateName){
+  log.unshift({ day:today(), spun:spunName, ate:ateName });
+  if (log.length > 60) log.length = 60;
+  save(); render();
+}
+
+function esc(s){
+  return String(s).replace(/[&<>"]/g, function(ch){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch];
+  });
+}
+
+function render(){
+  var ul = document.getElementById('log');
+  ul.innerHTML = log.slice(0,12).map(function(r){
+    var same = r.spun === r.ate;
+    return '<li><span class="d">'+esc(r.day)+'</span>'
+      + '<span class="li-main"><span class="ate-n">'+esc(r.ate)+'</span>'
+      + '<span class="badge'+(same?' same':'')+'">'+(same?'照轉的吃':'沒照轉的吃')+'</span>'
+      + '<span class="spun-n">轉到的是：'+esc(r.spun)+'</span></span></li>';
+  }).join('');
+  document.getElementById('empty').style.display = log.length ? 'none' : 'block';
+  document.getElementById('clearBtn').hidden = !log.length;
+  document.getElementById('stTotal').textContent = log.length;
+  document.getElementById('stDiff').textContent = log.filter(function(r){ return r.spun !== r.ate; }).length;
+}
+
+/* ============ 事件 ============ */
+var lever = document.getElementById('lever');
+function pullLever(){
+  if (spinning) return;
+  lever.classList.add('pull');
+  setTimeout(function(){ lever.classList.remove('pull'); }, 430);
+  spin();
+}
+lever.addEventListener('click', pullLever);
+lever.addEventListener('keydown', function(e){
+  if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pullLever(); }
+});
+document.getElementById('spinBtn').addEventListener('click', pullLever);
+
+document.addEventListener('keydown', function(e){
+  if (e.code === 'Space' && e.target === document.body){ e.preventDefault(); pullLever(); }
+});
+
+document.getElementById('onlyIn').addEventListener('change', function(){
+  if (spinning) return;
+  buildReels();
+  fillSelect();
+});
+
+document.getElementById('eatBtn').addEventListener('click', function(){
+  if (!current) return;
+  record(current.n, current.n);
+  document.getElementById('ateBox').classList.remove('on');
+  var c = centerOf(this); burst(c.x, c.y, 34, 3.2);
+});
+
+document.getElementById('otherBtn').addEventListener('click', function(){
+  document.getElementById('ateBox').classList.toggle('on');
+});
+
+document.getElementById('saveOther').addEventListener('click', function(){
+  if (!current) return;
+  var v = document.getElementById('ateSel').value;
+  record(current.n, v);
+  document.getElementById('ateBox').classList.remove('on');
+});
+
+document.getElementById('clearBtn').addEventListener('click', function(){
+  if (!confirm('把所有吃飯紀錄清掉？')) return;
+  log = []; save(); render();
+});
+
+function fillSelect(){
+  var sel = document.getElementById('ateSel');
+  sel.innerHTML = shops.map(function(s){
+    return '<option value="'+esc(s.n)+'">'+esc(s.e+' '+s.n)+'</option>';
+  }).join('') + '<option value="自己帶／沒吃">🍵 自己帶／沒吃</option>';
+}
+
+/* ============ 起手 ============ */
+buildReels();
+fillSelect();
+render();
+</script>
+</body>
+</html>
