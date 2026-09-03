@@ -262,7 +262,9 @@
   .gh-logo{width:25px;height:25px;display:block}
   .cv-tool .nm{font-size:16.5px;font-weight:700;letter-spacing:.2px}
 
-  .cv-go{margin:26px 0 0;appearance:none;border:0;cursor:pointer;font:inherit;font-weight:800;
+  .cv-act{position:sticky;bottom:0;z-index:2;margin-top:20px;padding:26px 0 6px;
+    background:linear-gradient(180deg,rgba(255,255,255,0) 0%,var(--card) 46%,var(--card) 100%)}
+  .cv-go{margin:0;appearance:none;border:0;cursor:pointer;font:inherit;font-weight:800;
     font-size:20px;letter-spacing:.06em;color:#fff;padding:17px 42px;border-radius:14px;
     background:linear-gradient(180deg,#f0932c,var(--orange) 55%,#cf6c11);
     box-shadow:0 14px 30px -12px rgba(232,128,31,.68),inset 0 1px 0 rgba(255,255,255,.4);
@@ -280,6 +282,20 @@
   @media (max-width:560px){
     .cv{padding:26px 20px 22px}
     .cv-by{justify-content:center;text-align:center}
+  }
+  @media (max-height:820px){
+    .cv{padding:22px 26px 18px}
+    .cv h1{font-size:clamp(26px,4.6vw,37px);margin-top:12px}
+    .cv-lead{font-size:16px;line-height:1.72;margin-top:11px}
+    .cv-take{margin-top:17px;padding:14px 16px 13px}
+    .cv-take h2{margin-bottom:10px}
+    .cv-list{gap:10px 18px}
+    .cv-list b{font-size:15px}
+    .cv-list span{font-size:13px}
+    .cv-tools{margin-top:16px;padding-top:14px}
+    .cv-act{margin-top:18px}
+    .cv-go{padding:14px 34px;font-size:18px}
+    .cv-by{margin-top:14px;padding-top:12px;font-size:14px}
   }
   @media (prefers-reduced-motion:reduce){ .cover{transition:none} }
 
@@ -337,12 +353,14 @@
     <span class="cv-tool"><svg class="gh-logo" viewBox="0 0 16 16" role="img" aria-label="GitHub" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span class="nm">GitHub</span></span>
   </div>
 
-  <button class="cv-go" id="coverGo" type="button">進入學習單　→</button>
-  <p class="cv-tip">按 Enter 也可以進入</p>
 
   <div class="cv-by">
     <span>講師　<b>陳偉誠 Frank</b>　｜　INTVZ 誠創未來</span>
     <span class="dt">2026 / 09 / 09（三）</span>
+  </div>
+  <div class="cv-act">
+    <button class="cv-go" id="coverGo" type="button">進入學習單　→</button>
+    <p class="cv-tip">按 Enter 也可以進入</p>
   </div>
  </div>
 </div>
