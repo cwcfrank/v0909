@@ -233,7 +233,14 @@
   .cv-kick{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.06em;
     color:var(--orange);background:#fff5eb;border:1px solid #f6d9b8;
     padding:5px 15px;border-radius:99px}
-  .cv h1{margin:16px 0 0;font-size:clamp(31px,5.4vw,52px);line-height:1.22;
+  .cv-ev{margin:16px 0 0;line-height:1.24}
+  .cv-ev .t1{display:block;font-size:clamp(29px,5vw,46px);font-weight:800;letter-spacing:.6px;
+    color:var(--navy)}
+  .cv-ev .t2{display:block;margin-top:5px;font-size:clamp(16px,2.6vw,21px);font-weight:700;
+    letter-spacing:.18em;color:var(--orange)}
+  .cv-ev .aud{display:block;margin-top:9px;font-size:13.5px;color:var(--mut);letter-spacing:.02em}
+  .cv h1{margin:20px 0 0;padding-top:18px;border-top:1px solid var(--line);
+    font-size:clamp(24px,3.9vw,36px);line-height:1.28;
     color:var(--navy);letter-spacing:.5px;font-weight:800}
   .cv-lead{margin:14px auto 0;max-width:34em;font-size:clamp(16px,2.1vw,19px);
     line-height:1.8;color:var(--body)}
@@ -349,7 +356,12 @@
 <div class="cover" id="cover">
  <div class="cv">
   <span class="cv-kick">實作場 90 分鐘</span>
-  <h1>你說得清楚，<br>AI 就寫得出來</h1>
+  <div class="cv-ev">
+    <span class="t1">AI First Touch</span>
+    <span class="t2">VIBE CODING</span>
+    <span class="aud">人工智慧應用學系　大一新生</span>
+  </div>
+  <h1>你說得清楚，AI 就寫得出來</h1>
   <p class="cv-lead">不用先會寫程式。你把想做的東西<b>講清楚</b>，AI 負責寫，
      你負責<b>親自驗收</b>——90 分鐘做出一個真的能上網的網站，下課前拿到自己的網址。</p>
 
@@ -503,7 +515,7 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>就像開工前先<b>把工具搬進來、鑰匙拿到手</b>。這一步少做一項，後面每一步都會卡住。</p>
+    <p>開工前先<b>把工具搬進來、鑰匙拿到手</b>。這步少一項，後面每一步都會卡。</p>
   </div>
 
   <div class="fig">
@@ -543,56 +555,47 @@
   </div>
 
   <ol>
-    <li><b>下載安裝 Antigravity</b><br>
-      打開 <a href="https://antigravity.google/download" target="_blank" rel="noopener"><b>antigravity.google/download</b></a>
-      → 選 <b>Antigravity IDE</b>（不是 Hub）→ Windows 按 <b>Download for x64</b>（約 213 MB）<br>
-      <span class="warn-inline">Windows 跳出「未識別的應用程式」→ 點「其他資訊」→「仍要執行」</span></li>
+    <li><b>裝 Antigravity</b>　
+      <a href="https://antigravity.google/download" target="_blank" rel="noopener"><b>antigravity.google/download</b></a>
+      → 選 <b>Antigravity IDE</b>（不是 Hub）→ Windows 按 <b>Download for x64</b><br>
+      <span class="warn-inline">跳出「未識別的應用程式」→「其他資訊」→「仍要執行」</span></li>
 
-    <li><b>用 Google 帳號登入</b></li>
+    <li><b>Google 帳號登入</b>，模型選 <b>Gemini 3.8 Flash（medium）</b>
+      <span class="warn-inline">別選 Pro，很吃額度</span></li>
 
-    <li>模型選 <b>Gemini 3.8 Flash（medium）</b>
-      <span class="warn-inline">← 不要選 Pro</span></li>
+    <li><b>GitHub 帳號</b>（已經有的跳過）　
+      <a href="https://github.com/signup" target="_blank" rel="noopener"><b>github.com/signup</b></a>
+      → email → 密碼 → <b>帳號名稱用英文小寫</b>（等一下會出現在你的網址裡）→ 收信填驗證碼<br>
+      <span class="warn-inline">要等信，還沒申請的先舉手</span></li>
 
-    <li><b>申請 GitHub 帳號</b>（課前作業，已經有的人跳過）<br>
-      打開 <a href="https://github.com/signup" target="_blank" rel="noopener"><b>github.com/signup</b></a> →
-      填 email → 設密碼 → 取一個<b>帳號名稱</b>（英文小寫，<b>它會出現在你的網址裡</b>）→
-      到信箱收 8 位數驗證碼填回去<br>
-      <span class="warn-inline">要等驗證信，現在還沒申請的人先舉手告訴我</span></li>
-
-    <li>開一個新資料夾當你的專案：名字用<b>英文小寫、減號連接</b></li>
+    <li>開一個新資料夾，名字用<b>英文小寫加減號</b>，例如 <b>lunch-spin</b></li>
   </ol>
 
   <div class="warn">
-    <span class="lbl">你的 AI 額度是「每週」刷新的</span>
-    Google 沒有公布確切數字，而且它算的<b>不是你講了幾句話，是 AI 做了多少事</b>——
-    同一句話叫它做越多，吃掉越多。所以：<br>
-    <b>① 一次把需求講清楚，比分五次慢慢改省得多</b>（這就是第 1 步要先讓它拷問你的原因之一）<br>
-    <b>② 模型選 Flash，不要選 Pro</b>　<b>③ 想清楚再問，不要一直重新生成</b><br>
-    真的用完了也還有辦法：開 <b>gemini.google.com</b> 用同一個 Google 帳號繼續，把程式碼複製回檔案就好。
+    <span class="lbl">AI 額度一週給一次，用完要等下禮拜</span>
+    它算的不是你講幾句話，是<b>它做了多少事</b>。所以：
+    <b>一次講清楚</b>（比改五次省）、<b>模型用 Flash</b>、<b>不要一直重生成</b>。<br>
+    真的用完：開 <b>gemini.google.com</b> 同一個帳號繼續，程式碼複製回檔案就好。
   </div>
 
   <details>
-    <summary>🧸 這些字聽不懂？名詞白話對照表（整堂課都可以翻回來看）</summary>
+    <summary>🧸 聽到怪字？翻這裡（整堂課都可以翻回來）</summary>
     <div class="gl">
-      <div><b>Agent</b><span>Antigravity 裡跟你聊天的 AI。就是那位<b>師傅</b>：你講，它動手。</span></div>
-      <div><b>index.html</b><span>你網站的<b>大門</b>。名字一定要全部小寫、一字不差，不然沒人找得到入口。</span></div>
-      <div><b>GitHub</b><span>放你作品的<b>公共倉庫兼展示間</b>，免費，而且會給你網址。</span></div>
-      <div><b>repository（repo）</b><span>倉庫裡<b>屬於你的那一格</b>，一個作品放一格。說白了就是網路上的一個資料夾。</span></div>
-      <div><b>commit</b><span><b>按存檔，順便寫一句「我這次改了什麼」</b>。今天你會做兩次。</span></div>
-      <div><b>版本控制</b><span>每次存檔都留著、都回得去。<b>從此不用再存「最終版_真的最終.html」</b>。</span></div>
-      <div><b>main</b><span>正式的那一份。今天全班都只用這一份，其他的不用管。</span></div>
-      <div><b>/ (root)</b><span>倉庫的<b>最外層</b>。你的 index.html 就放這一層，不要塞進資料夾裡。</span></div>
-      <div><b>GitHub Pages</b><span>GitHub <b>免費幫你把檔案變成真的網站</b>，並發一個網址給你。</span></div>
-      <div><b>資料儲存</b><span>把資料<b>記在你自己的瀏覽器裡</b>，關掉再打開還在（正式名稱 localStorage）。</span></div>
-      <div><b>CDN</b><span><b>從網路上借別人寫好的程式</b>（例如 3D 效果）。校內網路擋掉的話就會壞掉。</span></div>
-      <div><b>前端 / 後端</b><span>前端＝<b>看得到、點得到</b>的部分，今天做的就是這個；後端＝背後的伺服器和資料庫，今天不碰。</span></div>
+      <div><b>Agent</b><span>那位<b>師傅</b>：你講，它動手。</span></div>
+      <div><b>index.html</b><span>你網站的<b>大門</b>。全小寫，一個字都不能錯。</span></div>
+      <div><b>GitHub</b><span>放作品的<b>展示間</b>，免費，還送你網址。</span></div>
+      <div><b>repo</b><span>展示間裡<b>你的那一格</b>，一個作品一格。</span></div>
+      <div><b>commit</b><span>存檔，順便寫一句<b>「我這次改了什麼」</b>。</span></div>
+      <div><b>版本控制</b><span>每次存檔都留著、都回得去。<b>再也不用「最終版_真的最終.html」</b>。</span></div>
+      <div><b>GitHub Pages</b><span>GitHub <b>免費把你的檔案變成真網站</b>。</span></div>
+      <div><b>資料儲存</b><span><b>記在你自己的瀏覽器裡</b>，關掉再開還在（localStorage）。</span></div>
     </div>
   </details>
 
   <div class="warn">
-    <span class="lbl">資料夾名字＝你網址的一部分</span>
+    <span class="lbl">這個名字等一下會變成你的網址</span>
     <span class="big">✓ lunch-spin　　✕ 午餐轉盤　　✕ my project</span><br>
-    用中文或有空格，第 7 步會壞。
+    中文或空格，第 7 步會壞掉。
   </div>
 </section>
 
@@ -602,7 +605,7 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>好師傅不會問「你想要很棒的房子嗎」，他會問你<b>要幾房幾廳</b>。讓 AI 先問你，它才不會做出你不要的東西。</p>
+    <p>好師傅不會問「你想要很棒的房子嗎」，他問你<b>要幾房幾廳</b>。先讓 AI 問你，它才不會做出你不要的東西。</p>
   </div>
 
   <div class="fig">
@@ -651,7 +654,7 @@
         </g>
       </g>
     </svg>
-    <p class="cap">它問你問題，<b>是為了避免做白工</b>。</p>
+    <p class="cap">它問你，<b>是為了不做白工</b>。</p>
     <button class="playbtn" id="playS1">▶ 播一次流程</button>
   </div>
 
@@ -688,22 +691,22 @@
   <details>
     <summary>還沒想到要做什麼？從這裡挑一個</summary>
     <div class="pick" style="grid-template-columns:1fr">
-      <div><b>自我・社交</b>　<b style="color:var(--violet)">個人履歷／自我介紹網站</b>・社團活動宣傳頁・
-        追劇進度表・重訓紀錄：今天練什麼幾組・遊戲戰績紀錄・交換禮物配對抽籤・紀念日倒數</div>
-      <div><b>課業</b>　作業到期倒數・期末成績試算：還要考幾分才過・課表小卡：下一堂在哪間教室・
-        分組抽籤／點名輪盤・讀書番茄鐘＋今天讀了幾分鐘</div>
-      <div><b>生活</b>　中午吃什麼拉霸轉盤・宿舍分帳：誰欠誰多少・洗衣機烘衣機輪班表・
-        今天喝幾杯水・機車加油紀錄＋油耗</div>
+      <div><b>自我・社交</b>　<b style="color:var(--violet)">個人履歷／自我介紹網站</b>・社團宣傳頁・
+        追劇進度表・重訓紀錄・遊戲戰績・交換禮物抽籤・紀念日倒數</div>
+      <div><b>課業</b>　作業到期倒數・還要考幾分才過・下一堂在哪間教室・
+        分組抽籤／點名輪盤・讀書番茄鐘</div>
+      <div><b>生活</b>　中午吃什麼拉霸轉盤・宿舍分帳誰欠誰・洗衣機輪班表・
+        今天喝幾杯水・機車油耗</div>
     </div>
-    <p class="warn" style="margin-top:10px"><span class="lbl">今天做不了的（需要後端，屬於進階課程，可另找時間學習）</span>
-      需要登入或註冊、聊天室、要抓即時資料（公車到站、股價）、多人同時編輯。<br>
-      想做這些的人：<b>改成「自己手動輸入資料」的版本就可以</b>。</p>
+    <p class="warn" style="margin-top:10px"><span class="lbl">今天做不了的</span>
+      登入註冊、聊天室、抓即時資料（公車、股價）、多人同時編輯。
+      想做的話：<b>改成自己手動輸入資料的版本就行</b>。</p>
   </details>
 
   <details>
     <summary>備用：它不問，直接開始寫程式</summary>
-    <p>自己填完這三格貼給它：目的一句話 ／ 三個功能（動詞開頭）／ 三個驗收動作。</p>
-    <p>範例（喝水紀錄）：按一下加一杯 ／ 顯示今天幾杯 ／ 可以歸零；
+    <p>自己填這三格貼給它：<b>目的一句話</b>／<b>三個功能</b>（動詞開頭）／<b>三個驗收動作</b>。</p>
+    <p>喝水紀錄：加一杯 ／ 顯示今天幾杯 ／ 可歸零；
        驗收＝按 3 次變 3、關掉再開還在、歸零變 0。</p>
   </details>
 </section>
@@ -714,7 +717,7 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>設計圖現在在你手上：<b>不要的劃掉、漏的補上</b>，確認完才說「可以動工了」。</p>
+    <p>設計圖在你手上：<b>不要的劃掉、漏的補上</b>，確認完才說「可以動工」。</p>
   </div>
   <div class="fig">
     <svg viewBox="0 0 720 96" role="img" aria-label="規格檢查兩件事：刪掉不想要的功能、補上漏掉的重點">
@@ -749,7 +752,7 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>房子蓋好要<b>親自走進去看一眼</b>。在 <code>index.html</code> 上連點兩下，就是走進去。</p>
+    <p>房子蓋好要<b>親自走進去看一眼</b>。在 <code>index.html</code> 上點兩下，就是走進去。</p>
   </div>
   <div class="fig">
     <svg viewBox="0 0 720 116" role="img" aria-label="在檔案上按右鍵選在檔案總管顯示，然後雙擊 index.html 用瀏覽器打開">
@@ -775,7 +778,7 @@
         <text x="518" y="92" font-size="11.5" font-weight="700" fill="var(--ok)">你的網頁活了 🎉</text>
       </g>
     </svg>
-    <p class="cap">用瀏覽器打開就是真的網頁——<b>按鈕、輸入、F5 全部都能測</b>，跟上線後一模一樣。</p>
+    <p class="cap">用瀏覽器打開就是真的網頁——<b>按鈕、輸入、F5 都能測</b>，跟上線後一樣。</p>
   </div>
   <div class="warn">
     <span class="lbl">打開是一片空白</span>
@@ -793,7 +796,7 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>一次只叫師傅改一個地方。<b>同時改三個地方，壞了你不知道是哪一個害的。</b></p>
+    <p>一次只叫師傅改一個地方。<b>同時改三個，壞了你不知道是哪個害的。</b></p>
   </div>
   <div class="fig">
     <svg viewBox="0 0 720 150" role="img" aria-label="一次改一件事會成功，一次改三件事會壞掉且找不出原因">
@@ -849,11 +852,11 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>師傅說「都好了」不等於好了。<b>水龍頭要你自己去開</b>——按一下、按 F5、把視窗拉窄，三個動作。</p>
+    <p>師傅說「都好了」不等於好了。<b>水龍頭你自己去開</b>——按一下、按 F5、把視窗拉窄。</p>
   </div>
   <div class="warn">
     <span class="lbl">當 AI 說「我已經完成並測試過了」</span>
-    <span class="big">它沒有你的瀏覽器。它從來沒有點過你的網頁一下。</span>
+    <span class="big">它沒有你的瀏覽器，它從來沒點過你的網頁一下。</span>
   </div>
   <div class="fig">
     <svg viewBox="0 0 720 160" role="img" aria-label="三個驗收動作：按一下、按 F5、拉窄成手機寬度">
@@ -920,7 +923,7 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>每完成一段就<b>拍一張照存起來</b>，這張照片就叫 <b>commit</b>。以後想看哪一版都找得到。</p>
+    <p>每完成一段就<b>拍張照存起來</b>，這張照片叫 <b>commit</b>。以後想看哪一版都找得到。</p>
   </div>
 
   <div class="fig">
@@ -964,7 +967,7 @@
         <text x="26" y="131" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">3</text>
       </g>
     </svg>
-    <p class="cap">全程在瀏覽器裡，<b>不用打任何指令、不用設定任何密碼或 token</b>。</p>
+    <p class="cap">全程在瀏覽器裡，<b>不用打指令、不用設密碼或 token</b>。</p>
   </div>
 
   <div class="note">
@@ -986,7 +989,7 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>房子蓋好還要<b>掛門牌</b>，別人才找得到你家。<code>你的帳號.github.io/你的資料夾名/</code> 就是你的門牌地址。</p>
+    <p>房子蓋好要<b>掛門牌</b>，別人才找得到你家。<code>你的帳號.github.io/資料夾名/</code> 就是門牌。</p>
   </div>
   <div class="fig">
     <svg viewBox="0 0 720 220" role="img" aria-label="GitHub Settings Pages 設定流程與網址組成">
@@ -1050,7 +1053,7 @@
   </div>
   <div class="warn">
     <span class="lbl">打開是空白頁</span>
-    等 2 分鐘再重新整理。還是空白就舉手——八成是 repo 選了 private，或首頁檔案不叫 <code>index.html</code>。
+    等 2 分鐘再重整。還是空白就舉手——八成是 repo 選了 private，或檔案不叫 <code>index.html</code>。
   </div>
 </section>
 
@@ -1060,7 +1063,7 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>翻一遍施工相簿：<b>什麼時候改了什麼一目瞭然，而且隨時回得去</b>，這就是版本控制。</p>
+    <p>翻施工相簿：<b>什麼時候改了什麼一目瞭然，隨時回得去</b>，這就是版本控制。</p>
   </div>
   <div class="fig">
     <svg viewBox="0 0 720 150" role="img" aria-label="兩次 commit 形成時間軸，網站自動更新">
@@ -1102,20 +1105,20 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>主體完工才輪到裝飾。<b>牆還沒粉刷就先掛水晶燈，只會更亂</b>——先確定網站已經上線又驗收過。</p>
+    <p><b>牆還沒粉刷就先掛水晶燈，只會更亂</b>。先確定網站上線又驗收過，再來裝飾。</p>
   </div>
 
   <div class="note">
     <span class="lbl">你可能已經用到了</span>
-    Antigravity 常常自己就會引入 Three.js 或 GSAP（程式碼最上面出現 <code>cdnjs.cloudflare.com</code> 就是）。
-    看到不用緊張，那正是下面第 1、2 招。<b>但要記得驗收</b>——這些是從網路上抓的，校內網路擋掉就會壞掉。
+    Antigravity 常常自己就引入 Three.js 或 GSAP（程式碼最上面有 <code>cdnjs.cloudflare.com</code> 就是），
+    那正是下面第 1、2 招。<b>記得驗收</b>——這是從網路上抓的，校網擋掉就壞掉。
   </div>
 
   <div class="warn">
     <span class="lbl">三個前提，違反一個就不要加特效</span>
-    <b>① 你的網站已經上線並驗收過</b>（沒上線就先回 STEP 7）<br>
-    <b>② 一次只加一招</b>（就是 STEP 4 那條規則，特效更容易一次改壞）<br>
-    <b>③ 每加一招就 commit 一次</b>（壞了才回得去，就是 STEP 8 那件事）
+    <b>① 網站已經上線並驗收過</b>（沒有就回 STEP 7）<br>
+    <b>② 一次只加一招</b>（特效更容易一次改壞）<br>
+    <b>③ 每加一招 commit 一次</b>（壞了才回得去）
   </div>
 
   <div class="fig">
@@ -1163,7 +1166,7 @@
   <div class="tk">
     <div class="tk-h"><span class="tk-n">01</span><span class="tk-t">Three.js — 會動的 3D 背景</span>
       <span class="tk-s">最有「哇」的效果</span></div>
-    <p class="tk-why">用 3D 函式庫在網頁最底層放一層緩慢飄動的粒子。這是最容易讓人記住你的網站的一招。</p>
+    <p class="tk-why">在網頁最底層放一層緩慢飄動的粒子。最容易讓人記住你的網站。</p>
     <div class="code">
 <pre id="t1">請用 CDN 引入 three.js（不要用 npm、不要拆成多個檔案），在我的網頁最底層加一個 3D 動態背景：緩慢飄動的粒子。
 
@@ -1176,13 +1179,13 @@
 改完後告訴我怎麼一步一步確認上面四點。</pre>
       <button class="copy" data-t="t1">複製這段</button>
     </div>
-    <p class="tk-trap">會踩的坑：手機會發燙、網頁變慢 → 粒子數先設小；校網若擋 CDN 會整片黑，記得按 F5 驗收。</p>
+    <p class="tk-trap">坑：手機發燙、變慢 → 粒子數設小；校網擋 CDN 會整片黑，記得 F5 驗收。</p>
   </div>
 
   <div class="tk">
     <div class="tk-h"><span class="tk-n">02</span><span class="tk-t">GSAP — 進場與滾動動畫</span>
       <span class="tk-s">最容易看起來專業</span></div>
-    <p class="tk-why">讓標題和卡片依序滑進畫面，而不是全部一次跳出來。順序感是「做得很細」的第一印象。</p>
+    <p class="tk-why">標題和卡片依序滑進來，而不是一次全跳出來。順序感＝「做得很細」。</p>
     <div class="code">
 <pre id="t2">請用 GSAP 的 CDN 版本，為現有元素加上進場動畫：標題與卡片依序淡入並輕微上移，每個間隔 0.08 秒。
 
@@ -1195,13 +1198,13 @@
 改完後告訴我怎麼驗收這四點。</pre>
       <button class="copy" data-t="t2">複製這段</button>
     </div>
-    <p class="tk-trap">會踩的坑：動畫沒跑成功時，內容可能永遠是透明的 → 第 1 條就是在防這件事，一定要留。</p>
+    <p class="tk-trap">坑：動畫沒跑成功，內容會永遠透明 → 第 1 條就是在防這個，一定要留。</p>
   </div>
 
   <div class="tk">
     <div class="tk-h"><span class="tk-n">03</span><span class="tk-t">Design DNA — 先定設計基因，再改樣式</span>
       <span class="tk-s">最省時間</span></div>
-    <p class="tk-why">先讓 AI 定一套顏色／字級／圓角／陰影／間距的規則，再要它「只准用這套規則」。這樣改十次也不會越改越亂。</p>
+    <p class="tk-why">先定一套顏色／字級／圓角／陰影規則，再叫它「只准用這套」。改十次也不會越改越亂。</p>
     <div class="code">
 <pre id="t3">在改任何樣式之前，先幫我定一套 design DNA，寫成 CSS 變數放在 :root：
 主色、輔色、背景色、文字色各一；字級 4 級；圓角 2 種；陰影 2 種；間距用 4 的倍數。
@@ -1211,13 +1214,13 @@
 最後把這套 DNA 列出來給我看，並告訴我改了哪些地方。</pre>
       <button class="copy" data-t="t3">複製這段</button>
     </div>
-    <p class="tk-trap">會踩的坑：AI 會順手改掉你原本喜歡的顏色 → 它列出 DNA 時對照一次，不喜歡就叫它換掉那一個變數。</p>
+    <p class="tk-trap">坑：AI 會順手改掉你喜歡的顏色 → 它列 DNA 時對一次，不喜歡就叫它換那一個。</p>
   </div>
 
   <div class="tk">
     <div class="tk-h"><span class="tk-n">04</span><span class="tk-t">Motion design — 動效要有意義</span>
       <span class="tk-s">分辨新手與老手</span></div>
-    <p class="tk-why">新手加一堆會動的東西，老手只讓「使用者做了什麼」有回饋。少而準，比多而炫值錢。</p>
+    <p class="tk-why">新手加一堆會動的，老手只讓「使用者做了什麼」有回饋。少而準比多而炫值錢。</p>
     <div class="code">
 <pre id="t4">請幫我做「互動回饋」而不是裝飾動畫：
 
@@ -1229,7 +1232,7 @@
 改完告訴我每個動畫分別對應哪一個動作。</pre>
       <button class="copy" data-t="t4">複製這段</button>
     </div>
-    <p class="tk-trap">會踩的坑：動畫太多會讓人頭暈，展示時反而扣分 → 加完自己用一次，覺得煩就砍掉一半。</p>
+    <p class="tk-trap">坑：動畫太多會頭暈，展示反而扣分 → 加完自己用一次，覺得煩就砍一半。</p>
   </div>
 
   <div class="tk">
@@ -1263,7 +1266,7 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>卡住很正常，多半是<b>問題沒有講清楚給師傅聽</b>。下面三句話幫你把話講明白。</p>
+    <p>卡住很正常，多半是<b>沒把問題講清楚給師傅聽</b>。這三句幫你講明白。</p>
   </div>
   <ol>
     <li><b>打不開／一片空白</b><br>「網頁打開是空白的，請檢查 index.html 是否完整，並確認所有程式碼都寫在這一個檔案裡。」</li>
