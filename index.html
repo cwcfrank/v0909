@@ -31,7 +31,11 @@
     color:#fff;opacity:.85;letter-spacing:.3px}
   .top .in{max-width:860px;margin:0 auto;padding:11px 18px 9px;display:flex;
     align-items:center;gap:12px;flex-wrap:wrap}
-  .brand{font-size:16.5px;font-weight:800;letter-spacing:.4px}
+  .brand{font-size:16.5px;font-weight:800;letter-spacing:.4px;
+    appearance:none;background:none;border:0;padding:4px 8px;margin-left:-8px;border-radius:8px;
+    color:inherit;font-family:inherit;cursor:pointer;transition:background .18s}
+  .brand:hover{background:rgba(255,255,255,.12)}
+  .brand:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
   .brand span{font-weight:400;opacity:.6;font-size:14px;margin-left:8px}
   .prog{margin-left:auto;display:flex;align-items:center;gap:9px;font-size:14.5px}
   .bar{width:96px;height:7px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
@@ -218,6 +222,7 @@
 
 
   /* ===================== 進入封面 ===================== */
+  .cover[hidden]{display:none!important}
   .cover{position:fixed;inset:0;z-index:9999;overflow:auto;
     background:
       radial-gradient(760px 420px at 14% -6%, rgba(232,128,31,.13), transparent 62%),
@@ -415,7 +420,7 @@
 <div class="fixbar" id="fixbar">
 <header class="top">
   <div class="in">
-    <div class="brand">VIBE CODING<span>實作手冊</span></div>
+    <button class="brand" id="brandHome" type="button" title="回到封面">VIBE CODING<span>實作手冊</span></button>
     <div class="prog"><span id="ptxt">0 / 9</span><div class="bar"><i id="pbar"></i></div></div>
   </div>
 </header>
@@ -1321,7 +1326,7 @@
 </section>
 
 <footer>
-  <b>Frank</b>　｜　INTVZ 誠創未來　｜　AI × AR 應用開發<br>
+  作者：<b>陳偉誠 Frank</b><br>
   Vibe Coding 實作場 2026/09/09　·
   <button class="reset" id="reset">清除我的打勾進度</button>
 </footer>
@@ -1559,20 +1564,39 @@
   var prevOverflow = root.style.overflow;
   root.style.overflow = 'hidden';
 
+  var hideTimer = null;
+
   function enter(){
-    if (cover.classList.contains('out')) return;
+    if (cover.hidden || cover.classList.contains('out')) return;
     cover.classList.add('out');
     root.style.overflow = prevOverflow;
     window.scrollTo(0, 0);
     document.removeEventListener('keydown', onKey);
-    setTimeout(function(){ if (cover.parentNode) cover.parentNode.removeChild(cover); }, 560);
+    hideTimer = setTimeout(function(){ cover.hidden = true; }, 560);
   }
+
+  // 點左上角 VIBE CODING 回到封面
+  function back(){
+    clearTimeout(hideTimer);
+    cover.hidden = false;
+    cover.scrollTop = 0;
+    void cover.offsetWidth;               // 強制重排，淡入才會播
+    cover.classList.remove('out');
+    root.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKey);
+    document.getElementById('coverGo').focus({preventScroll:true});
+  }
+
   function onKey(e){
     if (e.key === 'Enter' || e.key === ' ' || e.code === 'Space'){ e.preventDefault(); enter(); }
   }
   document.getElementById('coverGo').addEventListener('click', enter);
   document.addEventListener('keydown', onKey);
   window.addEventListener('beforeprint', enter);   // 列印時不要卡在封面
+
+  var brand = document.getElementById('brandHome');
+  if (brand) brand.addEventListener('click', back);
+
   document.getElementById('coverGo').focus({preventScroll:true});
 })();
 </script>
