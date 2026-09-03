@@ -299,13 +299,14 @@
   .cv-bio summary:hover{color:var(--navy);border-bottom-color:var(--navy)}
   .cv-bio p{margin:10px 0 0;max-width:62em;font-size:13.5px;line-height:1.85;color:var(--mut)}
   .cv-bio p b{color:var(--body);font-weight:600}
+  .cv-bio p b.ch{color:var(--navy);font-weight:800;font-size:15.5px;letter-spacing:.2px}
   .cv-by .cred{display:block;margin-top:3px;font-size:13px;color:var(--mut);font-weight:400}
   .cv-by .who{flex-direction:row;align-items:flex-start;gap:13px}
   .cv-by .txt{display:flex;flex-direction:column;gap:7px;min-width:0}
-  .cv-ava{flex:0 0 auto;width:56px;height:56px;border-radius:50%;overflow:hidden;
+  .cv-ava{flex:0 0 auto;width:60px;height:60px;border-radius:50%;overflow:hidden;
     background:linear-gradient(180deg,#fff,var(--soft));
     border:1px solid var(--line);box-shadow:var(--shadow)}
-  .cv-ava img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+  .cv-ava img{width:100%;height:100%;object-fit:cover;display:block}
   @media (max-width:560px){
     .cv{padding:26px 20px 22px}
     .cv-by{justify-content:center;text-align:center}
@@ -388,7 +389,7 @@
 
   <div class="cv-by">
     <div class="who">
-      <span class="cv-ava"><img src="avatar.png" alt="陳偉誠 Frank" width="56" height="56"
+      <span class="cv-ava"><img src="avatar.png" alt="陳偉誠 Frank" width="60" height="60"
         loading="eager" decoding="async"></span>
       <div class="txt">
       <span>講師　<b>陳偉誠 Frank</b>
@@ -398,7 +399,7 @@
         <p>陳偉誠（Frank），<b>INTVZ 誠創未來</b>創辦人、<b>四季兒童教育機構</b>資訊副理、
           <b>台灣虛擬及擴增實境產業協會</b>會員，10 年以上軟體開發與資訊整合經驗，
           做過<b>生成式 AI、AI 影像辨識與多模態 AI</b> 系統專案。
-          同時經營 YouTube 科技頻道《Chen Cheng 圈圈》，多支應用實作影片點閱破 10 萬。</p>
+          同時經營 YouTube 科技頻道<b class="ch">《Chen Cheng 圈圈》</b>，多支應用實作影片點閱破 10 萬。</p>
       </details>
       </div>
     </div>
