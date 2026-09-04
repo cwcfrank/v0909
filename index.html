@@ -153,9 +153,12 @@
   details{margin:13px 0;border:1px dashed var(--line);border-radius:10px;padding:11px 15px}
   summary{cursor:pointer;font-weight:800;color:var(--ink);font-size:16.5px}
 
-  .fab{position:fixed;right:16px;bottom:16px;z-index:60;background:var(--orange);color:#0B1B33;
+  .fab{position:fixed;right:16px;bottom:16px;z-index:60;color:#0B1B33;
+    background:rgba(232,128,31,.55);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
     border:0;border-radius:99px;padding:14px 22px;font-size:16.5px;font-weight:800;
-    box-shadow:0 6px 18px rgba(0,0,0,.24);text-decoration:none}
+    box-shadow:0 4px 14px rgba(0,0,0,.12);text-decoration:none;
+    transition:background .2s,box-shadow .2s}
+  .fab:hover,.fab:focus-visible{background:var(--orange);box-shadow:0 6px 18px rgba(0,0,0,.24)}
   footer{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);color:var(--mut);
     font-size:15px}
   .reset{background:none;border:0;color:var(--mut);font-size:13px;text-decoration:underline;
@@ -329,7 +332,15 @@
   .cv-ava img{width:100%;height:100%;object-fit:cover;display:block}
   @media (max-width:560px){
     .cv{padding:26px 20px 22px}
-    .cv-by{justify-content:center;text-align:center}
+    .cv-by{flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;gap:11px}
+    .cv-by .who{flex-direction:column;align-items:center;gap:9px;flex:0 0 auto;width:100%}
+    .cv-by .txt{align-items:center;width:100%;gap:6px}
+    .cv-by .dt{padding-top:0}
+    .cv-bio{width:100%}
+    .cv-bio summary{margin:0 auto}
+    .cv-bio p{max-width:none;text-align:left}
+    .cv-by .cred{max-width:19em;margin-left:auto;margin-right:auto}
   }
   @media (max-height:820px){
     .cv{padding:22px 26px 18px}
@@ -732,12 +743,6 @@
       想做的話：<b>改成自己手動輸入資料的版本就行</b>。</p>
   </details>
 
-  <details>
-    <summary>備用：它不問，直接開始寫程式</summary>
-    <p>自己填這三格貼給它：<b>目的一句話</b>／<b>三個功能</b>（動詞開頭）／<b>三個驗收動作</b>。</p>
-    <p>喝水紀錄：加一杯 ／ 顯示今天幾杯 ／ 可歸零；
-       驗收＝按 3 次變 3、關掉再開還在、歸零變 0。</p>
-  </details>
 </section>
 
 <div class="phase"><span class="pn">第二段</span><h2>程式開發</h2>
@@ -850,10 +855,6 @@
   </div>
 
   <h3>看到畫面了——接下來是今天最重要的兩分鐘：驗收</h3>
-<div class="warn">
-    <span class="lbl">當 AI 說「我已經完成並測試過了」</span>
-    <span class="big">它沒有你的瀏覽器，它從來沒點過你的網頁一下。</span>
-  </div>
   <div class="fig">
     <svg viewBox="0 0 720 160" role="img" aria-label="三個驗收動作：按一下、按 F5、拉窄成手機寬度">
       <g font-size="13" text-anchor="middle">
@@ -985,116 +986,6 @@
 完成後請直接給我那一段可以公開訪問的網址。
 過程中如果需要我登入 GitHub 或按授權，請停下來告訴我要按哪裡。</pre>
     <button class="copy" data-t="p5">複製這段指令 → 貼進 Agent</button>
-  </div>
-
-  <div class="warn">
-    <span class="lbl">三個地雷</span>
-    <b>① repository 一定要 Public</b>，選 Private 網址不會公開。<br>
-    <b>② 檔案一定要叫 index.html</b>（全部小寫），叫別的名字打開就是 404。<br>
-    <b>③ 它可能會跳出 GitHub 登入／授權視窗</b>，照著按同意就好。
-    卡超過 90 秒，就改用下面的手動三步。
-  </div>
-
-  <h3>AI 推不上去？走這條，一定成功（全程滑鼠，不用打指令）</h3>
-<div class="fig">
-    <svg viewBox="0 0 720 240" role="img" aria-label="GitHub 網頁建立 repository 並上傳 index.html，填寫 commit 訊息">
-      <g font-size="13">
-        <rect x="10" y="10" width="330" height="100" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
-        <rect x="10" y="10" width="330" height="24" rx="12" fill="var(--soft)"/>
-        <text x="48" y="27" font-size="11.5" font-weight="800" class="sv-m">github.com → New repository</text>
-        <rect x="26" y="44" width="180" height="24" rx="5" fill="var(--soft)" stroke="var(--cyan)" stroke-width="2"/>
-        <text x="36" y="61" font-weight="700" fill="var(--cyan)">lunch-spin</text>
-        <text x="216" y="61" font-size="11.5" class="sv-m">← 跟資料夾同名</text>
-        <circle cx="34" cy="86" r="7" fill="none" stroke="var(--ok)" stroke-width="2.5"/>
-        <circle cx="34" cy="86" r="3.5" fill="var(--ok)"/>
-        <text x="48" y="91" font-weight="800" fill="var(--ok)">Public</text>
-        <text x="110" y="91" font-size="11.5" class="sv-m">（選 Private 網址不會公開）</text>
-        <circle cx="26" cy="10" r="13" fill="var(--orange)"/>
-        <text x="26" y="15" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">1</text>
-
-        <path d="M346 60h24" stroke="currentColor" stroke-width="2" opacity=".5" marker-end="url(#ar)"/>
-
-        <rect x="380" y="10" width="330" height="100" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
-        <rect x="380" y="10" width="330" height="24" rx="12" fill="var(--soft)"/>
-        <text x="418" y="27" font-size="11.5" font-weight="800" class="sv-m">Add file → Upload files</text>
-        <rect x="396" y="42" width="298" height="54" rx="10" fill="var(--soft)"
-              stroke="var(--violet)" stroke-width="2.5" stroke-dasharray="7 4"/>
-        <rect x="520" y="52" width="52" height="34" rx="5" fill="var(--card)" stroke="var(--cyan)" stroke-width="2"/>
-        <text x="546" y="73" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--cyan)">index</text>
-        <text x="410" y="66" font-size="11.5" class="sv-m">把 index.html</text>
-        <text x="410" y="84" font-size="11.5" class="sv-m">拖進這個框</text>
-        <circle cx="396" cy="10" r="13" fill="var(--orange)"/>
-        <text x="396" y="15" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">2</text>
-
-        <rect x="10" y="126" width="700" height="104" rx="12" fill="var(--card)" stroke="var(--orange)" stroke-width="2.5"/>
-        <text x="48" y="150" font-size="12" font-weight="800" fill="var(--orange)">往下捲，寫一句話說明你做了什麼 ← 這句話就是 commit</text>
-        <rect x="30" y="160" width="420" height="28" rx="6" fill="var(--soft)" stroke="var(--line)"/>
-        <text x="42" y="179" class="sv-i">第一版 午餐轉盤</text>
-        <rect x="30" y="196" width="150" height="26" rx="6" fill="var(--ok)"/>
-        <text x="105" y="214" text-anchor="middle" font-weight="800" fill="#fff">Commit changes</text>
-        <text x="196" y="214" font-size="11.5" class="sv-m">按下去，你的第一個 commit 就完成了</text>
-        <circle cx="26" cy="126" r="13" fill="var(--orange)"/>
-        <text x="26" y="131" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">3</text>
-      </g>
-    </svg>
-    <p class="cap">全程在瀏覽器裡，<b>不用打指令、不用設密碼或 token</b>。</p>
-  </div>
-
-  <div class="note">
-    <span class="lbl">找不到 index.html 在哪？</span>
-    回 Antigravity，在左邊的 <code>index.html</code> 上按<b>右鍵 → 在檔案總管顯示</b>，
-    檔案總管就會跳出來，直接把檔案拖進 GitHub 的上傳框。
-  </div>
-
-  <div class="note">
-    <span class="lbl">上傳完，最後一步：開啟 Pages</span>
-    到你的 repository → <b>Settings → Pages</b> → Source 選 <b>Deploy from a branch</b>、
-    branch 選 <b>main</b>、資料夾 <b>/(root)</b> → <b>Save</b>，等 1–2 分鐘網址就活了。
-  </div>
-<div class="fig">
-    <svg viewBox="0 0 720 220" role="img" aria-label="GitHub Settings Pages 設定流程與網址組成">
-      <g font-size="13">
-        <rect x="10" y="10" width="440" height="126" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
-        <rect x="10" y="10" width="440" height="26" rx="12" fill="var(--soft)"/>
-        <text x="26" y="28" font-size="11.5" font-weight="800" class="sv-m">github.com ／ 你的專案</text>
-        <text x="26" y="56" font-weight="800" class="sv-i">Settings</text>
-        <rect x="96" y="42" width="86" height="20" rx="5" fill="var(--pink)" opacity=".2"/>
-        <text x="104" y="57" font-weight="800" fill="var(--pink)">Pages</text>
-        <path d="M84 52h10" stroke="currentColor" stroke-width="2" opacity=".5" marker-end="url(#ar)"/>
-
-        <text x="26" y="86" class="sv-m" font-size="12">Source</text>
-        <rect x="90" y="72" width="180" height="22" rx="5" fill="var(--soft)" stroke="var(--line)"/>
-        <text x="100" y="88" font-size="12" class="sv-i">Deploy from a branch ▾</text>
-        <text x="26" y="114" class="sv-m" font-size="12">Branch</text>
-        <rect x="90" y="100" width="80" height="22" rx="5" fill="var(--soft)" stroke="var(--ok)" stroke-width="2"/>
-        <text x="100" y="116" font-size="12" font-weight="800" fill="var(--ok)">main ▾</text>
-        <rect x="178" y="100" width="76" height="22" rx="5" fill="var(--soft)" stroke="var(--ok)" stroke-width="2"/>
-        <text x="188" y="116" font-size="12" font-weight="800" fill="var(--ok)">/ (root)</text>
-        <rect x="266" y="99" width="66" height="24" rx="6" fill="var(--ok)"/>
-        <text x="299" y="116" text-anchor="middle" font-weight="800" fill="#fff">Save</text>
-
-        <path d="M456 72h24" stroke="currentColor" stroke-width="2" opacity=".5" marker-end="url(#ar)"/>
-        <g transform="translate(490,26)">
-          <rect width="220" height="96" rx="12" fill="var(--soft)" stroke="var(--pink)" stroke-width="2.5"/>
-          <text x="16" y="26" font-size="12" font-weight="800" fill="var(--pink)">等 1–2 分鐘</text>
-          <text x="16" y="52" class="sv-i" font-size="12">重新整理這頁，</text>
-          <text x="16" y="72" class="sv-i" font-size="12">最上面出現你的網址 →</text>
-        </g>
-
-        <!-- URL 解剖 -->
-        <g transform="translate(10,156)">
-          <rect width="700" height="56" rx="12" fill="var(--card)" stroke="var(--pink)" stroke-width="2.5"/>
-          <text x="20" y="30" font-size="15" font-family="ui-monospace,Menlo,monospace" class="sv-i">
-            https://<tspan fill="var(--cyan)" font-weight="700">你的帳號</tspan>.github.io/<tspan fill="var(--orange)" font-weight="700">你的資料夾名</tspan>/
-          </text>
-          <text x="20" y="48" font-size="11.5" class="sv-m">
-            <tspan fill="var(--cyan)">↑ GitHub 帳號名稱</tspan>
-            <tspan fill="var(--orange)">↑ 就是第 0 步那個英文資料夾名</tspan>
-          </text>
-        </g>
-      </g>
-    </svg>
-    <p class="cap">拿到網址 → 用手機打開確認活著 → <b>貼到班級展示牆</b></p>
   </div>
 
   <h3>先組出你的網址（順便檢查資料夾名合不合法）</h3>
