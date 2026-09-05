@@ -470,7 +470,8 @@
 
   <div class="eli5">
     <span class="eli5-t">🧸 白話說</span>
-    <p>今天你的角色是<b>屋主</b>，不是工程師。AI 是師傅：你負責講清楚要什麼、親自驗收，
+    <p>今天你的角色是<b>屋主</b>，不是工程師。AI 是師傅——它在畫面上的名字叫
+       <b>Agent（程式開發代理人）</b>：你負責講清楚要什麼、親自驗收，
        最後掛上門牌讓大家找得到。<b>接下來每一步都會用這個比喻講一次。</b></p>
   </div>
 
@@ -547,7 +548,7 @@
   </div>
 
   <div class="fig">
-    <svg viewBox="0 0 720 250" role="img" aria-label="AI 編輯器示意圖：左邊檔案、中間程式碼、右邊 Agent 對話框">
+    <svg viewBox="0 0 720 250" role="img" aria-label="AI 編輯器示意圖：左邊檔案、中間程式碼、右邊程式開發代理人的對話視窗">
       <rect x="8" y="8" width="704" height="234" rx="12" fill="var(--card)" stroke="var(--line)" stroke-width="2"/>
       <rect x="8" y="8" width="704" height="30" rx="12" fill="var(--soft)"/>
       <circle cx="30" cy="23" r="5" fill="#ff5f57"/><circle cx="48" cy="23" r="5" fill="#febc2e"/>
@@ -569,6 +570,7 @@
 
       <rect x="470" y="38" width="242" height="204" fill="var(--soft)" stroke="var(--violet)" stroke-width="2.5"/>
       <text x="484" y="60" font-size="12" font-weight="800" fill="var(--violet)">AGENT</text>
+      <text x="536" y="60" font-size="11" class="sv-m">程式開發代理人</text>
       <rect x="484" y="70" width="214" height="38" rx="8" fill="var(--card)" stroke="var(--line)"/>
       <g stroke="var(--mut)" stroke-width="5" stroke-linecap="round">
         <path d="M496 84h150M496 98h90"/>
@@ -578,8 +580,10 @@
       <text x="496" y="218" font-size="12" fill="var(--mut)">在這裡貼指令 ⌨</text>
       <text x="591" y="176" text-anchor="middle" font-size="14" font-weight="800" fill="var(--violet)">A</text>
     </svg>
-    <p class="cap"><b style="color:var(--violet)">A</b> Agent 對話框（你所有的話都對它說）
+    <p class="cap"><b style="color:var(--violet)">A</b> 對話視窗（你所有的話都對它說）
       <b style="color:var(--cyan)">B</b> 你的 index.html　·　畫面細節可能跟你的不太一樣，<b>找到這兩個東西就對了</b></p>
+    <p class="cap" style="margin-top:4px">畫面上寫的 <b>Agent</b>，中文是<b>程式開發代理人</b>，
+      也就是今天要幫你動手的<b>那位師傅</b>——課堂上我說「師傅」「代理人」「Agent」都是指它。</p>
   </div>
 
   <ol>
@@ -618,7 +622,7 @@
   <details>
     <summary>🧸 聽到怪字？翻這裡（整堂課都可以翻回來）</summary>
     <div class="gl">
-      <div><b>Agent</b><span>那位<b>師傅</b>：你講，它動手。</span></div>
+      <div><b>Agent ＝ 程式開發代理人</b><span>就是那位<b>師傅</b>：你講，它動手。畫面上寫英文 Agent。</span></div>
       <div><b>index.html</b><span>你網站的<b>大門</b>。全小寫，一個字都不能錯。</span></div>
       <div><b>GitHub</b><span>放作品的<b>展示間</b>，免費，還送你網址。</span></div>
       <div><b>repo</b><span>展示間裡<b>你的那一格</b>，一個作品一格。</span></div>
@@ -715,7 +719,7 @@
 
 技術限制（這些不用問我，直接照做）：
 單一 index.html 檔案、不要用需要安裝的套件、不連資料庫、不需要登入功能。</pre>
-    <button class="copy" data-t="p1">複製這段指令 → 貼進 Agent</button>
+    <button class="copy" data-t="p1">複製這段指令 → 貼進對話視窗</button>
   </div>
   <div class="warn">
     <span class="lbl">它問到第三輪還在問</span>
@@ -777,10 +781,11 @@
     </svg>
   </div>
   <div class="fig">
-    <svg viewBox="0 0 720 110" role="img" aria-label="規格確認後按下 Agent 面板的 Proceed 按鈕，AI 就開始寫程式">
+    <svg viewBox="0 0 720 110" role="img" aria-label="規格確認後按下代理人視窗的 Proceed 按鈕，AI 就開始寫程式">
       <g font-size="13">
         <rect x="10" y="10" width="430" height="90" rx="12" fill="var(--card)" stroke="var(--violet)" stroke-width="2.5"/>
         <text x="26" y="32" font-size="11.5" font-weight="800" fill="var(--violet)">AGENT</text>
+        <text x="76" y="32" font-size="10.5" class="sv-m">程式開發代理人</text>
         <g stroke="var(--line)" stroke-width="6" stroke-linecap="round">
           <path d="M26 48h286M26 64h196"/>
         </g>
@@ -801,7 +806,7 @@
   </div>
   <div class="warn">
     <span class="lbl">還有地方不對？先別按</span>
-    直接在對話框打字說「第 2 項不用做」「再加一個 ______」，等它把規格改好，<b>再按 Proceed</b>。
+    直接在對話視窗打字說「第 2 項不用做」「再加一個 ______」，等它把規格改好，<b>再按 Proceed</b>。
   </div>
   <p>按下去等 1–2 分鐘，它會自己建立 <code>index.html</code>。
      這段時間把它列的 <b>【驗收方式】三步</b>抄到學習單上——下一步就照著做。</p>
@@ -847,11 +852,11 @@
   </div>
   <div class="warn">
     <span class="lbl">打開是一片空白</span>
-    跟 Agent 說：「網頁打開是空白的，請檢查 index.html 是否完整，並確認所有程式碼都寫在這一個檔案裡。」
+    在對話視窗跟師傅說：「網頁打開是空白的，請檢查 index.html 是否完整，並確認所有程式碼都寫在這一個檔案裡。」
   </div>
   <div class="note">
     <span class="lbl">改完之後怎麼再看一次</span>
-    Agent 改完檔案後，回到<b>已經開著的瀏覽器分頁按 F5</b> 就會更新，不用重新雙擊。
+    師傅改完檔案後，回到<b>已經開著的瀏覽器分頁按 F5</b> 就會更新，不用重新雙擊。
   </div>
 
   <h3>看到畫面了——接下來是今天最重要的兩分鐘：驗收</h3>
@@ -985,7 +990,7 @@
 
 完成後請直接給我那一段可以公開訪問的網址。
 過程中如果需要我登入 GitHub 或按授權，請停下來告訴我要按哪裡。</pre>
-    <button class="copy" data-t="p5">複製這段指令 → 貼進 Agent</button>
+    <button class="copy" data-t="p5">複製這段指令 → 貼進對話視窗</button>
   </div>
 
   <h3>先組出你的網址（順便檢查資料夾名合不合法）</h3>
@@ -1290,7 +1295,7 @@
         var ta=document.createElement('textarea'); ta.value=txt;
         document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
       }
-      b.textContent='已複製，貼到 Agent 對話框 ✓'; b.classList.add('done');
+      b.textContent='已複製，貼到對話視窗 ✓'; b.classList.add('done');
       setTimeout(function(){ b.textContent=orig; b.classList.remove('done'); },2400);
     });
   });
